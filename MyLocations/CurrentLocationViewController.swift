@@ -9,7 +9,11 @@
 import UIKit
 import CoreLocation
 
-class CurrentLocationViewController: UIViewController {
+
+
+
+
+class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - OUTLETS
     
@@ -28,6 +32,13 @@ class CurrentLocationViewController: UIViewController {
     
     var updatingLocation = false
     var lastLocationError: NSError?
+    
+    let geocoder = CLGeocoder()
+    var placemark: CLPlacemark?
+    var performingReverseGeocoding = false
+    var lastGeocodingError: NSError?
+    
+    var timer: NSTimer?
     
     
     
@@ -65,6 +76,16 @@ class CurrentLocationViewController: UIViewController {
             longitudeLabel.text = String(format: "%.8f", location.coordinate.longitude)
             tagButton.hidden = false
             messageLabel.text = ""
+            
+            if let placemark = placemark {
+                addressLabel.text = stringFromPlacemark(placemark)
+            } else if performingReverseGeocoding {
+                addressLabel.text = "Searching for Address..."
+            } else if lastGeocodingError != nil {
+                addressLabel.text = "Error Finding Address"
+            } else {
+                addressLabel.text = "No Address Found"
+            }
             
         } else {
             
@@ -104,12 +125,19 @@ class CurrentLocationViewController: UIViewController {
             locationManager.startUpdatingLocation()
             
             updatingLocation = true
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("didTimeOut"), userInfo: nil, repeats: false)
         }
     }
     
     func stopLocationManager() {
         
         if updatingLocation {
+            
+            if let timer = timer {
+                timer.invalidate()
+            }
+            
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             updatingLocation = false
@@ -125,6 +153,52 @@ class CurrentLocationViewController: UIViewController {
             getButton.setTitle("Get My Location", forState: .Normal)
         }
         
+    }
+    
+    func stringFromPlacemark(placemark: CLPlacemark) -> String {
+        
+        var line1 = ""
+        
+        if let s = placemark.subThoroughfare {
+            line1 += s + " "
+        }
+        
+        if let s = placemark.thoroughfare {
+            line1 += s
+        }
+        
+        var line2 = ""
+        
+        if let s = placemark.locality {
+            line2 += s + " "
+        }
+        
+        if let s = placemark.administrativeArea {
+            line2 += s + " "
+        }
+        
+        if let s = placemark.postalCode {
+            line2 += s
+        }
+        
+        return line1 + "\n" + line2
+        
+        
+    }
+    
+    func didtimeOut() {
+        print("*** Time out")
+        
+        if location == nil {
+            stopLocationManager()
+            
+            
+            lastLocationError = NSError(domain: "MyLocationsErrorDomain", code: 1, userInfo: nil)
+            
+            updateLabels()
+            
+            configureGetButton()
+        }
     }
     
     
@@ -151,6 +225,9 @@ class CurrentLocationViewController: UIViewController {
         } else {
             location = nil
             lastLocationError = nil
+            placemark = nil
+            lastGeocodingError = nil
+            
             startLocationManager()
         }
         
@@ -163,12 +240,9 @@ class CurrentLocationViewController: UIViewController {
     }
     
   
-
-}
-
-
-// MARK: - CLLocationManagerDelegate
-extension CurrentLocationViewController: CLLocationManagerDelegate {
+    
+    
+    // MARK: - CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print("didFailWithError \(error)")
@@ -203,6 +277,11 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
             return
         }
         
+        var distance = CLLocationDistance(DBL_MAX)
+        if let location = location {
+            distance = newLocation.distanceFromLocation(location)
+        }
+        
         
         if location == nil || location!.horizontalAccuracy > newLocation.horizontalAccuracy {
             
@@ -217,6 +296,52 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
                 configureGetButton()
             }
             
+            if distance > 0 {
+                performingReverseGeocoding = false
+            }
+            
+            if !performingReverseGeocoding {
+                
+                print("*** Going to geocode")
+                
+                performingReverseGeocoding = true
+                
+                geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (placemarks, error) in
+                    
+                    print("*** Found placemarks: \(placemarks), error: \(error)")
+                    
+                    self.lastLocationError = error
+                    
+                    if error == nil, let p = placemarks where !p.isEmpty {
+                        self.placemark = p.last!
+                    } else {
+                        self.placemark = nil
+                    }
+                    
+                    self.performingReverseGeocoding = false
+                    self.updateLabels()
+                    
+                })
+                
+            }
+            
+            
+        } else if distance < 1.0 {
+            
+            let timeInterval = newLocation.timestamp.timeIntervalSinceDate(location!.timestamp)
+            
+            if timeInterval > 10 {
+                
+                print("*** Force done!")
+                
+                stopLocationManager()
+                
+                updateLabels()
+                
+                configureGetButton()
+            }
+            
+            
         }
         
         
@@ -226,11 +351,9 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
         
         
     }
-    
-    
+
+
 }
-
-
 
 
 
