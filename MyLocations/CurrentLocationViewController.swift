@@ -126,7 +126,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             updatingLocation = true
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("didTimeOut"), userInfo: nil, repeats: false)
+            timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(CurrentLocationViewController.didTimeOut), userInfo: nil, repeats: false)
         }
     }
     
@@ -186,7 +186,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         
     }
     
-    func didtimeOut() {
+    func didTimeOut() {
         print("*** Time out")
         
         if location == nil {
