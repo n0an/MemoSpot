@@ -281,23 +281,37 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pe6-bU-IU7">
                                                     <rect key="frame" x="15" y="12" width="59.5" height="19.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="59.5" id="zum-IJ-jpa"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxJ-aK-493">
-                                                    <rect key="frame" x="543" y="11" width="42" height="20"/>
+                                                    <rect key="frame" x="82.5" y="11" width="502.5" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="FxJ-aK-493" firstAttribute="leading" secondItem="pe6-bU-IU7" secondAttribute="trailing" constant="8" id="6pE-mw-jaI"/>
                                                 <constraint firstItem="pe6-bU-IU7" firstAttribute="leading" secondItem="0nM-CJ-L82" secondAttribute="leadingMargin" constant="7" id="Bbc-Am-DYM"/>
+                                                <constraint firstItem="FxJ-aK-493" firstAttribute="centerY" secondItem="0nM-CJ-L82" secondAttribute="centerY" id="DDm-Em-gOi"/>
                                                 <constraint firstItem="FxJ-aK-493" firstAttribute="centerY" secondItem="0nM-CJ-L82" secondAttribute="centerY" id="PR1-uJ-XyM"/>
+                                                <constraint firstItem="FxJ-aK-493" firstAttribute="leading" secondItem="pe6-bU-IU7" secondAttribute="trailing" constant="8" id="TRt-Zc-D7J"/>
                                                 <constraint firstItem="pe6-bU-IU7" firstAttribute="centerY" secondItem="0nM-CJ-L82" secondAttribute="centerY" id="g8i-sr-ngN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="FxJ-aK-493" secondAttribute="trailing" constant="7" id="gQY-pM-jaj"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="FxJ-aK-493" secondAttribute="trailing" constant="7" id="knG-eZ-soA"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="PR1-uJ-XyM"/>
+                                                    <exclude reference="TRt-Zc-D7J"/>
+                                                    <exclude reference="knG-eZ-soA"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="3gw-iQ-FwA" detailTextLabel="D3t-Qd-tQ6" style="IBUITableViewCellStyleValue1" id="2aa-n3-3sW">
