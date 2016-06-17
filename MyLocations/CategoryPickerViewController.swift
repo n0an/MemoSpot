@@ -47,7 +47,7 @@ class CategoryPickerViewController: UITableViewController {
 
 
 
-    // MARK: - UNWIND NAVIGATION
+    // MARK: - UNWIND NAVIGATION WITH PARAMETER PASSING BACK
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PickedCategory" {
