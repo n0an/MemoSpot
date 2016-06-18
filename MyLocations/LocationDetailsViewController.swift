@@ -35,6 +35,31 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var dateLabel: UILabel!
     
     // MARK: - ATTRIBUTES
+    
+    var locationToEdit: Location? {
+        
+        didSet {
+            
+            if let location = locationToEdit {
+                
+                descriptionText = location.locationDescription
+                
+                categoryName = location.category
+                
+                date = location.date
+                
+                coordinate = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+                
+                placemark = location.placemark
+                
+            }
+            
+        }
+    }
+    
+    
+    
+    var descriptionText = ""
 
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var placemark: CLPlacemark?
@@ -50,7 +75,12 @@ class LocationDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        descriptionTextView.text = ""
+        if let location = locationToEdit {
+            title = "Edit Location"
+        }
+        
+        descriptionTextView.text = descriptionText
+        
         categoryLabel.text = categoryName
 
         
@@ -135,10 +165,20 @@ class LocationDetailsViewController: UITableViewController {
 //        dismissViewControllerAnimated(true, completion: nil)
         
         let hudView = HudView.hudInView(navigationController!.view, animated: true)
-        hudView.text = "Tagged"
         
+        let location: Location
         
-        let location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+        if let temp = locationToEdit {
+            hudView.text = "Updated"
+            location = temp
+            
+        } else {
+            
+            hudView.text = "Tagged"
+            
+            location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+        }
+        
         
         location.locationDescription    = descriptionTextView.text
         location.category               = categoryName
@@ -242,13 +282,6 @@ class LocationDetailsViewController: UITableViewController {
     
 
 }
-
-
-
-
-
-
-
 
 
 
