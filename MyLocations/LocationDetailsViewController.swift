@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 
+// * PRIVATE GLOBAL PROPERTY
 private let dateFormatter: NSDateFormatter = {
     
     let formatter = NSDateFormatter()
@@ -131,6 +132,12 @@ class LocationDetailsViewController: UITableViewController {
         let hudView = HudView.hudInView(navigationController!.view, animated: true)
         hudView.text = "Tagged"
         
+        
+        // ** Close VC after 0.6 sec
+        
+        afterDelay(0.6) { 
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
         
     }
     
