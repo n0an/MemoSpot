@@ -9,6 +9,8 @@
 import UIKit
 import CoreLocation
 
+import CoreData
+
 // * PRIVATE GLOBAL PROPERTY
 private let dateFormatter: NSDateFormatter = {
     
@@ -38,6 +40,8 @@ class LocationDetailsViewController: UITableViewController {
     var placemark: CLPlacemark?
     
     var categoryName = "No Category"
+    
+    var managedObjectContext: NSManagedObjectContext!
 
 
     // MARK: - viewDidLoad
