@@ -51,6 +51,8 @@ class LocationsViewController: UITableViewController {
         
         performFetch()
         
+        navigationItem.rightBarButtonItem = editButtonItem()
+        
         
         // vvv FETCH USING MANUAL FETCHREQUEST vvvv
         /*
@@ -138,6 +140,25 @@ class LocationsViewController: UITableViewController {
         
         return cell
         
+    }
+    
+    
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if editingStyle == .Delete {
+            
+            let location = fetchedResultsController.objectAtIndexPath(indexPath) as! Location
+            managedObjectContext.deleteObject(location)
+            
+            do {
+                try managedObjectContext.save()
+                
+            } catch {
+                fatalCoreDataError(error)
+            }
+        }
     }
     
     
