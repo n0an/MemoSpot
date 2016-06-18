@@ -42,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             locationsViewController.managedObjectContext = managedObjectContext
             
+            let _ = locationsViewController.view
+            
             
             let currentLocationViewController = tabBarViewControllers[0] as! CurrentLocationViewController
             
@@ -127,7 +129,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let modelURL = NSBundle.mainBundle().URLForResource("DataModel", withExtension: "momd") else { fatalError("Could not find data model in app bundle") }
         
-        print("modelURL = \(modelURL)")
+//        print("modelURL = \(modelURL)")
         
         guard let model = NSManagedObjectModel(contentsOfURL: modelURL) else { fatalError("Error initializing model from: \(modelURL)") }
         
@@ -137,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storeURL = documentsDirectory.URLByAppendingPathComponent("DataStore.sqlite")
         
-        print("storeURL = \(storeURL)")
+//        print("storeURL = \(storeURL)")
         
         do {
             let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)

@@ -287,7 +287,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         
         let newLocation = locations.last!
         
-        print("didUpdateLocations \(newLocation)")
+//        print("didUpdateLocations \(newLocation)")
         
         
         if newLocation.timestamp.timeIntervalSinceNow < -5 { // Caching location
@@ -329,7 +329,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                 
                 geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (placemarks, error) in
                     
-                    print("*** Found placemarks: \(placemarks), error: \(error)")
+//                    print("*** Found placemarks: \(placemarks), error: \(error)")
                     
                     self.lastLocationError = error
                     

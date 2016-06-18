@@ -72,13 +72,13 @@
 		15FFB9FD1D1066A6006BA3B7 /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */,
 				1825D0691D1573BD0018B839 /* Utils */,
 				1825D0721D1575F30018B839 /* CoreData */,
 				1825D0751D15964B0018B839 /* Controllers */,
-				15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */,
 				15FFBA041D1066A6006BA3B7 /* Main.storyboard */,
-				15FFBA071D1066A6006BA3B7 /* Assets.xcassets */,
 				15FFBA091D1066A6006BA3B7 /* LaunchScreen.storyboard */,
+				15FFBA071D1066A6006BA3B7 /* Assets.xcassets */,
 				15FFBA0C1D1066A6006BA3B7 /* Info.plist */,
 			);
 			path = MyLocations;
@@ -110,9 +110,17 @@
 				18B599E21D131A3E00FE9834 /* LocationDetailsViewController.swift */,
 				18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */,
 				1825D0731D1596130018B839 /* LocationsViewController.swift */,
-				186A061D1D15BE60008188EF /* LocationCell.swift */,
+				186A061F1D15CB3C008188EF /* Cells */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		186A061F1D15CB3C008188EF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				186A061D1D15BE60008188EF /* LocationCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
