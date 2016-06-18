@@ -107,10 +107,10 @@
 			isa = PBXGroup;
 			children = (
 				15FFBA001D1066A6006BA3B7 /* CurrentLocationViewController.swift */,
-				186A061D1D15BE60008188EF /* LocationCell.swift */,
 				18B599E21D131A3E00FE9834 /* LocationDetailsViewController.swift */,
 				18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */,
 				1825D0731D1596130018B839 /* LocationsViewController.swift */,
+				186A061D1D15BE60008188EF /* LocationCell.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

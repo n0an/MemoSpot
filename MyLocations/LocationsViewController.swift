@@ -46,6 +46,30 @@ class LocationsViewController: UITableViewController {
         }
         
     }
+    
+    
+    
+    // MARK: - NAVIGATION
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "EditLocation" {
+            
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! LocationDetailsViewController
+            
+            controller.managedObjectContext = managedObjectContext
+            
+            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                let location = locations[indexPath.row]
+                controller.locationToEdit = location
+            }
+        }
+    }
+    
+
+    
 
     // MARK: - UITableViewDataSource
 
@@ -54,46 +78,36 @@ class LocationsViewController: UITableViewController {
         return locations.count
     }
     
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("LocationCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("LocationCell", forIndexPath: indexPath) as! LocationCell
         
         let location = locations[indexPath.row]
         
         
-        let descriptionLabel = cell.viewWithTag(100) as! UILabel
-        descriptionLabel.text = location.locationDescription
-        
-        let addressLabel = cell.viewWithTag(101) as! UILabel
-        
-        if let placemark = location.placemark {
-            
-            var text = ""
-            
-            if let s = placemark.subThoroughfare {
-                text += s + " "
-            }
-            
-            if let s = placemark.thoroughfare {
-                text += s + " "
-            }
-            
-            if let s = placemark.locality {
-                text += s
-            }
-            
-            addressLabel.text = text
-            
-        } else {
-            addressLabel.text = ""
-        }
-        
-        
+        cell.configureForLocation(location)
         
         return cell
         
     }
-
-  
+    
+    
+    
+    
+    
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
