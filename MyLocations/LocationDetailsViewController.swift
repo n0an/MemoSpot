@@ -43,6 +43,7 @@ class LocationDetailsViewController: UITableViewController {
     
     var managedObjectContext: NSManagedObjectContext!
 
+    var date = NSDate()
 
     // MARK: - viewDidLoad
 
@@ -63,7 +64,7 @@ class LocationDetailsViewController: UITableViewController {
             addressLabel.text = "No Address Found"
         }
         
-        dateLabel.text = formatDate(NSDate())
+        dateLabel.text = formatDate(date)
         
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(LocationDetailsViewController.hideKeyboard(_:)))
@@ -137,9 +138,23 @@ class LocationDetailsViewController: UITableViewController {
         hudView.text = "Tagged"
         
         
-        // ** Close VC after 0.6 sec
+        let location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
         
-        afterDelay(0.6) { 
+        location.locationDescription    = descriptionTextView.text
+        location.category               = categoryName
+        location.latitude               = coordinate.latitude
+        location.longitude              = coordinate.longitude
+        location.date                   = date
+        location.placemark              = placemark
+        
+        do {
+            try managedObjectContext.save()
+        } catch {
+            fatalCoreDataError(error)
+        }
+        
+//         ** Close VC after 0.6 sec
+        afterDelay(0.6) {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
         

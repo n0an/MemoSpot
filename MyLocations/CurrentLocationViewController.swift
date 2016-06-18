@@ -334,7 +334,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                     self.lastLocationError = error
                     
                     if error == nil, let p = placemarks where !p.isEmpty {
+                        
+                        // ** FAKE CRASH HERE BY COMMENTING LINE
                         self.placemark = p.last!
+                        
                     } else {
                         self.placemark = nil
                     }

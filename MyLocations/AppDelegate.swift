@@ -10,11 +10,26 @@ import UIKit
 
 import CoreData
 
+
+// ** NOTIFICATION WHEN COREDATA FAIL
+
+let MyManagedObjectContextSaveDidFailNotification = "MyManagedObjectContextSaveDidFailNotification"
+
+func fatalCoreDataError(error: ErrorType) {
+    
+    print("*** Fatal error: \(error)")
+    NSNotificationCenter.defaultCenter().postNotificationName(MyManagedObjectContextSaveDidFailNotification, object: nil)
+    
+}
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    
+    // MARK: - didFinishLaunchingWithOptions
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -27,6 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             currentLocationViewController.managedObjectContext = managedObjectContext
             
         }
+        
+        listenForFatalCoreDataNotifications()
         
         return true
     }
@@ -54,7 +71,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    // CORE DATA STACK
+    
+    
+    // MARK: - NOTIFICATION HANDLERS
+    
+    func listenForFatalCoreDataNotifications() {
+        
+        NSNotificationCenter.defaultCenter().addObserverForName( MyManagedObjectContextSaveDidFailNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: { notification in
+            
+            let alert = UIAlertController(title: "Internal Error", message: "There was a fatal error in the app and it cannot continue.\n\n" + "Press OK to terminate the app. Sorry for the inconvenience.", preferredStyle: .Alert)
+            
+            let action = UIAlertAction(title: "OK", style: .Default) { _ in
+                
+                let exception = NSException(
+                name: NSInternalInconsistencyException,
+                reason: "Fatal Core Data error", userInfo: nil)
+                
+                exception.raise()
+            }
+            
+            alert.addAction(action)
+            
+            self.viewControllerForShowingAlert().presentViewController(alert, animated: true, completion: nil)
+            
+        })
+    }
+    
+    // ** Getting current Top ViewController
+    func viewControllerForShowingAlert() -> UIViewController {
+        
+        let rootViewController = self.window!.rootViewController!
+        
+        if let presentedViewController = rootViewController.presentedViewController {
+            
+            return presentedViewController
+            
+        } else {
+            
+            return rootViewController
+        }
+        
+    }
+    
+                
+    
+    // MARK: - CORE DATA STACK
     
     lazy var managedObjectContext: NSManagedObjectContext = {
         
