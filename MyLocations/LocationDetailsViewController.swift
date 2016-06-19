@@ -34,6 +34,10 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var addPhotoLabel: UILabel!
+    
     // MARK: - ATTRIBUTES
     
     var locationToEdit: Location? {
@@ -57,8 +61,6 @@ class LocationDetailsViewController: UITableViewController {
         }
     }
     
-    
-    
     var descriptionText = ""
 
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
@@ -69,6 +71,22 @@ class LocationDetailsViewController: UITableViewController {
     var managedObjectContext: NSManagedObjectContext!
 
     var date = NSDate()
+    
+    
+    var image: UIImage? {
+        didSet {
+            
+            if let image = image {
+                
+                imageView.image = image
+                imageView.hidden = false
+//                imageView.frame = CGRect(x: 10, y: 10, width: 260, height: 260)
+                addPhotoLabel.hidden = true
+            }
+            
+        }
+    }
+    
 
     // MARK: - viewDidLoad
 
@@ -157,6 +175,13 @@ class LocationDetailsViewController: UITableViewController {
     }
     
     
+    
+    func showImage(image: UIImage) {
+        imageView.image = image
+        imageView.hidden = false
+        imageView.frame = CGRect(x: 10, y: 10, width: 260, height: 260)
+        addPhotoLabel.hidden = true
+    }
 
 
     // MARK: - ACTIONS
@@ -238,6 +263,19 @@ class LocationDetailsViewController: UITableViewController {
         
         if indexPath.section == 0 && indexPath.row == 0 {
             return 88
+        
+        } else if indexPath.section == 1 {
+            
+            if imageView.hidden {
+                
+                return 44
+                
+            } else {
+                
+                return 280
+            }
+        
+        
         } else if indexPath.section == 2 && indexPath.row == 2 {
             
 //            addressLabel.frame.size = CGSize(width: view.bounds.width - 115, height: 10000)
@@ -347,6 +385,13 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
+        image = info[UIImagePickerControllerEditedImage] as? UIImage
+        
+//        if let image = image {
+//            showImage(image)
+//        }
+        
+        tableView.reloadData()
         dismissViewControllerAnimated(true, completion: nil)
     }
     
