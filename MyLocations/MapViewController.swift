@@ -33,9 +33,9 @@ class MapViewController: UIViewController {
                     
                     // TODO: make the reloading of the locations more efficient by not re-fetching the entire list of Location objects, but by only inserting or deleting those that have changed
                     if let dictionary = notification.userInfo {
-                        print(dictionary["inserted"])
-                        print(dictionary["deleted"])
-                        print(dictionary["updated"])
+//                        print(dictionary["inserted"])
+//                        print(dictionary["deleted"])
+//                        print(dictionary["updated"])
                     }
                     
                     if self.isViewLoaded() { // CHECKING IF VIEW LOADED TO AVOID CRASH WHEN RECEIVE NOTIFICATION

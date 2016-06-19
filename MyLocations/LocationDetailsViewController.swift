@@ -87,6 +87,10 @@ class LocationDetailsViewController: UITableViewController {
         }
     }
     
+    var observer: AnyObject!
+    
+    
+    
 
     // MARK: - viewDidLoad
 
@@ -120,6 +124,13 @@ class LocationDetailsViewController: UITableViewController {
         
         tableView.addGestureRecognizer(gestureRecognizer)
         
+        // USE NOTIFICATIONS TO HIDE ALERTS ACTION SHEETS AND PICKER WHEN APP GOES BACKGROUND
+        listenForBackgroundNotification()
+    }
+    
+    deinit {
+        print("*** deinit \(self)")
+        NSNotificationCenter.defaultCenter().removeObserver(observer)
     }
 
    
@@ -181,6 +192,28 @@ class LocationDetailsViewController: UITableViewController {
         imageView.hidden = false
         imageView.frame = CGRect(x: 10, y: 10, width: 260, height: 260)
         addPhotoLabel.hidden = true
+    }
+    
+    // MARK: - NOTIFICATIONS
+    
+    
+    // !!!IMPORTANT!!! HIG
+    // HIDING ALERTS, ACTIONS SHEETS, PICKERS WHEN APP GOES TO BACKGROUND
+    
+    func listenForBackgroundNotification() {
+        
+        observer = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] _ in
+            
+            if let strongSelf = self {
+                
+                if strongSelf.presentedViewController != nil {
+                    strongSelf.dismissViewControllerAnimated(false, completion: nil)
+                }
+                
+                strongSelf.descriptionTextView.resignFirstResponder()
+            }
+        
+        }
     }
 
 
