@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -137,30 +138,52 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHr-kZ-0iu">
-                                            <rect key="frame" x="8" y="7" width="584" height="21"/>
+                                            <rect key="frame" x="82" y="7" width="584" height="21"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H23-oT-Be8">
-                                            <rect key="frame" x="8" y="32" width="584" height="17"/>
+                                            <rect key="frame" x="82" y="32" width="584" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Umd-s3-3yb">
+                                            <rect key="frame" x="15" y="2" width="52" height="52"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="52" id="0hb-zk-NDV"/>
+                                                <constraint firstAttribute="width" secondItem="Umd-s3-3yb" secondAttribute="height" multiplier="1:1" id="1JW-Y4-qbu"/>
+                                                <constraint firstAttribute="height" constant="52" id="UnN-fd-KIA"/>
+                                            </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="1JW-Y4-qbu"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="H23-oT-Be8" secondAttribute="trailing" constant="8" id="5TX-l0-c2U"/>
-                                        <constraint firstItem="H23-oT-Be8" firstAttribute="leading" secondItem="oqs-uF-huo" secondAttribute="leading" constant="8" id="MY7-wx-6Gp"/>
+                                        <constraint firstAttribute="trailing" secondItem="H23-oT-Be8" secondAttribute="trailing" constant="-66" id="5TX-l0-c2U"/>
+                                        <constraint firstItem="Umd-s3-3yb" firstAttribute="top" secondItem="oqs-uF-huo" secondAttribute="top" constant="2" id="LcG-FJ-mjM"/>
+                                        <constraint firstItem="H23-oT-Be8" firstAttribute="leading" secondItem="oqs-uF-huo" secondAttribute="leading" constant="82" id="MY7-wx-6Gp"/>
                                         <constraint firstItem="nHr-kZ-0iu" firstAttribute="top" secondItem="oqs-uF-huo" secondAttribute="top" constant="7" id="TOE-gU-HLW"/>
                                         <constraint firstItem="H23-oT-Be8" firstAttribute="top" secondItem="nHr-kZ-0iu" secondAttribute="bottom" constant="4" id="dQ3-O5-KfN"/>
-                                        <constraint firstAttribute="trailing" secondItem="nHr-kZ-0iu" secondAttribute="trailing" constant="8" id="ewu-Ej-FYF"/>
-                                        <constraint firstItem="nHr-kZ-0iu" firstAttribute="leading" secondItem="oqs-uF-huo" secondAttribute="leading" constant="8" id="r3I-nr-Jya"/>
+                                        <constraint firstAttribute="trailing" secondItem="nHr-kZ-0iu" secondAttribute="trailing" constant="-66" id="ewu-Ej-FYF"/>
+                                        <constraint firstItem="Umd-s3-3yb" firstAttribute="leading" secondItem="oqs-uF-huo" secondAttribute="leading" constant="15" id="i5a-yN-zFm"/>
+                                        <constraint firstAttribute="bottom" secondItem="Umd-s3-3yb" secondAttribute="bottom" constant="2" id="jYk-EP-iZ0"/>
+                                        <constraint firstItem="nHr-kZ-0iu" firstAttribute="leading" secondItem="oqs-uF-huo" secondAttribute="leading" constant="82" id="r3I-nr-Jya"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="jYk-EP-iZ0"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addressLabel" destination="H23-oT-Be8" id="v9x-BV-pN4"/>
                                     <outlet property="descriptionLabel" destination="nHr-kZ-0iu" id="AEz-xj-gEK"/>
+                                    <outlet property="photoImageView" destination="Umd-s3-3yb" id="wqy-8V-SV2"/>
                                     <segue destination="TFA-Ab-ZrL" kind="presentation" identifier="EditLocation" id="MAq-3i-Q3L"/>
                                 </connections>
                             </tableViewCell>
@@ -581,6 +604,6 @@
         <image name="first" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5SZ-hl-jdr"/>
+        <segue reference="MAq-3i-Q3L"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15729B6F1D1715F400B5DE1A /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15729B6E1D1715F400B5DE1A /* UIImage+Resize.swift */; };
 		15FFB9FF1D1066A6006BA3B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */; };
 		15FFBA011D1066A6006BA3B7 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFBA001D1066A6006BA3B7 /* CurrentLocationViewController.swift */; };
 		15FFBA061D1066A6006BA3B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FFBA041D1066A6006BA3B7 /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15729B6E1D1715F400B5DE1A /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		15FFB9FB1D1066A6006BA3B7 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15FFBA001D1066A6006BA3B7 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15729B701D1715F900B5DE1A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				15729B6E1D1715F400B5DE1A /* UIImage+Resize.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		15FFB9F21D1066A6006BA3B7 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */,
+				15729B701D1715F900B5DE1A /* Extensions */,
 				1825D0691D1573BD0018B839 /* Utils */,
 				1825D0721D1575F30018B839 /* CoreData */,
 				1825D0751D15964B0018B839 /* Controllers */,
@@ -207,6 +218,7 @@
 				1825D0681D15730E0018B839 /* DataModel.xcdatamodeld in Sources */,
 				1825D0711D1575DB0018B839 /* Location.swift in Sources */,
 				18B599E71D149BA400FE9834 /* HudView.swift in Sources */,
+				15729B6F1D1715F400B5DE1A /* UIImage+Resize.swift in Sources */,
 				1825D0651D156C270018B839 /* Functions.swift in Sources */,
 				186A061E1D15BE60008188EF /* LocationCell.swift in Sources */,
 				186A06231D15D69C008188EF /* MapViewController.swift in Sources */,
