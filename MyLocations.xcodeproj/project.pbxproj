@@ -24,6 +24,7 @@
 		18B599E31D131A3E00FE9834 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B599E21D131A3E00FE9834 /* LocationDetailsViewController.swift */; };
 		18B599E51D132ED900FE9834 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */; };
 		18B599E71D149BA400FE9834 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B599E61D149BA400FE9834 /* HudView.swift */; };
+		18EE88131D172EE9005D0334 /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE88121D172EE9005D0334 /* String+AddText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		18B599E21D131A3E00FE9834 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 		18B599E61D149BA400FE9834 /* HudView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
+		18EE88121D172EE9005D0334 /* String+AddText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				15729B6E1D1715F400B5DE1A /* UIImage+Resize.swift */,
+				18EE88121D172EE9005D0334 /* String+AddText.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				1825D0651D156C270018B839 /* Functions.swift in Sources */,
 				186A061E1D15BE60008188EF /* LocationCell.swift in Sources */,
 				186A06231D15D69C008188EF /* MapViewController.swift in Sources */,
+				18EE88131D172EE9005D0334 /* String+AddText.swift in Sources */,
 				1825D0701D1575DB0018B839 /* Location+CoreDataProperties.swift in Sources */,
 				15FFB9FF1D1066A6006BA3B7 /* AppDelegate.swift in Sources */,
 				18B599E51D132ED900FE9834 /* CategoryPickerViewController.swift in Sources */,
