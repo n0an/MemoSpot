@@ -35,7 +35,7 @@ class HudView: UIView {
     
     override func drawRect(rect: CGRect) {
         
-        // *** Squre drawing
+        // *** Square drawing
         let boxWidth: CGFloat = 96
         let boxHeight: CGFloat = 96
         

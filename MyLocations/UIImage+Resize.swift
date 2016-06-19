@@ -16,7 +16,7 @@ extension UIImage {
         
         let verticalRatio = bounds.height / size.height
         
-        let ratio = min(horizontalRatio, verticalRatio)
+        let ratio = max(horizontalRatio, verticalRatio) // max - Aspect Fill, min - Aspect Fit
         
         let newSize = CGSize(width: size.width * ratio, height: size.height * ratio)
         
