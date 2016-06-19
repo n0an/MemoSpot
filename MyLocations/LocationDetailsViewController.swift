@@ -99,6 +99,15 @@ class LocationDetailsViewController: UITableViewController {
         
         if let location = locationToEdit {
             title = "Edit Location"
+            
+            if location.hasPhoto {
+                
+                if let image = location.photoImage {
+                    
+                    showImage(image)
+                }
+            }
+            
         }
         
         descriptionTextView.text = descriptionText
@@ -328,7 +337,23 @@ class LocationDetailsViewController: UITableViewController {
                 
             } else {
                 
-                let ratio = image!.size.height / image!.size.width
+                var ratio = CGFloat()
+                
+                if let location = locationToEdit {
+                    
+                    if location.hasPhoto {
+                        
+                        if let image = location.photoImage {
+                            
+                            ratio = image.size.height / image.size.width
+                        }
+                    }
+                    
+                } else {
+                    
+                    ratio = image!.size.height / image!.size.width
+                }
+                
                 
                 if ratio < 1.0 {
                     return 260 * ratio
