@@ -261,6 +261,40 @@ class LocationDetailsViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
+        switch (indexPath.section, indexPath.row) {
+        
+        case (0, 0):
+            return 88
+            
+        case (1, _):
+            if imageView.hidden {
+                
+                return 44
+                
+            } else {
+                
+                let ratio = image!.size.height / image!.size.width
+                
+                if ratio < 1.0 {
+                    return 260 * ratio
+                } else {
+                    return 260
+                }
+                
+            }
+            
+        case (2, 2):
+            return addressLabel.frame.size.height + 40
+
+        default:
+            return 44
+            
+            
+        }
+        
+        
+        
+        /*
         if indexPath.section == 0 && indexPath.row == 0 {
             return 88
         
@@ -295,6 +329,7 @@ class LocationDetailsViewController: UITableViewController {
         } else {
             return 44
         }
+        */
         
     }
     
