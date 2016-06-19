@@ -19,7 +19,33 @@ class MapViewController: UIViewController {
     
     // MARK: - PROPERTIES
 
-    var managedObjectContext: NSManagedObjectContext!
+    var managedObjectContext: NSManagedObjectContext! {
+        
+        // !!!IMPORTANT!!!
+        // Listening for Notification - changing in CoreData
+        
+        didSet {
+            
+            NSNotificationCenter.defaultCenter().addObserverForName(
+                NSManagedObjectContextObjectsDidChangeNotification,
+                object: managedObjectContext,
+                queue: NSOperationQueue.mainQueue()) { notification in
+                    
+                    // TODO: make the reloading of the locations more efficient by not re-fetching the entire list of Location objects, but by only inserting or deleting those that have changed
+                    if let dictionary = notification.userInfo {
+                        print(dictionary["inserted"])
+                        print(dictionary["deleted"])
+                        print(dictionary["updated"])
+                    }
+                    
+                    if self.isViewLoaded() { // CHECKING IF VIEW LOADED TO AVOID CRASH WHEN RECEIVE NOTIFICATION
+                        self.updateLocations()
+                    }
+                    
+            }
+        }
+        
+    }
     
     var locations = [Location]()
 
@@ -107,6 +133,8 @@ class MapViewController: UIViewController {
     
     func showLocationDetails(sender: UIButton) {
         
+        performSegueWithIdentifier("EditLocation", sender: sender)
+        
     }
     
     
@@ -128,6 +156,31 @@ class MapViewController: UIViewController {
         mapView.setRegion(region, animated: true)
         
     }
+    
+    
+    
+    
+    // MARK: - NAVIGATION
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "EditLocation" {
+            
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! LocationDetailsViewController
+            
+            controller.managedObjectContext = managedObjectContext
+            
+            let button = sender as! UIButton
+            
+            let location = locations[button.tag]
+            
+            controller.locationToEdit = location
+        }
+    
+    }
+    
 
 }
 
@@ -179,8 +232,16 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 
+// !!!IMPORTANT!!!
+// SOLVING HIDDEN STATUS BAR ISSUE
 
-
+extension MapViewController: UINavigationBarDelegate {
+    
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .TopAttached
+    }
+    
+}
 
 
 
