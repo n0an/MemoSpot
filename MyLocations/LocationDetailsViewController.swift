@@ -235,6 +235,7 @@ class LocationDetailsViewController: UITableViewController {
             hudView.text = "Tagged"
             
             location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+            location.photoID = nil
         }
         
         
@@ -244,6 +245,27 @@ class LocationDetailsViewController: UITableViewController {
         location.longitude              = coordinate.longitude
         location.date                   = date
         location.placemark              = placemark
+        
+        
+        if let image = image { // 1
+            if !location.hasPhoto {
+                
+                location.photoID = Location.nextPhotoID()
+            }
+            // 2
+            if let data = UIImageJPEGRepresentation(image, 0.5) { // 3
+                do {
+                    try data.writeToFile(location.photoPath,
+                                         options: .DataWritingAtomic)
+                    
+                } catch {
+                    print("Error writing file: \(error)")
+                }
+            }
+        }
+        
+        
+        
         
         do {
             try managedObjectContext.save()

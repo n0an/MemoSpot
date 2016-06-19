@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storeURL = documentsDirectory.URLByAppendingPathComponent("DataStore.sqlite")
         
-//        print("storeURL = \(storeURL)")
+        print("storeURL = \(storeURL)")
         
         do {
             let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)

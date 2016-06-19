@@ -9,6 +9,18 @@
 import Foundation
 
 
+let applicationDocumentsDirectory: String = {
+    
+    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+    
+    
+    print("paths = \(paths)")
+    
+    return paths[0]
+    
+    
+}()
+
 
 func afterDelay(seconds: Double, closure: ()->()) {
     
@@ -17,6 +29,8 @@ func afterDelay(seconds: Double, closure: ()->()) {
     dispatch_after(when, dispatch_get_main_queue(), closure)
     
 }
+
+
 
 
 

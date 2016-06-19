@@ -12,7 +12,49 @@ import MapKit
 
 
 class Location: NSManagedObject, MKAnnotation {
+    
+    // MARK: - PHOTO FEATURE PROPERTIES AND METHODS
+    
+    var hasPhoto: Bool {
+        print(photoID?.intValue)
+        return photoID != nil
+    }
+    
+    var photoPath: String {
+        
+        assert(photoID != nil, "No photo ID set")
+        
+        let filename = "Photo-\(photoID!.integerValue).jpg"
+        
+        return (applicationDocumentsDirectory as NSString).stringByAppendingPathComponent(filename)
+    }
+    
+    var photoImage: UIImage? {
+        return UIImage(contentsOfFile: photoPath)
+    }
+    
+    // !!!IMPORTANT!!!
+    // CYCLING THROUGH IDS USING NSUSERDEFAULTS
+    
+    // TODO: - Implement IDs using CoreData
+    
+    class func nextPhotoID() -> Int {
+        
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        let currentID = userDefaults.integerForKey("PhotoID")
+        
+        userDefaults.setInteger(currentID + 1, forKey: "PhotoID")
+        
+        userDefaults.synchronize()
+        
+        return currentID
+    }
 
+    
+    
+    // MARK: - MKANNOTATION PROPERTIES
+    
     var coordinate: CLLocationCoordinate2D {
         
         return CLLocationCoordinate2DMake(latitude, longitude)
