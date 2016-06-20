@@ -25,6 +25,9 @@
 		18B599E51D132ED900FE9834 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */; };
 		18B599E71D149BA400FE9834 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B599E61D149BA400FE9834 /* HudView.swift */; };
 		18EE88131D172EE9005D0334 /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE88121D172EE9005D0334 /* String+AddText.swift */; };
+		18EE88151D187A85005D0334 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE88141D187A85005D0334 /* MyTabBarController.swift */; };
+		18EE88171D187B47005D0334 /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE88161D187B47005D0334 /* MyNavigationController.swift */; };
+		18EE881A1D187C24005D0334 /* MyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE88191D187C24005D0334 /* MyImagePickerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 		18B599E61D149BA400FE9834 /* HudView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
 		18EE88121D172EE9005D0334 /* String+AddText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
+		18EE88141D187A85005D0334 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
+		18EE88161D187B47005D0334 /* MyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
+		18EE88191D187C24005D0334 /* MyImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagePickerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,7 @@
 		1825D0751D15964B0018B839 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				18EE88181D187C03005D0334 /* Bars Customizers */,
 				15FFBA001D1066A6006BA3B7 /* CurrentLocationViewController.swift */,
 				18B599E21D131A3E00FE9834 /* LocationDetailsViewController.swift */,
 				18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */,
@@ -142,6 +149,16 @@
 				186A061D1D15BE60008188EF /* LocationCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		18EE88181D187C03005D0334 /* Bars Customizers */ = {
+			isa = PBXGroup;
+			children = (
+				18EE88141D187A85005D0334 /* MyTabBarController.swift */,
+				18EE88161D187B47005D0334 /* MyNavigationController.swift */,
+				18EE88191D187C24005D0334 /* MyImagePickerController.swift */,
+			);
+			name = "Bars Customizers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -217,7 +234,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				18B599E31D131A3E00FE9834 /* LocationDetailsViewController.swift in Sources */,
+				18EE88171D187B47005D0334 /* MyNavigationController.swift in Sources */,
 				1825D0741D1596130018B839 /* LocationsViewController.swift in Sources */,
+				18EE881A1D187C24005D0334 /* MyImagePickerController.swift in Sources */,
 				1825D0681D15730E0018B839 /* DataModel.xcdatamodeld in Sources */,
 				1825D0711D1575DB0018B839 /* Location.swift in Sources */,
 				18B599E71D149BA400FE9834 /* HudView.swift in Sources */,
@@ -230,6 +249,7 @@
 				15FFB9FF1D1066A6006BA3B7 /* AppDelegate.swift in Sources */,
 				18B599E51D132ED900FE9834 /* CategoryPickerViewController.swift in Sources */,
 				15FFBA011D1066A6006BA3B7 /* CurrentLocationViewController.swift in Sources */,
+				18EE88151D187A85005D0334 /* MyTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
