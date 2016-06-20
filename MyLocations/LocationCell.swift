@@ -68,7 +68,7 @@ class LocationCell: UITableViewCell {
             
         }
         
-        return UIImage()
+        return UIImage(named: "No Photo")!
         
     }
     
@@ -91,6 +91,13 @@ class LocationCell: UITableViewCell {
         let selectionView = UIView(frame: CGRect.zero)
         selectionView.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
         selectedBackgroundView = selectionView
+        
+        
+        photoImageView.layer.cornerRadius = photoImageView.bounds.size.width / 2
+        
+        photoImageView.clipsToBounds = true
+        
+        separatorInset = UIEdgeInsets(top: 0, left: 82, bottom: 0, right: 0)
         
     }
     
