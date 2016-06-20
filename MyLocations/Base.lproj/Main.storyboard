@@ -111,7 +111,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tag" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Tag" image="Tag" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="addressLabel" destination="Y0t-Kg-IrQ" id="040-F9-Ozf"/>
                         <outlet property="getButton" destination="pZ1-wh-4Qw" id="fns-Eq-3NC"/>
@@ -207,7 +207,7 @@
         <scene sceneID="P2K-hc-5Ic">
             <objects>
                 <navigationController id="MHF-vq-UAd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Locations" id="Zf7-hB-7ys"/>
+                    <tabBarItem key="tabBarItem" title="Locations" image="Locations" id="Zf7-hB-7ys"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kQo-Ae-r8y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -514,7 +514,7 @@
                             <constraint firstAttribute="trailing" secondItem="MoS-7k-jFW" secondAttribute="trailing" id="cjb-j2-DSG"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="k69-wp-CT2"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="k69-wp-CT2"/>
                     <connections>
                         <outlet property="mapView" destination="MoS-7k-jFW" id="Mgi-6L-rAz"/>
                         <segue destination="TFA-Ab-ZrL" kind="presentation" identifier="EditLocation" id="5SZ-hl-jdr"/>
@@ -605,10 +605,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="Locations" width="30" height="30"/>
+        <image name="Map" width="30" height="30"/>
+        <image name="Tag" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ppz-jR-PwY"/>
+        <segue reference="5SZ-hl-jdr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.93333333333333335" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
 </document>
