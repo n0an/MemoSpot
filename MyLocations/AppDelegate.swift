@@ -33,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        customizeAppearance()
+        
         let tabBarController = window!.rootViewController as! UITabBarController
         
         if let tabBarViewControllers = tabBarController.viewControllers {
@@ -83,6 +85,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
+    // MARK: - HELPER METHODS
+    
+    // !!!IMPORTANT!!!
+    // CHANGE BG AND TINT COLOR OF NAVBAR AND TABBAR
+    func customizeAppearance() {
+        UINavigationBar.appearance().barTintColor = UIColor.blackColor()
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        UITabBar.appearance().barTintColor = UIColor.blackColor()
+        
+        let tintColor = UIColor(red: 255/255.0, green: 238/255.0, blue: 136/255.0, alpha: 1.0)
+        
+        UITabBar.appearance().tintColor = tintColor
+        
+    }
     
     
     // MARK: - NOTIFICATION HANDLERS | UIALERT FOR COREDATA ERRORS
