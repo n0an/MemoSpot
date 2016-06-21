@@ -51,6 +51,22 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     var logoVisible = false
     
+    lazy var logoButton: UIButton = {
+        
+        let button = UIButton(type: .Custom)
+        button.setBackgroundImage(UIImage(named: "Logo"), forState: .Normal)
+        button.sizeToFit()
+        
+        button.addTarget(self, action: #selector(CurrentLocationViewController.getLocation), forControlEvents: .TouchUpInside)
+        
+        button.center.x = CGRectGetMidX(self.view.bounds)
+        button.center.y = 220
+        
+        return button
+    
+    }()
+    
+    
     
     // MARK: - viewDidLoad
 
@@ -217,14 +233,14 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             containerView.hidden = true
             
-//            view.addSubview(logoButton)
+            view.addSubview(logoButton)
         }
     }
     
     func hideLogoView() {
         logoVisible = false
         containerView.hidden = false
-//        logoButton.removeFromSuperview()
+        logoButton.removeFromSuperview()
     }
     
     
