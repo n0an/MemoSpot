@@ -28,6 +28,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     @IBOutlet weak var latitudeTextLabel: UILabel!
     @IBOutlet weak var longitudeTextLabel: UILabel!
     
+    @IBOutlet weak var containerView: UIView!
+    
     
     // MARK: - ATTRIBUTES
     
