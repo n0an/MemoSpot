@@ -49,6 +49,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     var managedObjectContext: NSManagedObjectContext!
     
     
+    var logoVisible = false
+    
     
     // MARK: - viewDidLoad
 
@@ -123,7 +125,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             } else if updatingLocation {
                 statusMessage = "Searching..."
             } else {
-                statusMessage = "Tap 'Get My Location' to Start"
+                statusMessage = ""
+                
+                showLogoView()
             }
             
             messageLabel.text = statusMessage
@@ -206,6 +210,24 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     }
     
     
+    func showLogoView() {
+        
+        if !logoVisible {
+            logoVisible = true
+            
+            containerView.hidden = true
+            
+//            view.addSubview(logoButton)
+        }
+    }
+    
+    func hideLogoView() {
+        logoVisible = false
+        containerView.hidden = false
+//        logoButton.removeFromSuperview()
+    }
+    
+    
     
     // MARK: - ACTIONS
     @IBAction func getLocation() {
@@ -223,6 +245,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             return
         }
         
+        if logoVisible {
+            hideLogoView()
+        }
         
         if updatingLocation {
             stopLocationManager()
