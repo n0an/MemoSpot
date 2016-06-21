@@ -25,6 +25,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     @IBOutlet weak var getButton: UIButton!
     
     
+    @IBOutlet weak var latitudeTextLabel: UILabel!
+    @IBOutlet weak var longitudeTextLabel: UILabel!
+    
+    
     // MARK: - ATTRIBUTES
     
     let locationManager = CLLocationManager()
@@ -74,6 +78,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         
         if let location = location {
             
+            latitudeTextLabel.hidden = false
+            longitudeTextLabel.hidden = false
+            
             latitudeLabel.text = String(format: "%.8f", location.coordinate.latitude)
             longitudeLabel.text = String(format: "%.8f", location.coordinate.longitude)
             tagButton.hidden = false
@@ -90,6 +97,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             }
             
         } else {
+            
+            latitudeTextLabel.hidden = true
+            longitudeTextLabel.hidden = true
             
             latitudeLabel.text = ""
             longitudeLabel.text = ""
