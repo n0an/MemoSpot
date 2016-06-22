@@ -63,7 +63,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YL1-U9-64i">
-                                        <rect key="frame" x="242" y="192" width="117" height="36"/>
+                                        <rect key="frame" x="242" y="364" width="117" height="36"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <state key="normal" title="Tag location"/>
                                         <connections>
@@ -84,8 +84,10 @@
                                     <constraint firstItem="WLg-Wo-Hfk" firstAttribute="leading" secondItem="oZj-yM-Oqq" secondAttribute="leading" id="OKi-ii-s4X"/>
                                     <constraint firstItem="WLg-Wo-Hfk" firstAttribute="top" secondItem="oZj-yM-Oqq" secondAttribute="bottom" constant="8" id="OO8-xB-a6N"/>
                                     <constraint firstAttribute="trailing" secondItem="fCs-tm-8Oq" secondAttribute="trailing" constant="20" id="QTp-34-PVy"/>
+                                    <constraint firstItem="YL1-U9-64i" firstAttribute="centerX" secondItem="sBj-Cj-069" secondAttribute="centerX" id="ScQ-T4-n1B"/>
                                     <constraint firstItem="ILP-5O-683" firstAttribute="leading" secondItem="sBj-Cj-069" secondAttribute="leading" constant="20" id="Se5-09-ls7"/>
                                     <constraint firstAttribute="trailing" secondItem="ILP-5O-683" secondAttribute="trailing" constant="20" id="T9P-AU-6Gr"/>
+                                    <constraint firstAttribute="bottom" secondItem="YL1-U9-64i" secondAttribute="bottom" constant="20" id="bih-VN-PSY"/>
                                     <constraint firstAttribute="trailing" secondItem="Y0t-Kg-IrQ" secondAttribute="trailing" constant="20" id="fja-BS-USe"/>
                                     <constraint firstItem="oZj-yM-Oqq" firstAttribute="width" secondItem="WLg-Wo-Hfk" secondAttribute="width" id="hqA-eh-cpa"/>
                                     <constraint firstItem="fCs-tm-8Oq" firstAttribute="centerY" secondItem="oZj-yM-Oqq" secondAttribute="centerY" id="jPh-y3-VxF"/>
@@ -93,6 +95,12 @@
                                     <constraint firstItem="oZj-yM-Oqq" firstAttribute="leading" secondItem="sBj-Cj-069" secondAttribute="leading" constant="20" id="yXR-ld-KOu"/>
                                     <constraint firstItem="f34-ii-21d" firstAttribute="trailing" secondItem="fCs-tm-8Oq" secondAttribute="trailing" id="zGR-OF-oX1"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="N2Q-Oc-q6o"/>
+                                        <exclude reference="N7V-tk-UqH"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZ1-wh-4Qw">
                                 <rect key="frame" x="225" y="436" width="151" height="36"/>
