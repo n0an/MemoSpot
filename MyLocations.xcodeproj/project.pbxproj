@@ -18,6 +18,7 @@
 		1825D0701D1575DB0018B839 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825D06E1D1575DB0018B839 /* Location+CoreDataProperties.swift */; };
 		1825D0711D1575DB0018B839 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825D06F1D1575DB0018B839 /* Location.swift */; };
 		1825D0741D1596130018B839 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825D0731D1596130018B839 /* LocationsViewController.swift */; };
+		184E6A5A1D1B11E4003FC740 /* Sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 184E6A591D1B11E4003FC740 /* Sound.caf */; };
 		186A061E1D15BE60008188EF /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A061D1D15BE60008188EF /* LocationCell.swift */; };
 		186A06211D15D626008188EF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186A06201D15D626008188EF /* MapKit.framework */; };
 		186A06231D15D69C008188EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A06221D15D69C008188EF /* MapViewController.swift */; };
@@ -44,6 +45,7 @@
 		1825D06E1D1575DB0018B839 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataProperties.swift"; path = "../Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1825D06F1D1575DB0018B839 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Location.swift; path = ../Location.swift; sourceTree = "<group>"; };
 		1825D0731D1596130018B839 /* LocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
+		184E6A591D1B11E4003FC740 /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
 		186A061D1D15BE60008188EF /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		186A06201D15D626008188EF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		186A06221D15D69C008188EF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				1825D0751D15964B0018B839 /* Controllers */,
 				15FFBA041D1066A6006BA3B7 /* Main.storyboard */,
 				15FFBA071D1066A6006BA3B7 /* Assets.xcassets */,
+				184E6A581D1B11E4003FC740 /* Sound */,
 				15FFBA091D1066A6006BA3B7 /* LaunchScreen.storyboard */,
 				15FFBA0C1D1066A6006BA3B7 /* Info.plist */,
 			);
@@ -141,6 +144,14 @@
 				186A061F1D15CB3C008188EF /* Cells */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		184E6A581D1B11E4003FC740 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				184E6A591D1B11E4003FC740 /* Sound.caf */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		186A061F1D15CB3C008188EF /* Cells */ = {
@@ -222,6 +233,7 @@
 			files = (
 				15FFBA0B1D1066A6006BA3B7 /* LaunchScreen.storyboard in Resources */,
 				15FFBA081D1066A6006BA3B7 /* Assets.xcassets in Resources */,
+				184E6A5A1D1B11E4003FC740 /* Sound.caf in Resources */,
 				15FFBA061D1066A6006BA3B7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

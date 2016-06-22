@@ -13,6 +13,7 @@ import CoreData
 
 import QuartzCore
 
+import AudioToolbox
 
 class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -68,6 +69,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     }()
     
     
+    var soundID: SystemSoundID = 0
+    
     
     // MARK: - viewDidLoad
 
@@ -77,6 +80,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         updateLabels()
         
         configureGetButton()
+        
+        loadSoundEffect("Sound.caf")
     }
     
     
@@ -447,6 +452,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                     
                     if error == nil, let p = placemarks where !p.isEmpty {
                         
+                        if self.placemark == nil {
+                            
+                            print("FIRST TIME!")
+                            self.playSoundEffect()
+                            
+                        }
+                        
                         // ** FAKE CRASH HERE BY COMMENTING LINE
                         self.placemark = p.last!
                         
@@ -480,13 +492,45 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
         }
         
-        
-        
-        
-        
-        
+ 
         
     }
+    
+    
+    
+    
+    // MARK: !!!IMPORTANT!!!
+    // MARK: - Sound Effect
+    func loadSoundEffect(name: String) {
+        
+        if let path = NSBundle.mainBundle().pathForResource(name, ofType: nil) {
+            
+            let fileURL = NSURL.fileURLWithPath(path, isDirectory: false)
+            
+            let error = AudioServicesCreateSystemSoundID(fileURL, &soundID)
+            
+            if error != kAudioServicesNoError {
+                print("Error code \(error) loading sound at path: \(path)")
+            }
+        }
+    }
+    
+    
+    func unloadSoundEffect() {
+        AudioServicesDisposeSystemSoundID(soundID)
+        soundID = 0
+        
+    }
+    
+    func playSoundEffect() {
+        AudioServicesPlaySystemSound(soundID)
+        
+    }
+    
+    
+    
+    
+    
 
 
 }
