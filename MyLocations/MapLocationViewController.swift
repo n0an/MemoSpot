@@ -19,6 +19,8 @@ class MapLocationViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
+    var isShadowShowing = false
+    
     var locationToEdit: Location!
     var locations = [Location]()
 
@@ -113,11 +115,35 @@ class MapLocationViewController: UIViewController {
     
     
     
-    
+    // MARK: - ACTIONS
     
     @IBAction func showShadows(sender: UIBarButtonItem) {
         
-                
+        if isShadowShowing {
+            if let viewToRemove = mapView.viewWithTag(111) {
+                viewToRemove.removeFromSuperview()
+            }
+            
+            isShadowShowing = false
+            
+        } else {
+            
+            let shadowRect = CGRect(x: CGRectGetMidX(mapView.bounds), y: CGRectGetMidY(mapView.bounds), width: 100, height: 10)
+            
+            let shadowView = UIView(frame: shadowRect)
+            
+            shadowView.backgroundColor = UIColor.grayColor()
+            
+            if let viewToRemove = mapView.viewWithTag(111) {
+                viewToRemove.removeFromSuperview()
+            }
+            
+            mapView.addSubview(shadowView)
+            shadowView.tag = 111
+            
+            isShadowShowing = true
+        }
+        
         
         
     }
