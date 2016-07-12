@@ -250,10 +250,6 @@ class LocationDetailsViewController: UITableViewController {
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
         let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
         
-        //72.371224,-41.382676 GreenLand (Cold Place!)
-        //\(userLocation) (YOUR LOCATION!)
-        
-        //println(userLocation)
         
         let sharedSession = NSURLSession.sharedSession()
         
