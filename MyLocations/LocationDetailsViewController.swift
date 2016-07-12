@@ -457,7 +457,7 @@ class LocationDetailsViewController: UITableViewController {
             
         case (2, 2):
             return addressLabel.frame.size.height + 40
-
+            
         default:
             return 44
             
