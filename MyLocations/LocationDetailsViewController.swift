@@ -43,6 +43,8 @@ class LocationDetailsViewController: UITableViewController {
     
     // MARK: - ATTRIBUTES
     
+    var weather: WeeklyWeather!
+    
     var locationToEdit: Location? {
         
         didSet {
@@ -263,6 +265,8 @@ class LocationDetailsViewController: UITableViewController {
                 let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
+                self.weather = weeklyWeather
+                
 //                print(weatherDictionary)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -393,6 +397,8 @@ class LocationDetailsViewController: UITableViewController {
             let controller = segue.destinationViewController as! MapLocationViewController
             
             controller.locationToEdit = locationToEdit
+            
+            controller.weather = weather
             
         }
         

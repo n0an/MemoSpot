@@ -19,6 +19,8 @@ class MapLocationViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
+    var weather: WeeklyWeather!
+    
     var isShadowShowing = false
     
     var locationToEdit: Location!
@@ -118,6 +120,10 @@ class MapLocationViewController: UIViewController {
     // MARK: - ACTIONS
     
     @IBAction func showShadows(sender: UIBarButtonItem) {
+        
+        print("sunriseTime = \(timeStringFromUnixtime(weather.sunriseTime))")
+        print("sunsetTime = \(timeStringFromUnixtime(weather.sunsetTime))")
+
         
         if isShadowShowing {
             if let viewToRemove = mapView.viewWithTag(111) {
