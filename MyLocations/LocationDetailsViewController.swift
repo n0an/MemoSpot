@@ -267,7 +267,7 @@ class LocationDetailsViewController: UITableViewController {
                 let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
-                print(weatherDictionary)
+//                print(weatherDictionary)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
