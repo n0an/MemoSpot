@@ -12,6 +12,9 @@ import CoreLocation
 import CoreData
 
 // * PRIVATE GLOBAL PROPERTY
+
+private let apiKey = "da80aefa4ec207511622f3af58b36013"  // https://developer.forecast.io
+
 private let dateFormatter: NSDateFormatter = {
     
     let formatter = NSDateFormatter()
@@ -117,6 +120,8 @@ class LocationDetailsViewController: UITableViewController {
         if let location = locationToEdit {
             title = "Edit Location"
             
+            getCurrentWeatherData()
+            
             if location.hasPhoto {
                 
                 if let image = location.photoImage {
@@ -152,6 +157,12 @@ class LocationDetailsViewController: UITableViewController {
         
         // USE NOTIFICATIONS TO HIDE ALERTS ACTION SHEETS AND PICKER WHEN APP GOES BACKGROUND
         listenForBackgroundNotification()
+        
+        
+        
+        
+        
+        
     }
     
     deinit {
@@ -226,6 +237,83 @@ class LocationDetailsViewController: UITableViewController {
         
         }
     }
+    
+    
+    
+    
+    // MARK: - WEATHER METHODS
+    
+    func getCurrentWeatherData() -> Void {
+        
+        let userLocation = "\(coordinate.latitude),\(coordinate.longitude)"
+        
+        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
+        let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
+        
+        //72.371224,-41.382676 GreenLand (Cold Place!)
+        //\(userLocation) (YOUR LOCATION!)
+        
+        //println(userLocation)
+        
+        let sharedSession = NSURLSession.sharedSession()
+        
+        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+            
+            if (error == nil) {
+                
+                let dataObject = NSData(contentsOfURL: location!)
+                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+                
+                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
+                let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
+                
+                print(weatherDictionary)
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    print("temperature = \(Fahrenheit2Celsius(currentWeather.temperature))")
+                    print("humidity = \(currentWeather.humidity)")
+                    
+                    //7 day out look
+                    
+                    print("tempDayOne = \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMax))°")
+                    
+                    print("tempDayTwo = \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMax))°")
+                    
+                    print("dayOneTime = \(weeklyWeather.dayOneTime!)")
+                    print("dayTwoTime = \(weeklyWeather.dayTwoTime!)")
+                    print("dayThreeTime = \(weeklyWeather.dayThreeTime!)")
+                    
+                    
+                })
+                
+                
+                
+            } else {
+                
+                let networkIssueController = UIAlertController(title: "NO API KEY", message: "Hello! Looks like you forgot to add the API KEY", preferredStyle: .Alert)
+                let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
+                networkIssueController.addAction(okButton)
+                let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                networkIssueController.addAction(cancelButton)
+                self.presentViewController(networkIssueController, animated: true, completion: nil)
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    
+                })
+            }
+            
+        })
+        
+        downloadTask.resume()
+        
+    }
+
+    
+    
+    
+    
 
 
     // MARK: - ACTIONS
