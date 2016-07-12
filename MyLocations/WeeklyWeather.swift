@@ -14,8 +14,8 @@ struct WeeklyWeather {
     var dayZeroTemperatureMax: Int
     var dayZeroTemperatureMin: Int
     
-    var sunriseTime: Double
-    var sunsetTime: Double
+    var sunriseTime: Int
+    var sunsetTime: Int
     
     var dayOneTemperatureMax: Int
     var dayOneTemperatureMin: Int
@@ -60,11 +60,12 @@ struct WeeklyWeather {
         
         let weeklyForcast = weeklyWeather["data"] as! NSArray
         
-        sunriseTime = weeklyForcast[0]["sunriseTime"] as! Double
-        sunsetTime = weeklyForcast[0]["sunsetTime"] as! Double
+        sunriseTime = weeklyForcast[0]["sunriseTime"] as! Int
         
-        print("sunriseTime = \(sunriseTime)")
-        print("sunsetTime = \(sunsetTime)")
+        sunsetTime = weeklyForcast[0]["sunsetTime"] as! Int
+        
+        print("sunriseTime = \(timeStringFromUnixtime(sunriseTime))")
+        print("sunsetTime = \(timeStringFromUnixtime(sunsetTime))")
 
         
         //DAY ZERO
@@ -144,7 +145,20 @@ func weeekDateStringFromUnixtime(unixTime: Int) -> String {
 
 
 
+//Time formatter
 
+func timeStringFromUnixtime(unixTime: Int) -> String {
+    
+    let timeInSeconds = NSTimeInterval(unixTime)
+    let weatherDate = NSDate(timeIntervalSince1970: timeInSeconds)
+    
+    let dateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "HH:mm"
+    
+    return dateFormatter.stringFromDate(weatherDate)
+    
+    
+}
 
 
 

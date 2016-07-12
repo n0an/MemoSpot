@@ -388,6 +388,12 @@ class LocationDetailsViewController: UITableViewController {
             let controller = segue.destinationViewController as! CategoryPickerViewController
             
             controller.selectedCategoryName = categoryName
+            
+        } else if segue.identifier == "ShowLocation" {
+            let controller = segue.destinationViewController as! MapLocationViewController
+            
+            controller.locationToEdit = locationToEdit
+            
         }
         
     }
@@ -502,7 +508,7 @@ class LocationDetailsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         
-        if indexPath.section == 0 || indexPath.section == 1 {
+        if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
             
             return indexPath
             
