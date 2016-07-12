@@ -22,6 +22,7 @@ class MapLocationViewController: UIViewController {
     @IBOutlet weak var dateButton: UIButton!
     
     
+    
     // MARK: - PROPERTIES
     
     var weather: WeeklyWeather!
@@ -127,8 +128,6 @@ class MapLocationViewController: UIViewController {
     
     @IBAction func actionTimeSliderValueChanged(sender: UISlider) {
         
-//        print("sender = \(sender.value)")
-        
         let selectedTime = Int(sender.value * 24)
         
         print("selectedTime = \(selectedTime)")
@@ -138,16 +137,26 @@ class MapLocationViewController: UIViewController {
         let sunsetTimeInSeconds = NSTimeInterval(weather.sunsetTime)
         
         let sunriseDate = NSDate(timeIntervalSince1970: sunriseTimeInSeconds)
+        let sunsetDate = NSDate(timeIntervalSince1970: sunsetTimeInSeconds)
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "HH"
         
-        let str = dateFormatter.stringFromDate(sunriseDate)
+        let sunriseTime = Int(dateFormatter.stringFromDate(sunriseDate))
+        let sunsetTime = Int(dateFormatter.stringFromDate(sunsetDate))
         
-        let inted = Int(str)
         
-        if selectedTime > inted {
-            print("YEEEE")
+        let shadowView = mapView.viewWithTag(111)
+        
+        if selectedTime > sunriseTime && selectedTime < sunsetTime {
+            
+            shadowView?.hidden = false
+            
+            
+        } else {
+            
+            shadowView?.hidden = true
+
         }
 
 
