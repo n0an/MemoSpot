@@ -253,11 +253,14 @@
                                     <outlet property="delegate" destination="yU8-rV-ZLd" id="kfS-si-rH4"/>
                                 </connections>
                             </mapView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LI0-kf-7QU">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="LI0-kf-7QU">
                                 <rect key="frame" x="18" y="523" width="231" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="227" id="EAa-8F-p8Z"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="actionTimeSliderValueChanged:" destination="yU8-rV-ZLd" eventType="valueChanged" id="ohX-KS-06L"/>
+                                </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51L-r6-Fis">
                                 <rect key="frame" x="515" y="560" width="77" height="32"/>
@@ -310,7 +313,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateButton" destination="51L-r6-Fis" id="Em7-3r-Bfq"/>
                         <outlet property="mapView" destination="ajB-re-BVH" id="lrM-oQ-4F0"/>
+                        <outlet property="timeButton" destination="hIj-gr-K84" id="pb6-pz-T96"/>
+                        <outlet property="timeSlider" destination="LI0-kf-7QU" id="9Ik-h5-cdW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2l-QQ-vV0" userLabel="First Responder" sceneMemberID="firstResponder"/>

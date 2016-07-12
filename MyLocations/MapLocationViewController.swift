@@ -15,6 +15,11 @@ class MapLocationViewController: UIViewController {
     // MARK: - OUTLETS
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var timeButton: UIButton!
+    
+    @IBOutlet weak var timeSlider: UISlider!
+    
+    @IBOutlet weak var dateButton: UIButton!
     
     
     // MARK: - PROPERTIES
@@ -119,10 +124,66 @@ class MapLocationViewController: UIViewController {
     
     // MARK: - ACTIONS
     
+    
+    @IBAction func actionTimeSliderValueChanged(sender: UISlider) {
+        
+//        print("sender = \(sender.value)")
+        
+        let selectedTime = Int(sender.value * 24)
+        
+        print("selectedTime = \(selectedTime)")
+        
+        
+        let sunriseTimeInSeconds = NSTimeInterval(weather.sunriseTime)
+        let sunsetTimeInSeconds = NSTimeInterval(weather.sunsetTime)
+        
+        let sunriseDate = NSDate(timeIntervalSince1970: sunriseTimeInSeconds)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH"
+        
+        let str = dateFormatter.stringFromDate(sunriseDate)
+        
+        let inted = Int(str)
+        
+        if selectedTime > inted {
+            print("YEEEE")
+        }
+
+
+        
+    }
+    
     @IBAction func showShadows(sender: UIBarButtonItem) {
         
-        print("sunriseTime = \(timeStringFromUnixtime(weather.sunriseTime))")
-        print("sunsetTime = \(timeStringFromUnixtime(weather.sunsetTime))")
+//        print("sunriseTime = \(timeStringFromUnixtime(weather.sunriseTime))")
+//        print("sunsetTime = \(timeStringFromUnixtime(weather.sunsetTime))")
+        
+        
+        
+        
+        let sunriseTimeInSeconds = NSTimeInterval(weather.sunriseTime)
+        let sunsetTimeInSeconds = NSTimeInterval(weather.sunsetTime)
+
+        let weatherDate = NSDate(timeIntervalSince1970: sunriseTimeInSeconds)
+        
+        let currentDate = NSDate()
+        let interval = currentDate.timeIntervalSinceDate(weatherDate)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        
+        print("currentDate = \(dateFormatter.stringFromDate(currentDate))")
+        print("weatherDate = \(dateFormatter.stringFromDate(weatherDate))")
+        print("interval = \(interval)")
+
+        
+        
+        
+        
+        
+        
 
         
         if isShadowShowing {
@@ -215,6 +276,8 @@ extension MapLocationViewController: MKMapViewDelegate {
     
     
 }
+
+
 
 
 
