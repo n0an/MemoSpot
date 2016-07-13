@@ -149,7 +149,6 @@ class MapLocationViewController: UIViewController {
         let dayLightSpan = sunsetTime! - sunriseTime!
         
         let deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
-        let deltaWidth = shadowWidth / CGFloat(dayLightSpan)
         
         let shadowView = mapView.viewWithTag(111)
         
