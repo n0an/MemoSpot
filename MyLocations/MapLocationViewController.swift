@@ -154,14 +154,15 @@ class MapLocationViewController: UIViewController {
         let shadowView = mapView.viewWithTag(111)
         
         
-        if selectedTime > sunriseTime && selectedTime < sunsetTime {
+        if selectedTime >= sunriseTime && selectedTime <= sunsetTime {
             
             shadowView?.hidden = false
             
             currentAngle = CGFloat(selectedTime - sunriseTime!) * deltaAngel
             
+            let doubleDayLightSpan = Double(dayLightSpan)
             
-            let currentWidth = pow(Double(selectedTime - sunriseTime! - dayLightSpan/2), 2)*5 + 30
+            let currentWidth = pow((Double(selectedTime - sunriseTime!) - doubleDayLightSpan/2), 2)*3 + 30
             
             print("currentWidth = \(currentWidth)")
             
