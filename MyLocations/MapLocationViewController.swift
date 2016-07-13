@@ -32,6 +32,7 @@ class MapLocationViewController: UIViewController {
     var locationToEdit: Location!
     var locations = [Location]()
 
+    var currentAngle: CGFloat = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +131,7 @@ class MapLocationViewController: UIViewController {
         
         let selectedTime = Int(sender.value * 24)
         
-        print("selectedTime = \(selectedTime)")
+//        print("selectedTime = \(selectedTime)")
         
         
         let sunriseTimeInSeconds = NSTimeInterval(weather.sunriseTime)
@@ -144,13 +145,23 @@ class MapLocationViewController: UIViewController {
         
         let sunriseTime = Int(dateFormatter.stringFromDate(sunriseDate))
         let sunsetTime = Int(dateFormatter.stringFromDate(sunsetDate))
-        
+        let dayLightSpan = sunsetTime! - sunriseTime!
         
         let shadowView = mapView.viewWithTag(111)
         
         if selectedTime > sunriseTime && selectedTime < sunsetTime {
             
+
             shadowView?.hidden = false
+            
+            let deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
+            
+            currentAngle = CGFloat((selectedTime - sunriseTime!)) * deltaAngel
+            
+            shadowView?.transform = CGAffineTransformMakeRotation(currentAngle)
+            
+
+            
             
             
         } else {
@@ -189,12 +200,6 @@ class MapLocationViewController: UIViewController {
 
         
         
-        
-        
-        
-        
-
-        
         if isShadowShowing {
             if let viewToRemove = mapView.viewWithTag(111) {
                 viewToRemove.removeFromSuperview()
@@ -204,7 +209,11 @@ class MapLocationViewController: UIViewController {
             
         } else {
             
-            let shadowRect = CGRect(x: CGRectGetMidX(mapView.bounds), y: CGRectGetMidY(mapView.bounds), width: 100, height: 10)
+            let minMetric = min(view.bounds.size.width, view.bounds.size.height)
+            
+            let width = minMetric * 0.4
+            
+            let shadowRect = CGRect(x: CGRectGetMidX(mapView.bounds) - width/2, y: CGRectGetMidY(mapView.bounds), width: width, height: 10)
             
             let shadowView = UIView(frame: shadowRect)
             
