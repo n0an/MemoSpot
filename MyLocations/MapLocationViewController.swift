@@ -150,7 +150,11 @@ class MapLocationViewController: UIViewController {
         
         let deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
         
+//        let shadowView = mapView.viewWithTag(111)
+        
         let shadowView = mapView.viewWithTag(111)
+//        shadowImageView.frame.origin = CGPoint(x: CGRectGetMidX(mapView.bounds), y: CGRectGetMidY(mapView.bounds))
+
         
         
         if selectedTime >= sunriseTime && selectedTime <= sunsetTime {
@@ -230,14 +234,18 @@ class MapLocationViewController: UIViewController {
             
             let shadowView = UIView(frame: shadowRect)
             
+            let shadowImageView = UIImageView(image: UIImage(named: "arrowView"))
+            shadowImageView.frame.origin = CGPoint(x: CGRectGetMidX(mapView.bounds), y: CGRectGetMidY(mapView.bounds))
+            
+            
             shadowView.backgroundColor = UIColor.grayColor()
             
             if let viewToRemove = mapView.viewWithTag(111) {
                 viewToRemove.removeFromSuperview()
             }
             
-            mapView.addSubview(shadowView)
-            shadowView.tag = 111
+            mapView.addSubview(shadowImageView)
+            shadowImageView.tag = 111
             
             isShadowShowing = true
         }
