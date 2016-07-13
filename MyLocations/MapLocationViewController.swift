@@ -158,8 +158,14 @@ class MapLocationViewController: UIViewController {
             
             shadowView?.hidden = false
             
-            currentAngle = CGFloat((selectedTime - sunriseTime!)) * deltaAngel
-            let currentWidth = CGFloat((selectedTime - sunriseTime!)) * deltaWidth
+            currentAngle = CGFloat(selectedTime - sunriseTime!) * deltaAngel
+            
+            
+            let currentWidth = pow(Double(selectedTime - sunriseTime! - dayLightSpan/2), 2)*5 + 30
+            
+            print("currentWidth = \(currentWidth)")
+            
+            
             
 //            let rotationTransform = CGAffineTransformMakeRotation(currentAngle)
 //            let scaleTransform = CGAffineTransformMakeScale(deltaWidth, 1)
@@ -167,7 +173,7 @@ class MapLocationViewController: UIViewController {
             shadowView?.transform = CGAffineTransformMakeRotation(currentAngle)
 //            shadowView?.transform = CGAffineTransformConcat(rotationTransform, scaleTransform)
             
-            shadowView?.bounds.size.width = 30
+            shadowView?.bounds.size.width = CGFloat(currentWidth)
             
             
             
