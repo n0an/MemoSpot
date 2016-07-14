@@ -9,21 +9,29 @@
 import UIKit
 import MapKit
 
-class MapLocationViewController: UIViewController {
 
+
+class MapLocationViewController: UIViewController {
     
     // MARK: - OUTLETS
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var timeButton: UIButton!
+    @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var timeSlider: UISlider!
     
     @IBOutlet weak var dateButton: UIButton!
     
     
-    
     // MARK: - PROPERTIES
+    
+    let dateFormatter: NSDateFormatter = {
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "HH:mm"
+        
+        return formatter
+    }()
     
     var weather: WeeklyWeather!
     
@@ -35,6 +43,20 @@ class MapLocationViewController: UIViewController {
     var currentAngle: CGFloat = 0
     var shadowWidth: CGFloat!
     
+    var shadowView: UIImageView!
+    
+    
+    var sunriseTime: Int!
+    var sunsetTime: Int!
+    
+    var dayLightSpan: Int!
+    
+    var deltaAngel: CGFloat!
+    
+    
+    
+    // MARK: - viewDidLoad
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,6 +65,13 @@ class MapLocationViewController: UIViewController {
         if !locations.isEmpty {
             showLocations()
         }
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        initShadowView()
+        
+        calculateTimeStamps()
 
     }
 
@@ -65,14 +94,116 @@ class MapLocationViewController: UIViewController {
         
         mapView.setRegion(region, animated: true)
         
+        
     }
     
     func showLocationDetails(sender: UIButton) {
         
+    }
+
+    
+    
+    func calculateTimeStamps() {
+        
+        let sunriseTimeInSeconds = NSTimeInterval(weather.sunriseTime)
+        let sunsetTimeInSeconds = NSTimeInterval(weather.sunsetTime)
+        
+        let sunriseDate = NSDate(timeIntervalSince1970: sunriseTimeInSeconds)
+        let sunsetDate = NSDate(timeIntervalSince1970: sunsetTimeInSeconds)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH"
+        
+        sunriseTime = Int(dateFormatter.stringFromDate(sunriseDate))
+        sunsetTime = Int(dateFormatter.stringFromDate(sunsetDate))
+        
+        dayLightSpan = sunsetTime! - sunriseTime!
+        
+        deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
         
         
     }
+    
+    func initShadowView() {
+        
+        let shadowImageView = UIImageView(image: UIImage(named: "shadowArrow"))
+        shadowImageView.frame.origin = CGPoint(x: CGRectGetMidX(view.bounds), y: CGRectGetMidY(view.bounds))
+        
+        view.addSubview(shadowImageView)
+        
+        shadowView = shadowImageView
+        
+        shadowView.hidden = true
+        
+    }
 
+    func refreshShadow() {
+        
+        let selectedTime = Int(timeSlider.value * 24)
+        
+        if selectedTime >= sunriseTime && selectedTime <= sunsetTime {
+            
+            shadowView?.hidden = false
+            
+            currentAngle = CGFloat(selectedTime - sunriseTime!) * deltaAngel
+            
+            let doubleDayLightSpan = Double(dayLightSpan)
+            
+            let currentWidth = pow((Double(selectedTime - sunriseTime!) - doubleDayLightSpan/2), 2)*3 + 30
+            
+            shadowView?.transform = CGAffineTransformMakeRotation(currentAngle)
+            
+            shadowView?.bounds.size.width = CGFloat(currentWidth)
+            
+        } else {
+            
+            shadowView?.hidden = true
+            
+        }
+
+    }
+    
+    
+    
+    // MARK: - ACTIONS
+    
+    @IBAction func actionTimeSliderValueChanged(sender: UISlider) {
+        
+        timeLabel.text = "\(Int(sender.value * 24)):00"
+        
+        guard isShadowShowing else {return}
+        
+        refreshShadow()
+        
+    }
+    
+    
+    
+    @IBAction func showShadows(sender: UIBarButtonItem) {
+        
+        if isShadowShowing {
+            shadowView.hidden = true
+            
+        } else {
+            shadowView.hidden = false
+            refreshShadow()
+        }
+        
+        isShadowShowing = !isShadowShowing
+        
+    }
+    
+    
+    
+
+}
+
+
+
+
+// MARK: - MKMapViewDelegate
+
+extension MapLocationViewController: MKMapViewDelegate {
     
     
     func regionForAnnotations(annotations: [MKAnnotation]) -> MKCoordinateRegion {
@@ -123,154 +254,6 @@ class MapLocationViewController: UIViewController {
         
     }
     
-    
-    
-    // MARK: - ACTIONS
-    
-    
-    @IBAction func actionTimeSliderValueChanged(sender: UISlider) {
-        
-        let selectedTime = Int(sender.value * 24)
-        
-//        print("selectedTime = \(selectedTime)")
-        
-        
-        let sunriseTimeInSeconds = NSTimeInterval(weather.sunriseTime)
-        let sunsetTimeInSeconds = NSTimeInterval(weather.sunsetTime)
-        
-        let sunriseDate = NSDate(timeIntervalSince1970: sunriseTimeInSeconds)
-        let sunsetDate = NSDate(timeIntervalSince1970: sunsetTimeInSeconds)
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH"
-        
-        let sunriseTime = Int(dateFormatter.stringFromDate(sunriseDate))
-        let sunsetTime = Int(dateFormatter.stringFromDate(sunsetDate))
-        let dayLightSpan = sunsetTime! - sunriseTime!
-        
-        let deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
-        
-//        let shadowView = mapView.viewWithTag(111)
-        
-        let shadowView = mapView.viewWithTag(111)
-//        shadowImageView.frame.origin = CGPoint(x: CGRectGetMidX(mapView.bounds), y: CGRectGetMidY(mapView.bounds))
-
-        
-        
-        if selectedTime >= sunriseTime && selectedTime <= sunsetTime {
-            
-            shadowView?.hidden = false
-            
-            currentAngle = CGFloat(selectedTime - sunriseTime!) * deltaAngel
-            
-            let doubleDayLightSpan = Double(dayLightSpan)
-            
-            let currentWidth = pow((Double(selectedTime - sunriseTime!) - doubleDayLightSpan/2), 2)*3 + 30
-            
-            print("currentWidth = \(currentWidth)")
-            
-            
-            
-//            let rotationTransform = CGAffineTransformMakeRotation(currentAngle)
-//            let scaleTransform = CGAffineTransformMakeScale(deltaWidth, 1)
-            
-            shadowView?.transform = CGAffineTransformMakeRotation(currentAngle)
-//            shadowView?.transform = CGAffineTransformConcat(rotationTransform, scaleTransform)
-            
-            shadowView?.bounds.size.width = CGFloat(currentWidth)
-            
-            
-            
-        } else {
-            
-            shadowView?.hidden = true
-
-        }
-
-
-        
-    }
-    
-    @IBAction func showShadows(sender: UIBarButtonItem) {
-        
-//        print("sunriseTime = \(timeStringFromUnixtime(weather.sunriseTime))")
-//        print("sunsetTime = \(timeStringFromUnixtime(weather.sunsetTime))")
-        
-        
-        
-        
-        let sunriseTimeInSeconds = NSTimeInterval(weather.sunriseTime)
-        let sunsetTimeInSeconds = NSTimeInterval(weather.sunsetTime)
-
-        let weatherDate = NSDate(timeIntervalSince1970: sunriseTimeInSeconds)
-        
-        let currentDate = NSDate()
-        let interval = currentDate.timeIntervalSinceDate(weatherDate)
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        
-        
-        print("currentDate = \(dateFormatter.stringFromDate(currentDate))")
-        print("weatherDate = \(dateFormatter.stringFromDate(weatherDate))")
-        print("interval = \(interval)")
-
-        
-        
-        if isShadowShowing {
-            if let viewToRemove = mapView.viewWithTag(111) {
-                viewToRemove.removeFromSuperview()
-            }
-            
-            isShadowShowing = false
-            
-        } else {
-            
-            let minMetric = min(view.bounds.size.width, view.bounds.size.height)
-            
-            shadowWidth = minMetric * 0.4
-            
-            let shadowRect = CGRect(x: CGRectGetMidX(mapView.bounds) - shadowWidth/2, y: CGRectGetMidY(mapView.bounds), width: shadowWidth, height: 10)
-            
-            let shadowView = UIView(frame: shadowRect)
-            
-            let shadowImageView = UIImageView(image: UIImage(named: "shadowArrow"))
-            shadowImageView.frame.origin = CGPoint(x: CGRectGetMidX(mapView.bounds), y: CGRectGetMidY(mapView.bounds))
-            
-            
-            shadowView.backgroundColor = UIColor.grayColor()
-            
-            if let viewToRemove = mapView.viewWithTag(111) {
-                viewToRemove.removeFromSuperview()
-            }
-            
-            mapView.addSubview(shadowImageView)
-            shadowImageView.tag = 111
-            
-            isShadowShowing = true
-        }
-        
-        
-        
-    }
-    
-    
-    
-
-}
-
-
-
-
-
-
-
-
-
-
-// MARK: - MKMapViewDelegate
-
-extension MapLocationViewController: MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
