@@ -17,6 +17,8 @@ struct WeeklyWeather {
     var sunriseTime: Int
     var sunsetTime: Int
     
+    var dayZeroIcon: UIImage
+    
     var dayOneTemperatureMax: Int
     var dayOneTemperatureMin: Int
     var dayOneTime: String?
@@ -63,14 +65,15 @@ struct WeeklyWeather {
         sunriseTime = weeklyForcast[0]["sunriseTime"] as! Int
         
         sunsetTime = weeklyForcast[0]["sunsetTime"] as! Int
-        
-//        print("sunriseTime = \(timeStringFromUnixtime(sunriseTime))")
-//        print("sunsetTime = \(timeStringFromUnixtime(sunsetTime))")
 
         
         //DAY ZERO
         dayZeroTemperatureMax = weeklyForcast[0]["temperatureMax"] as! Int
         dayZeroTemperatureMin = weeklyForcast[0]["temperatureMin"] as! Int
+        
+        let dayZeroIconString = weeklyForcast[0]["icon"] as! String
+
+        dayZeroIcon = weatherIconFromString(dayZeroIconString)
         
         
         
