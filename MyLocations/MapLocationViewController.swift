@@ -25,14 +25,6 @@ class MapLocationViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
-    let dateFormatter: NSDateFormatter = {
-        
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "HH:mm"
-        
-        return formatter
-    }()
-    
     var weather: WeeklyWeather!
     
     var isShadowShowing = false

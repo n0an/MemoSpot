@@ -64,8 +64,8 @@ struct WeeklyWeather {
         
         sunsetTime = weeklyForcast[0]["sunsetTime"] as! Int
         
-        print("sunriseTime = \(timeStringFromUnixtime(sunriseTime))")
-        print("sunsetTime = \(timeStringFromUnixtime(sunsetTime))")
+//        print("sunriseTime = \(timeStringFromUnixtime(sunriseTime))")
+//        print("sunsetTime = \(timeStringFromUnixtime(sunsetTime))")
 
         
         //DAY ZERO

@@ -267,7 +267,7 @@ class LocationDetailsViewController: UITableViewController {
                 
                 self.weather = weeklyWeather
                 
-//                print(weatherDictionary)
+                print(weatherDictionary)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     

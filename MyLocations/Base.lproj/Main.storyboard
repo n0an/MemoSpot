@@ -301,7 +301,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Lq7-tG-yXX">
-                        <barButtonItem key="rightBarButtonItem" title="Show" id="5lA-iQ-Rz7">
+                        <barButtonItem key="rightBarButtonItem" title="Weather" id="5lA-iQ-Rz7">
                             <connections>
                                 <action selector="showShadows:" destination="yU8-rV-ZLd" id="uW4-Ly-kTk"/>
                             </connections>
