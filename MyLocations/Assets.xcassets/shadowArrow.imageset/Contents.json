@@ -8,12 +8,12 @@
           "width" : 1
         },
         "cap-insets" : {
-          "right" : 38,
-          "left" : 23
+          "right" : 18,
+          "left" : 43
         }
       },
       "idiom" : "universal",
-      "filename" : "arrowView.png",
+      "filename" : "shadowArrow.png",
       "scale" : "1x"
     },
     {
@@ -24,12 +24,12 @@
           "width" : 1
         },
         "cap-insets" : {
-          "right" : 78,
-          "left" : 45
+          "right" : 45,
+          "left" : 78
         }
       },
       "idiom" : "universal",
-      "filename" : "arrowView@2x.png",
+      "filename" : "shadowArrow@2x.png",
       "scale" : "2x"
     },
     {
@@ -40,12 +40,12 @@
           "width" : 1
         },
         "cap-insets" : {
-          "right" : 116,
-          "left" : 69
+          "right" : 71,
+          "left" : 114
         }
       },
       "idiom" : "universal",
-      "filename" : "arrowView@3x.png",
+      "filename" : "shadowArrow@3x.png",
       "scale" : "3x"
     }
   ],

@@ -234,7 +234,7 @@ class MapLocationViewController: UIViewController {
             
             let shadowView = UIView(frame: shadowRect)
             
-            let shadowImageView = UIImageView(image: UIImage(named: "arrowView"))
+            let shadowImageView = UIImageView(image: UIImage(named: "shadowArrow"))
             shadowImageView.frame.origin = CGPoint(x: CGRectGetMidX(mapView.bounds), y: CGRectGetMidY(mapView.bounds))
             
             
