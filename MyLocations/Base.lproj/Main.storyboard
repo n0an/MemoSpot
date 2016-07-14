@@ -273,11 +273,31 @@
                                 <color key="textColor" red="1" green="0.93333333330000001" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uHE-R1-RB3">
+                                <rect key="frame" x="522" y="72" width="70" height="70"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clear-day" translatesAutoresizingMaskIntoConstraints="NO" id="2tR-BW-fE1">
+                                        <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="6uU-vb-asi"/>
+                                            <constraint firstAttribute="width" constant="60" id="y6s-sj-ewu"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="05J-Sn-lnR"/>
+                                    <constraint firstItem="2tR-BW-fE1" firstAttribute="centerX" secondItem="uHE-R1-RB3" secondAttribute="centerX" id="Dqx-ve-kEj"/>
+                                    <constraint firstItem="2tR-BW-fE1" firstAttribute="centerY" secondItem="uHE-R1-RB3" secondAttribute="centerY" id="SZL-St-52f"/>
+                                    <constraint firstAttribute="width" constant="70" id="d3n-s4-2iq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Wys-gK-Rim" firstAttribute="top" secondItem="51L-r6-Fis" secondAttribute="bottom" constant="8" id="1RG-uQ-l9d"/>
                             <constraint firstItem="LI0-kf-7QU" firstAttribute="top" secondItem="ajB-re-BVH" secondAttribute="bottom" constant="8" id="1qw-1o-fpi"/>
+                            <constraint firstItem="uHE-R1-RB3" firstAttribute="top" secondItem="rqb-T3-CuO" secondAttribute="bottom" constant="8" id="2VU-Lz-Lml"/>
                             <constraint firstItem="Wys-gK-Rim" firstAttribute="top" secondItem="ajB-re-BVH" secondAttribute="bottom" id="D6P-Y5-46e"/>
                             <constraint firstItem="51L-r6-Fis" firstAttribute="top" secondItem="ajB-re-BVH" secondAttribute="bottom" constant="18" id="EAM-M2-fZk"/>
                             <constraint firstItem="Wys-gK-Rim" firstAttribute="top" secondItem="51L-r6-Fis" secondAttribute="bottom" constant="15" id="aCa-Eo-Z7J"/>
@@ -287,6 +307,7 @@
                             <constraint firstItem="Wys-gK-Rim" firstAttribute="top" secondItem="LI0-kf-7QU" secondAttribute="bottom" constant="47" id="mGQ-3E-dAb"/>
                             <constraint firstAttribute="trailing" secondItem="ajB-re-BVH" secondAttribute="trailing" id="mp7-ow-A2P"/>
                             <constraint firstItem="ajB-re-BVH" firstAttribute="top" secondItem="rqb-T3-CuO" secondAttribute="bottom" id="ntc-QW-iC6"/>
+                            <constraint firstAttribute="trailing" secondItem="uHE-R1-RB3" secondAttribute="trailing" constant="8" id="pzf-qU-UcM"/>
                             <constraint firstItem="LI0-kf-7QU" firstAttribute="leading" secondItem="LhJ-zQ-8zd" secondAttribute="leading" constant="20" id="teu-Oj-10r"/>
                             <constraint firstItem="dPl-XY-C9G" firstAttribute="top" secondItem="LI0-kf-7QU" secondAttribute="bottom" constant="13" id="wxN-sq-Wi3"/>
                             <constraint firstAttribute="trailing" secondItem="51L-r6-Fis" secondAttribute="trailing" constant="8" id="yXd-Wk-bE7"/>
@@ -312,6 +333,8 @@
                         <outlet property="mapView" destination="ajB-re-BVH" id="lrM-oQ-4F0"/>
                         <outlet property="timeLabel" destination="dPl-XY-C9G" id="W7A-Y4-Y50"/>
                         <outlet property="timeSlider" destination="LI0-kf-7QU" id="9Ik-h5-cdW"/>
+                        <outlet property="weatherImageView" destination="2tR-BW-fE1" id="zCs-Ok-ULy"/>
+                        <outlet property="weatherImageViewContainer" destination="uHE-R1-RB3" id="BYs-Kn-zdZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b2l-QQ-vV0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -711,6 +734,7 @@
         <image name="Pin" width="24" height="24"/>
         <image name="Tag" width="30" height="30"/>
         <image name="User" width="24" height="24"/>
+        <image name="clear-day" width="60" height="60"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5SZ-hl-jdr"/>

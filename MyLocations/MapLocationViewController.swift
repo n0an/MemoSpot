@@ -22,6 +22,8 @@ class MapLocationViewController: UIViewController {
     
     @IBOutlet weak var dateButton: UIButton!
     
+    @IBOutlet weak var weatherImageView: UIImageView!
+    @IBOutlet weak var weatherImageViewContainer: UIView!
     
     // MARK: - PROPERTIES
     
@@ -64,6 +66,8 @@ class MapLocationViewController: UIViewController {
         initShadowView()
         
         calculateTimeStamps()
+        
+        weatherImageView.image = weather.dayZeroIcon
 
     }
 
@@ -175,9 +179,11 @@ class MapLocationViewController: UIViewController {
         
         if isShadowShowing {
             shadowView.hidden = true
+            weatherImageViewContainer.hidden = true
             
         } else {
             shadowView.hidden = false
+            weatherImageViewContainer.hidden = false
             refreshShadow()
         }
         

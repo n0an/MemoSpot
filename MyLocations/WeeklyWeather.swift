@@ -132,36 +132,8 @@ struct WeeklyWeather {
 
 
 
-func weeekDateStringFromUnixtime(unixTime: Int) -> String {
-    
-    let timeInSeconds = NSTimeInterval(unixTime)
-    let weatherDate = NSDate(timeIntervalSince1970: timeInSeconds)
-    
-    let dateFormatter = NSDateFormatter()
-    //dateFormatter.timeStyle = .MediumStyle
-    dateFormatter.dateFormat = "EEE"
-    
-    return dateFormatter.stringFromDate(weatherDate)
-    
-    
-}
 
 
-
-//Time formatter
-
-func timeStringFromUnixtime(unixTime: Int) -> String {
-    
-    let timeInSeconds = NSTimeInterval(unixTime)
-    let weatherDate = NSDate(timeIntervalSince1970: timeInSeconds)
-    
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "HH:mm"
-    
-    return dateFormatter.stringFromDate(weatherDate)
-    
-    
-}
 
 
 
