@@ -487,6 +487,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ZId-tQ-F2b" kind="show" identifier="ShowWeather" id="uHh-4K-B36"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dbo-wv-Vhl">
                                         <rect key="frame" x="0.0" y="475.5" width="600" height="44"/>
@@ -704,7 +707,6 @@
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="MHF-vq-UAd" kind="relationship" relationship="viewControllers" id="kDR-1U-QWV"/>
                         <segue destination="JHF-3g-2bQ" kind="relationship" relationship="viewControllers" id="QUo-sU-yzN"/>
-                        <segue destination="ZId-tQ-F2b" kind="relationship" relationship="viewControllers" id="eSC-dC-L27"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -1184,7 +1186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSI-k7-w99" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="207" y="849"/>
+            <point key="canvasLocation" x="3155" y="833"/>
         </scene>
     </scenes>
     <resources>

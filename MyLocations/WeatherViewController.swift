@@ -85,18 +85,27 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     var userLongitude : Double!
     var userTemperatureCelsius : Bool!
     
+    var locationToEdit: Location!
+
+    
     private let apiKey = "da80aefa4ec207511622f3af58b36013"  // https://developer.forecast.io
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userTemperatureCelsius = true
 
         swipeRec.addTarget(self, action: #selector(WeatherViewController.swipedView))
         swipeRec.direction = UISwipeGestureRecognizerDirection.Down
         swipeView.addGestureRecognizer(swipeRec)
 
         refresh()
+        
+        let addressLine = stringFromPlacemark(locationToEdit.placemark!)
+        
+        userLocationLabel.text = "\(addressLine)"
 
     }
 
@@ -191,19 +200,38 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     
     
+    
+    func stringFromPlacemark(placemark: CLPlacemark) -> String {
+        
+        var line = ""
+        
+//        line.addText(placemark.subThoroughfare)
+//        line.addText(placemark.thoroughfare, withSeparator: " ")
+        
+        line.addText(placemark.locality, withSeparator: ", ")
+        
+//        line.addText(placemark.administrativeArea, withSeparator: ", ")
+        line.addText(placemark.country, withSeparator: ", ")
+        
+        return line
+        
+    }
+
+    
+    
+    
     // MARK: - WEATHER METHODS
     
     func getCurrentWeatherData() -> Void {
+        
+        userLatitude = locationToEdit.coordinate.latitude
+        userLongitude = locationToEdit.coordinate.longitude
         
         userLocation = "\(userLatitude),\(userLongitude)"
         
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
         let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
         
-        //72.371224,-41.382676 GreenLand (Cold Place!)
-        //\(userLocation) (YOUR LOCATION!)
-        
-        //println(userLocation)
         
         let sharedSession = NSURLSession.sharedSession()
         
@@ -228,6 +256,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     
                     //Current outlook
                     //                    self.userTemperatureCelsius = true
+                    
+                    
                     
                     if self.userTemperatureCelsius == true {
                         self.temperatureLabel.text = "\(Fahrenheit2Celsius(currentWeather.temperature))"
@@ -379,7 +409,9 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     func refresh() {
         
         
-        initLocationManager()
+//        initLocationManager()
+        
+        getCurrentWeatherData()
         
         self.temperatureLabel.alpha = 0
         self.dayOneImage.alpha = 0

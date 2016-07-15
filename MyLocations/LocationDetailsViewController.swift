@@ -400,6 +400,13 @@ class LocationDetailsViewController: UITableViewController {
             
             controller.weather = weather
             
+        } else if segue.identifier == "ShowWeather" {
+            
+            let controller = segue.destinationViewController as! WeatherViewController
+            
+            controller.locationToEdit = locationToEdit
+            
+            
         }
         
     }
