@@ -300,7 +300,7 @@ class MapLocationViewController: UIViewController {
                 let dataObject = NSData(contentsOfURL: location!)
                 let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
                 
-                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
+//                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
                 self.weather = weeklyWeather
@@ -309,8 +309,8 @@ class MapLocationViewController: UIViewController {
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
-                    print("temperature = \(Fahrenheit2Celsius(currentWeather.temperature))")
-                    print("humidity = \(currentWeather.humidity)")
+//                    print("temperature = \(Fahrenheit2Celsius(currentWeather.temperature))")
+//                    print("humidity = \(currentWeather.humidity)")
                     
                     //7 day out look
                     
@@ -511,7 +511,9 @@ extension MapLocationViewController: CalendarViewControllerDelegate {
         
         diffComponents = calend.components([.Day], fromDate: NSDate(), toDate: date, options: [])
         
-        if abs(diffComponents.day) > 5 {
+        print("diffComponents.day = \(diffComponents.day)")
+        
+        if 0 > diffComponents.day || diffComponents.day > 5 {
             print("USING SUNRISE-SUNSET API")
             
             isWeatherAvailable = false

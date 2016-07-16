@@ -142,7 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				1813A9E01D3AB00700C61A88 /* SunriseSunset.swift */,
-				185850FF1D3556220069ED14 /* Weather */,
+				185850FF1D3556220069ED14 /* Forecast.io */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -191,14 +191,14 @@
 			path = Sound;
 			sourceTree = "<group>";
 		};
-		185850FF1D3556220069ED14 /* Weather */ = {
+		185850FF1D3556220069ED14 /* Forecast.io */ = {
 			isa = PBXGroup;
 			children = (
 				185850FB1D35553F0069ED14 /* CurrentWeather.swift */,
 				1829E5171D3820AC00A2DEED /* HourlyWeather.swift */,
 				185850FD1D35554B0069ED14 /* WeeklyWeather.swift */,
 			);
-			name = Weather;
+			name = Forecast.io;
 			sourceTree = "<group>";
 		};
 		186A061F1D15CB3C008188EF /* Cells */ = {
