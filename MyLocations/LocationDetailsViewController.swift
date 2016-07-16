@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 import CoreData
 
@@ -40,6 +41,9 @@ class LocationDetailsViewController: UITableViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var addPhotoLabel: UILabel!
+    
+    @IBOutlet weak var favoriteMapView: MKMapView!
+
     
     // MARK: - ATTRIBUTES
     
@@ -94,7 +98,8 @@ class LocationDetailsViewController: UITableViewController {
     
     var observer: AnyObject!
     
-    
+    let latitudeDelta = 0.005
+    let longitudeDelta = 0.005
     
 
     // MARK: - viewDidLoad
@@ -162,8 +167,18 @@ class LocationDetailsViewController: UITableViewController {
         
         
         
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         
+        let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+        
+        let region = MKCoordinateRegionMake(coordinate, span)
+        
+        favoriteMapView.setRegion(region, animated: false)
         
     }
     
@@ -217,6 +232,14 @@ class LocationDetailsViewController: UITableViewController {
         imageView.frame = CGRect(x: 10, y: 10, width: 260, height: 260)
         addPhotoLabel.hidden = true
     }
+    
+    
+    
+    
+    
+    
+    
+    
     
     // MARK: - NOTIFICATIONS
     
@@ -291,17 +314,7 @@ class LocationDetailsViewController: UITableViewController {
                 
             } else {
                 
-                let networkIssueController = UIAlertController(title: "NO API KEY", message: "Hello! Looks like you forgot to add the API KEY", preferredStyle: .Alert)
-                let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                networkIssueController.addAction(okButton)
-                let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                networkIssueController.addAction(cancelButton)
-                self.presentViewController(networkIssueController, animated: true, completion: nil)
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    
-                })
             }
             
         })
@@ -319,7 +332,6 @@ class LocationDetailsViewController: UITableViewController {
     // MARK: - ACTIONS
 
     @IBAction func done() {
-//        dismissViewControllerAnimated(true, completion: nil)
         
         let hudView = HudView.hudInView(navigationController!.view, animated: true)
         
@@ -346,12 +358,12 @@ class LocationDetailsViewController: UITableViewController {
         location.placemark              = placemark
         
         
-        if let image = image { // 1
+        if let image = image {
             if !location.hasPhoto {
                 
                 location.photoID = Location.nextPhotoID()
             }
-            // 2
+            
             if let data = UIImageJPEGRepresentation(image, 0.5) { // 3
                 do {
                     try data.writeToFile(location.photoPath,
@@ -362,9 +374,6 @@ class LocationDetailsViewController: UITableViewController {
                 }
             }
         }
-        
-        
-        
         
         do {
             try managedObjectContext.save()
@@ -379,9 +388,12 @@ class LocationDetailsViewController: UITableViewController {
         
     }
     
+    
     @IBAction func cancel() {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    
     
     
     // MARK: - NAVIGATION
@@ -410,6 +422,8 @@ class LocationDetailsViewController: UITableViewController {
         }
         
     }
+    
+    
     
     // MARK: - Unwind Segue handler
     
@@ -468,7 +482,10 @@ class LocationDetailsViewController: UITableViewController {
                 
             }
             
-        case (2, 2):
+        case (2, _):
+            return 88
+            
+        case (3, 2):
             return addressLabel.frame.size.height + 40
             
         default:
@@ -541,6 +558,9 @@ class LocationDetailsViewController: UITableViewController {
         } else if indexPath.section == 1 && indexPath.row == 0 {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             pickPhoto()
+        } else if indexPath.section == 2 {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegueWithIdentifier("ShowLocation", sender: nil)
         }
         
     }
@@ -583,16 +603,10 @@ class LocationDetailsViewController: UITableViewController {
     
     
     
-    
-    
-    
-    
-
-
-
-
 
 }
+
+
 
 
 
@@ -602,6 +616,8 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     
     
     func pickPhoto() {
+        
+        // TODO: remove true before release
         
         if true || UIImagePickerController.isSourceTypeAvailable(.Camera) {
             showPhotoMenu()

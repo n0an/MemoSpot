@@ -435,10 +435,36 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="j6X-bk-AHR">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="88" id="b3B-SI-uDt">
+                                        <rect key="frame" x="0.0" y="387.5" width="600" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b3B-SI-uDt" id="MIY-lw-kuz">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="87.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <mapView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhV-70-Ax1">
+                                                    <rect key="frame" x="8" y="8" width="551" height="71.5"/>
+                                                </mapView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="KhV-70-Ax1" secondAttribute="bottom" constant="8" id="Fap-23-0mY"/>
+                                                <constraint firstItem="KhV-70-Ax1" firstAttribute="top" secondItem="MIY-lw-kuz" secondAttribute="top" constant="8" id="WUs-as-IBA"/>
+                                                <constraint firstItem="KhV-70-Ax1" firstAttribute="leading" secondItem="MIY-lw-kuz" secondAttribute="leading" constant="8" id="fmz-YQ-ns6"/>
+                                                <constraint firstAttribute="trailing" secondItem="KhV-70-Ax1" secondAttribute="trailing" constant="8" id="idf-fK-8ca"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="yU8-rV-ZLd" kind="show" identifier="ShowLocation" trigger="accessoryAction" id="8bU-FH-i1c"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection id="l3s-OE-kdm">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="D9B-0j-mWc" detailTextLabel="dRt-ud-Qtx" style="IBUITableViewCellStyleValue1" id="FCb-nA-fqb">
-                                        <rect key="frame" x="0.0" y="387.5" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="D9B-0j-mWc" detailTextLabel="dRt-ud-Qtx" style="IBUITableViewCellStyleValue1" id="FCb-nA-fqb">
+                                        <rect key="frame" x="0.0" y="511.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FCb-nA-fqb" id="Mqp-nb-DF6">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -460,12 +486,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="yU8-rV-ZLd" kind="show" identifier="ShowLocation" id="kFx-an-ETP"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="LLJ-LT-GEJ" detailTextLabel="CUd-Pw-uwB" style="IBUITableViewCellStyleValue1" id="VJs-q5-y4Z">
-                                        <rect key="frame" x="0.0" y="431.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="555.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VJs-q5-y4Z" id="Xni-Is-6S1">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -492,7 +515,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dbo-wv-Vhl">
-                                        <rect key="frame" x="0.0" y="475.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="599.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dbo-wv-Vhl" id="0nM-CJ-L82">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -534,7 +557,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="3gw-iQ-FwA" detailTextLabel="D3t-Qd-tQ6" style="IBUITableViewCellStyleValue1" id="2aa-n3-3sW">
-                                        <rect key="frame" x="0.0" y="519.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="643.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2aa-n3-3sW" id="ulL-Uj-C4z">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -583,6 +606,7 @@
                         <outlet property="categoryLabel" destination="RB9-Ue-Jm0" id="Ws1-9e-7Q6"/>
                         <outlet property="dateLabel" destination="D3t-Qd-tQ6" id="Nf5-r7-nMa"/>
                         <outlet property="descriptionTextView" destination="X96-Fq-tRg" id="JfR-Tu-v2k"/>
+                        <outlet property="favoriteMapView" destination="KhV-70-Ax1" id="EU2-Le-7Cx"/>
                         <outlet property="imageView" destination="0K2-ca-7XU" id="Buf-mi-f7I"/>
                         <outlet property="latitudeLabel" destination="dRt-ud-Qtx" id="eTx-Va-NCl"/>
                         <outlet property="longitudeLabel" destination="CUd-Pw-uwB" id="UIn-Ar-KCu"/>
