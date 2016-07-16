@@ -29,6 +29,8 @@ class MapLocationViewController: UIViewController {
     
     var weather: WeeklyWeather!
     
+    var isWeatherAvailable = true
+    
     var isShadowShowing = false
     
     var locationToEdit: Location!
@@ -49,6 +51,15 @@ class MapLocationViewController: UIViewController {
     
     var weatherDate: NSDate!
 
+    let calend = ANConfigurator.sharedConfigurator.calendar
+    
+    var components: NSDateComponents!
+    
+    var diffComponents: NSDateComponents!
+    
+    
+    
+    
     
     
     
@@ -63,6 +74,8 @@ class MapLocationViewController: UIViewController {
             showLocations()
         }
         
+        components = calend.components([.Month, .Day], fromDate: weatherDate)
+        
         refreshDateButton()
     }
     
@@ -75,7 +88,7 @@ class MapLocationViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-
+        
         
         initShadowView()
         
@@ -179,6 +192,7 @@ class MapLocationViewController: UIViewController {
     func refreshDateButton() {
         
         let dateString = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(weatherDate)
+        
         dateButton.setTitle(dateString, forState: .Normal)
     }
     
@@ -337,6 +351,17 @@ extension MapLocationViewController: MKMapViewDelegate {
 extension MapLocationViewController: CalendarViewControllerDelegate {
     
     func dateSelected(date: NSDate) {
+        
+        diffComponents = calend.components([.Day], fromDate: NSDate(), toDate: date, options: [])
+        
+        if abs(diffComponents.day) > 5 {
+            print("USING SUNRISE-SUNSET API")
+            
+        } else {
+            print("USING FORECAST.IO API")
+
+        }
+        
         
         weatherDate = date
         
