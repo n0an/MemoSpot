@@ -305,7 +305,7 @@ class MapLocationViewController: UIViewController {
                 
                 self.weather = weeklyWeather
                 
-//                print(weatherDictionary)
+                print(weatherDictionary)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
@@ -327,6 +327,7 @@ class MapLocationViewController: UIViewController {
                     
                     if self.isShadowShowing {
                         self.refreshShadow()
+                        self.weatherImageViewContainer.hidden = false
                     }
 
                 })
