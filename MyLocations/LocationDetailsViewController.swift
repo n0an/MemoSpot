@@ -180,6 +180,9 @@ class LocationDetailsViewController: UITableViewController {
         
         favoriteMapView.setRegion(region, animated: false)
         
+        let mapTapGesture = UITapGestureRecognizer(target: self, action: #selector(LocationDetailsViewController.mapViewTapped(_:)))
+        favoriteMapView.addGestureRecognizer(mapTapGesture)
+        
     }
     
     deinit {
@@ -200,6 +203,12 @@ class LocationDetailsViewController: UITableViewController {
         }
         
         descriptionTextView.resignFirstResponder()
+    }
+    
+    func mapViewTapped(gestureRecognizer: UITapGestureRecognizer) {
+        
+        performSegueWithIdentifier("ShowLocation", sender: nil)
+        
     }
     
     
