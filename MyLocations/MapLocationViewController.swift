@@ -63,20 +63,17 @@ class MapLocationViewController: UIViewController {
             showLocations()
         }
         
-        
-        
-        
-
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
         let dateFormatter = NSDateFormatter()
         
         dateFormatter.dateFormat = "dd.MM.YYYY"
         
-        dateButton.titleLabel?.text = dateFormatter.stringFromDate(weatherDate)
+        dateButton.setTitle(dateFormatter.stringFromDate(weatherDate), forState: .Normal)
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+     
     }
     
     override func viewWillAppear(animated: Bool) {
