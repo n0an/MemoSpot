@@ -14,7 +14,6 @@ import CoreData
 
 // * PRIVATE GLOBAL PROPERTY
 
-private let apiKey = "da80aefa4ec207511622f3af58b36013"  // https://developer.forecast.io
 
 private let dateFormatter: NSDateFormatter = {
     
@@ -129,8 +128,6 @@ class LocationDetailsViewController: UITableViewController {
         
         if let location = locationToEdit {
             title = "Edit Location"
-            
-            getCurrentWeatherData()
             
             if location.hasPhoto {
                 
@@ -281,68 +278,6 @@ class LocationDetailsViewController: UITableViewController {
     
     
     
-    
-    // MARK: - WEATHER METHODS
-    
-    func getCurrentWeatherData() -> Void {
-        
-        let userLocation = "\(coordinate.latitude),\(coordinate.longitude)"
-        
-        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
-        let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
-        
-        
-        let sharedSession = NSURLSession.sharedSession()
-        
-        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
-            
-            if (error == nil) {
-                
-                let dataObject = NSData(contentsOfURL: location!)
-                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
-                
-                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
-                let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
-                
-                self.weather = weeklyWeather
-                
-                print(weatherDictionary)
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    print("temperature = \(Fahrenheit2Celsius(currentWeather.temperature))")
-                    print("humidity = \(currentWeather.humidity)")
-                    
-                    //7 day out look
-                    
-                    print("tempDayOne = \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMax))°")
-                    
-                    print("tempDayTwo = \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMax))°")
-                    
-                    print("dayOneTime = \(weeklyWeather.dayOneTime!)")
-                    print("dayTwoTime = \(weeklyWeather.dayTwoTime!)")
-                    print("dayThreeTime = \(weeklyWeather.dayThreeTime!)")
-                    
-                    
-                })
-                
-                
-                
-            } else {
-                
-                
-            }
-            
-        })
-        
-        downloadTask.resume()
-        
-    }
-
-    
-    
-    
-    
 
 
     // MARK: - ACTIONS
@@ -425,13 +360,6 @@ class LocationDetailsViewController: UITableViewController {
             let controller = segue.destinationViewController as! MapLocationViewController
             
             controller.locationToEdit = locationToEdit
-            
-            controller.weather = weather
-            
-            let weatherDate = NSDate()
-            
-            controller.weatherDate = weatherDate
-                        
             
             
         } else if segue.identifier == "ShowWeather" {

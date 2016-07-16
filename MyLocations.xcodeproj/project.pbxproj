@@ -12,6 +12,7 @@
 		15FFBA011D1066A6006BA3B7 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFBA001D1066A6006BA3B7 /* CurrentLocationViewController.swift */; };
 		15FFBA061D1066A6006BA3B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FFBA041D1066A6006BA3B7 /* Main.storyboard */; };
 		15FFBA081D1066A6006BA3B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15FFBA071D1066A6006BA3B7 /* Assets.xcassets */; };
+		1813A9DF1D3A8C2800C61A88 /* ANDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813A9DE1D3A8C2800C61A88 /* ANDataManager.swift */; };
 		1825D0651D156C270018B839 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825D0641D156C270018B839 /* Functions.swift */; };
 		1825D0681D15730E0018B839 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1825D0661D15730E0018B839 /* DataModel.xcdatamodeld */; };
 		1825D0701D1575DB0018B839 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825D06E1D1575DB0018B839 /* Location+CoreDataProperties.swift */; };
@@ -47,6 +48,7 @@
 		15FFBA051D1066A6006BA3B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		15FFBA071D1066A6006BA3B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15FFBA0C1D1066A6006BA3B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1813A9DE1D3A8C2800C61A88 /* ANDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANDataManager.swift; sourceTree = "<group>"; };
 		1825D0641D156C270018B839 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		1825D0671D15730E0018B839 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		1825D06E1D1575DB0018B839 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataProperties.swift"; path = "../Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */,
+				1813A9DE1D3A8C2800C61A88 /* ANDataManager.swift */,
 				1829E51F1D3A650800A2DEED /* ANConfigurator.swift */,
 				185850FF1D3556220069ED14 /* Weather */,
 				15729B701D1715F900B5DE1A /* Extensions */,
@@ -369,6 +372,7 @@
 				15FFBA011D1066A6006BA3B7 /* CurrentLocationViewController.swift in Sources */,
 				18EE88151D187A85005D0334 /* MyTabBarController.swift in Sources */,
 				1829E51A1D39789000A2DEED /* WeatherViewController.swift in Sources */,
+				1813A9DF1D3A8C2800C61A88 /* ANDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

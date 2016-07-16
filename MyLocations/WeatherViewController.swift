@@ -9,6 +9,9 @@
 import UIKit
 import CoreLocation
 
+
+
+
 class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     let swipeRec = UISwipeGestureRecognizer()
@@ -85,7 +88,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     var locationToEdit: Location!
 
     
-    private let apiKey = "da80aefa4ec207511622f3af58b36013"  // https://developer.forecast.io
 
     override func viewDidLoad() {
         super.viewDidLoad()

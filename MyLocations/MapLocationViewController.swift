@@ -29,7 +29,7 @@ class MapLocationViewController: UIViewController {
     
     var weather: WeeklyWeather!
     
-    var isWeatherAvailable = true
+    var isWeatherAvailable = false
     
     var isShadowShowing = false
     
@@ -49,7 +49,7 @@ class MapLocationViewController: UIViewController {
     
     var deltaAngel: CGFloat!
     
-    var weatherDate: NSDate!
+    var weatherDate = NSDate()
 
     let calend = ANConfigurator.sharedConfigurator.calendar
     
@@ -67,6 +67,8 @@ class MapLocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        getCurrentWeatherData()
 
         updateLocations()
 
@@ -92,9 +94,6 @@ class MapLocationViewController: UIViewController {
         
         initShadowView()
         
-        calculateTimeStamps()
-        
-        weatherImageView.image = weather.dayZeroIcon
         
         
 
@@ -194,6 +193,69 @@ class MapLocationViewController: UIViewController {
         let dateString = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(weatherDate)
         
         dateButton.setTitle(dateString, forState: .Normal)
+    }
+    
+    
+    
+    
+    // MARK: - WEATHER METHODS
+    
+    func getCurrentWeatherData() -> Void {
+        
+        let userLocation = "\(locationToEdit.coordinate.latitude),\(locationToEdit.coordinate.longitude)"
+        
+        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
+        let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
+        
+        
+        let sharedSession = NSURLSession.sharedSession()
+        
+        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+            
+            if (error == nil) {
+                
+                let dataObject = NSData(contentsOfURL: location!)
+                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+                
+                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
+                let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
+                
+                self.weather = weeklyWeather
+                
+                print(weatherDictionary)
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+                    print("temperature = \(Fahrenheit2Celsius(currentWeather.temperature))")
+                    print("humidity = \(currentWeather.humidity)")
+                    
+                    //7 day out look
+                    
+                    print("tempDayOne = \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMax))°")
+                    
+                    print("tempDayTwo = \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMax))°")
+                    
+                    print("dayOneTime = \(weeklyWeather.dayOneTime!)")
+                    print("dayTwoTime = \(weeklyWeather.dayTwoTime!)")
+                    print("dayThreeTime = \(weeklyWeather.dayThreeTime!)")
+                    
+                    self.isWeatherAvailable = true
+                    self.calculateTimeStamps()
+                    self.weatherImageView.image = self.weather.dayZeroIcon
+
+                })
+                
+                
+                
+            } else {
+                
+                
+            }
+            
+        })
+        
+        downloadTask.resume()
+        
     }
     
     

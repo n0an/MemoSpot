@@ -8,6 +8,7 @@
 
 import UIKit
 
+let apiKey = "da80aefa4ec207511622f3af58b36013"  // https://developer.forecast.io
 
 class ANConfigurator {
     
