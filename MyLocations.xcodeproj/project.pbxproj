@@ -13,6 +13,7 @@
 		15FFBA061D1066A6006BA3B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FFBA041D1066A6006BA3B7 /* Main.storyboard */; };
 		15FFBA081D1066A6006BA3B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15FFBA071D1066A6006BA3B7 /* Assets.xcassets */; };
 		1813A9DF1D3A8C2800C61A88 /* ANDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813A9DE1D3A8C2800C61A88 /* ANDataManager.swift */; };
+		1813A9E11D3AB00700C61A88 /* SunriseSunset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1813A9E01D3AB00700C61A88 /* SunriseSunset.swift */; };
 		1825D0651D156C270018B839 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825D0641D156C270018B839 /* Functions.swift */; };
 		1825D0681D15730E0018B839 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1825D0661D15730E0018B839 /* DataModel.xcdatamodeld */; };
 		1825D0701D1575DB0018B839 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825D06E1D1575DB0018B839 /* Location+CoreDataProperties.swift */; };
@@ -49,6 +50,7 @@
 		15FFBA071D1066A6006BA3B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		15FFBA0C1D1066A6006BA3B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1813A9DE1D3A8C2800C61A88 /* ANDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANDataManager.swift; sourceTree = "<group>"; };
+		1813A9E01D3AB00700C61A88 /* SunriseSunset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SunriseSunset.swift; sourceTree = "<group>"; };
 		1825D0641D156C270018B839 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		1825D0671D15730E0018B839 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		1825D06E1D1575DB0018B839 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Location+CoreDataProperties.swift"; path = "../Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -123,7 +125,7 @@
 				15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */,
 				1813A9DE1D3A8C2800C61A88 /* ANDataManager.swift */,
 				1829E51F1D3A650800A2DEED /* ANConfigurator.swift */,
-				185850FF1D3556220069ED14 /* Weather */,
+				1813A9E21D3AB04D00C61A88 /* API */,
 				15729B701D1715F900B5DE1A /* Extensions */,
 				1825D0691D1573BD0018B839 /* Utils */,
 				1825D0721D1575F30018B839 /* CoreData */,
@@ -134,6 +136,15 @@
 				15FFBA0C1D1066A6006BA3B7 /* Info.plist */,
 			);
 			path = MyLocations;
+			sourceTree = "<group>";
+		};
+		1813A9E21D3AB04D00C61A88 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1813A9E01D3AB00700C61A88 /* SunriseSunset.swift */,
+				185850FF1D3556220069ED14 /* Weather */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		1825D0691D1573BD0018B839 /* Utils */ = {
@@ -351,6 +362,7 @@
 				18B599E31D131A3E00FE9834 /* LocationDetailsViewController.swift in Sources */,
 				18EE88171D187B47005D0334 /* MyNavigationController.swift in Sources */,
 				1825D0741D1596130018B839 /* LocationsViewController.swift in Sources */,
+				1813A9E11D3AB00700C61A88 /* SunriseSunset.swift in Sources */,
 				18EE881A1D187C24005D0334 /* MyImagePickerController.swift in Sources */,
 				1829E51E1D3A647D00A2DEED /* CalendarViewController.swift in Sources */,
 				185850FC1D35553F0069ED14 /* CurrentWeather.swift in Sources */,

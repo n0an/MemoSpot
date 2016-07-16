@@ -25,11 +25,14 @@ class MapLocationViewController: UIViewController {
     
     // MARK: - PROPERTIES
     
-    var weather: WeeklyWeather!
+    // FLAGS
     
-    var isWeatherAvailable = false
+    var isWeatherAvailable = true
     
     var isShadowShowing = false
+    
+    var weather: WeeklyWeather!
+    var sunriseSunset: SunriseSunset!
     
     var locationToEdit: Location!
     var locations = [Location]()
@@ -39,12 +42,11 @@ class MapLocationViewController: UIViewController {
     
     var shadowView: UIImageView!
     
-    
     var sunriseTime: Int!
     var sunsetTime: Int!
     
-    var altSunriseTime: Int!
-    var altSunsetTime: Int!
+    var altSunriseTime: String!
+    var altSunsetTime: String!
     
     var dayLightSpan: Int!
     
@@ -66,7 +68,7 @@ class MapLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getCurrentWeatherData()
+//        getCurrentWeatherData()
 
         updateLocations()
 
@@ -89,11 +91,14 @@ class MapLocationViewController: UIViewController {
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
-        
         initShadowView()
         
+        if isWeatherAvailable {
+            getCurrentWeatherData()
+        } else {
+            getSuriseSunsetAlternative()
+        }
         
-        getSuriseSunsetAlternative()
 
     }
 
@@ -143,6 +148,24 @@ class MapLocationViewController: UIViewController {
         
         deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
         
+        
+    }
+    
+    
+    func altCalculateTimeStamps() {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "HH:mm:ss"
+        
+        let sunriseComponents = altSunriseTime.componentsSeparatedByString(":")
+        let sunsetComponents = altSunsetTime.componentsSeparatedByString(":")
+        
+        sunriseTime = Int(sunriseComponents[0])
+        sunsetTime = Int(sunsetComponents[0])
+        
+        dayLightSpan = sunsetTime! - sunriseTime!
+        
+        deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
         
     }
     
@@ -223,34 +246,24 @@ class MapLocationViewController: UIViewController {
                 
                 // Parsing Here
                 
-//                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
-//                let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
-//                
-//                self.weather = weeklyWeather
+                self.sunriseSunset = SunriseSunset(responseDictionary: responseDictionary)
                 
-                print(responseDictionary)
+                self.altSunriseTime = self.sunriseSunset.sunriseTime
+                self.altSunsetTime = self.sunriseSunset.sunsetTime
+                
+                self.altCalculateTimeStamps()
+                
+                self.isWeatherAvailable = false
+                
+                self.weatherImageViewContainer.hidden = true
+                
+                self.isShadowShowing = false
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
-//                    print("temperature = \(Fahrenheit2Celsius(currentWeather.temperature))")
-//                    print("humidity = \(currentWeather.humidity)")
-//                    
-//                    //7 day out look
-//                    
-//                    print("tempDayOne = \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMax))°")
-//                    
-//                    print("tempDayTwo = \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMax))°")
-//                    
-//                    print("dayOneTime = \(weeklyWeather.dayOneTime!)")
-//                    print("dayTwoTime = \(weeklyWeather.dayTwoTime!)")
-//                    print("dayThreeTime = \(weeklyWeather.dayThreeTime!)")
-//                    
-//                    self.isWeatherAvailable = true
-//                    self.calculateTimeStamps()
-//                    self.weatherImageView.image = self.weather.dayZeroIcon
+
                     
                 })
-                
                 
                 
             } else {
@@ -353,7 +366,14 @@ class MapLocationViewController: UIViewController {
             
         } else {
             shadowView.hidden = false
-            weatherImageViewContainer.hidden = false
+            
+            
+            if isWeatherAvailable {
+                weatherImageViewContainer.hidden = false
+            } else {
+                weatherImageViewContainer.hidden = true
+            }
+            
             refreshShadow()
         }
         
@@ -490,8 +510,13 @@ extension MapLocationViewController: CalendarViewControllerDelegate {
         if abs(diffComponents.day) > 5 {
             print("USING SUNRISE-SUNSET API")
             
+            isWeatherAvailable = false
+            
+            
         } else {
             print("USING FORECAST.IO API")
+            
+            isWeatherAvailable = true
 
         }
         
