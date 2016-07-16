@@ -99,6 +99,7 @@ class MapLocationViewController: UIViewController {
             getSuriseSunsetAlternative()
         }
         
+        
 
     }
 
@@ -256,6 +257,9 @@ class MapLocationViewController: UIViewController {
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
+                    if self.isShadowShowing {
+                        self.refreshShadow()
+                    }
 
                     
                 })
@@ -320,6 +324,10 @@ class MapLocationViewController: UIViewController {
                     
                     self.calculateTimeStamps()
                     self.weatherImageView.image = self.weather.dayZeroIcon
+                    
+                    if self.isShadowShowing {
+                        self.refreshShadow()
+                    }
 
                 })
                 
