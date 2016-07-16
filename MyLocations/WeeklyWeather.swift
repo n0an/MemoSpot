@@ -11,6 +11,8 @@ import UIKit
 
 struct WeeklyWeather {
     
+    var offset: Int
+    
     var dayZeroTemperatureMax: Int
     var dayZeroTemperatureMin: Int
     
@@ -57,6 +59,8 @@ struct WeeklyWeather {
     
     
     init (weatherDictionary: NSDictionary) {
+        
+        offset = weatherDictionary["offset"] as! Int
         
         let weeklyWeather = weatherDictionary["daily"] as! NSDictionary
         

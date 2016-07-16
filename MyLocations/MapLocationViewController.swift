@@ -161,8 +161,8 @@ class MapLocationViewController: UIViewController {
         let sunriseComponents = altSunriseTime.componentsSeparatedByString(":")
         let sunsetComponents = altSunsetTime.componentsSeparatedByString(":")
         
-        sunriseTime = Int(sunriseComponents[0])
-        sunsetTime = Int(sunsetComponents[0])
+        sunriseTime = Int(sunriseComponents[0])! + weather.offset
+        sunsetTime = Int(sunsetComponents[0])! + weather.offset
         
         dayLightSpan = sunsetTime! - sunriseTime!
         
@@ -245,8 +245,6 @@ class MapLocationViewController: UIViewController {
                 
                 let responseDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
                 
-                // Parsing Here
-                
                 self.sunriseSunset = SunriseSunset(responseDictionary: responseDictionary)
                 
                 self.altSunriseTime = self.sunriseSunset.sunriseTime
@@ -300,7 +298,7 @@ class MapLocationViewController: UIViewController {
                 let dataObject = NSData(contentsOfURL: location!)
                 let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
                 
-//                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
+
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
                 self.weather = weeklyWeather
@@ -309,18 +307,6 @@ class MapLocationViewController: UIViewController {
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
-//                    print("temperature = \(Fahrenheit2Celsius(currentWeather.temperature))")
-//                    print("humidity = \(currentWeather.humidity)")
-                    
-                    //7 day out look
-                    
-                    print("tempDayOne = \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMax))°")
-                    
-                    print("tempDayTwo = \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMax))°")
-                    
-                    print("dayOneTime = \(weeklyWeather.dayOneTime!)")
-                    print("dayTwoTime = \(weeklyWeather.dayTwoTime!)")
-                    print("dayThreeTime = \(weeklyWeather.dayThreeTime!)")
                     
                     self.calculateTimeStamps()
                     self.weatherImageView.image = self.weather.dayZeroIcon
