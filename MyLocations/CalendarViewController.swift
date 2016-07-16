@@ -63,23 +63,12 @@ class CalendarViewController: UIViewController {
     
     @IBAction func showButtonPressed(sender: UIBarButtonItem) {
         
-//        dismissViewControllerAnimated(true, completion: nil)
-        
         navigationController?.popViewControllerAnimated(true)
         
     }
     
 
-    // MARK: - NAVIGATION
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        
-    }
-
-    
-    
-   
 
 }
 
