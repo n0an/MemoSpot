@@ -9,8 +9,6 @@
 import UIKit
 import MapKit
 
-
-
 class MapLocationViewController: UIViewController {
     
     // MARK: - OUTLETS
@@ -56,9 +54,6 @@ class MapLocationViewController: UIViewController {
     var components: NSDateComponents!
     
     var diffComponents: NSDateComponents!
-    
-    
-    
     
     
     
