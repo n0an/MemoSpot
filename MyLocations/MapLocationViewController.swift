@@ -43,6 +43,9 @@ class MapLocationViewController: UIViewController {
     var sunriseTime: Int!
     var sunsetTime: Int!
     
+    var altSunriseTime: Int!
+    var altSunsetTime: Int!
+    
     var dayLightSpan: Int!
     
     var deltaAngel: CGFloat!
@@ -90,7 +93,7 @@ class MapLocationViewController: UIViewController {
         initShadowView()
         
         
-        
+        getSuriseSunsetAlternative()
 
     }
 
@@ -195,9 +198,82 @@ class MapLocationViewController: UIViewController {
     
     // MARK: - WEATHER METHODS
     
+    func getSuriseSunsetAlternative() {
+        
+        let alternativeDateFormatter = NSDateFormatter()
+        
+        alternativeDateFormatter.dateFormat = "YYYY-MM-dd"
+        
+        let locationString = "lat=\(locationToEdit.coordinate.latitude)&lng=\(locationToEdit.coordinate.longitude)"
+        
+        let suffixStr = "&date=\(alternativeDateFormatter.stringFromDate(weatherDate))&formatted=0"
+        
+        let url = NSURL(string: "http://api.sunrise-sunset.org/json?\(locationString)\(suffixStr)")
+        
+        let sharedSession = NSURLSession.sharedSession()
+
+        
+        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(url!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+            
+            if (error == nil) {
+                
+                let dataObject = NSData(contentsOfURL: location!)
+                
+                let responseDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+                
+                // Parsing Here
+                
+//                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
+//                let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
+//                
+//                self.weather = weeklyWeather
+                
+                print(responseDictionary)
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    
+//                    print("temperature = \(Fahrenheit2Celsius(currentWeather.temperature))")
+//                    print("humidity = \(currentWeather.humidity)")
+//                    
+//                    //7 day out look
+//                    
+//                    print("tempDayOne = \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMax))°")
+//                    
+//                    print("tempDayTwo = \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMax))°")
+//                    
+//                    print("dayOneTime = \(weeklyWeather.dayOneTime!)")
+//                    print("dayTwoTime = \(weeklyWeather.dayTwoTime!)")
+//                    print("dayThreeTime = \(weeklyWeather.dayThreeTime!)")
+//                    
+//                    self.isWeatherAvailable = true
+//                    self.calculateTimeStamps()
+//                    self.weatherImageView.image = self.weather.dayZeroIcon
+                    
+                })
+                
+                
+                
+            } else {
+                
+                
+            }
+            
+        })
+        
+        downloadTask.resume()
+        
+        
+        
+    }
+    
+    
+    
+    
     func getCurrentWeatherData() -> Void {
         
         let userLocation = "\(locationToEdit.coordinate.latitude),\(locationToEdit.coordinate.longitude)"
+        
+        print(userLocation)
         
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
         let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
@@ -217,7 +293,7 @@ class MapLocationViewController: UIViewController {
                 
                 self.weather = weeklyWeather
                 
-                print(weatherDictionary)
+//                print(weatherDictionary)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
