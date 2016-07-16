@@ -47,6 +47,9 @@ class MapLocationViewController: UIViewController {
     
     var deltaAngel: CGFloat!
     
+    var weatherDate: NSDate!
+
+    
     
     
     // MARK: - viewDidLoad
@@ -59,7 +62,21 @@ class MapLocationViewController: UIViewController {
         if !locations.isEmpty {
             showLocations()
         }
+        
+        
+        
+        
 
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateFormat = "dd.MM.YYYY"
+        
+        dateButton.titleLabel?.text = dateFormatter.stringFromDate(weatherDate)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,6 +90,8 @@ class MapLocationViewController: UIViewController {
         calculateTimeStamps()
         
         weatherImageView.image = weather.dayZeroIcon
+        
+        
 
     }
 

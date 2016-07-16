@@ -263,16 +263,16 @@
                                     <action selector="actionTimeSliderValueChanged:" destination="yU8-rV-ZLd" eventType="valueChanged" id="ohX-KS-06L"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51L-r6-Fis">
-                                <rect key="frame" x="515" y="560" width="77" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51L-r6-Fis">
+                                <rect key="frame" x="163" y="560" width="429" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="13.07.2016"/>
+                                <state key="normal" title="--.--.----  "/>
                                 <connections>
                                     <segue destination="Sar-aA-ouK" kind="show" id="z5r-og-K85"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPl-XY-C9G">
-                                <rect key="frame" x="111.5" y="566" width="44" height="19.5"/>
+                                <rect key="frame" x="111" y="566" width="44" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="1" green="0.93333333330000001" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -308,6 +308,7 @@
                             <constraint firstAttribute="trailing" secondItem="51L-r6-Fis" secondAttribute="trailing" constant="20" id="gch-O0-w0D"/>
                             <constraint firstItem="dPl-XY-C9G" firstAttribute="centerX" secondItem="LI0-kf-7QU" secondAttribute="centerX" id="hrm-Kk-ejf"/>
                             <constraint firstItem="ajB-re-BVH" firstAttribute="leading" secondItem="LhJ-zQ-8zd" secondAttribute="leading" id="kHN-90-4gz"/>
+                            <constraint firstItem="51L-r6-Fis" firstAttribute="leading" secondItem="dPl-XY-C9G" secondAttribute="trailing" constant="8" id="lCZ-tN-0t7"/>
                             <constraint firstItem="Wys-gK-Rim" firstAttribute="top" secondItem="LI0-kf-7QU" secondAttribute="bottom" constant="47" id="mGQ-3E-dAb"/>
                             <constraint firstAttribute="trailing" secondItem="ajB-re-BVH" secondAttribute="trailing" id="mp7-ow-A2P"/>
                             <constraint firstItem="ajB-re-BVH" firstAttribute="top" secondItem="rqb-T3-CuO" secondAttribute="bottom" id="ntc-QW-iC6"/>
@@ -318,10 +319,10 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="D6P-Y5-46e"/>
-                                <exclude reference="aCa-Eo-Z7J"/>
                                 <exclude reference="EAM-M2-fZk"/>
                                 <exclude reference="gch-O0-w0D"/>
+                                <exclude reference="D6P-Y5-46e"/>
+                                <exclude reference="aCa-Eo-Z7J"/>
                             </mask>
                         </variation>
                     </view>

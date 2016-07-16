@@ -43,6 +43,11 @@ class CalendarViewController: UIViewController {
         
     }
 
+    // MARK: - HELPER METHODS
+    
+    func formatDate(date: NSDate) -> String {
+        return ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(date)
+    }
     
     
     // MARK: - ACTIONS

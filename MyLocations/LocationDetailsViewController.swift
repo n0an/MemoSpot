@@ -186,6 +186,10 @@ class LocationDetailsViewController: UITableViewController {
         let mapTapGesture = UITapGestureRecognizer(target: self, action: #selector(LocationDetailsViewController.mapViewTapped(_:)))
         favoriteMapView.addGestureRecognizer(mapTapGesture)
         
+        
+        
+        
+        
     }
     
     deinit {
@@ -423,6 +427,8 @@ class LocationDetailsViewController: UITableViewController {
             controller.locationToEdit = locationToEdit
             
             controller.weather = weather
+            
+            controller.weatherDate = NSDate()
             
         } else if segue.identifier == "ShowWeather" {
             
