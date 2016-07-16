@@ -107,6 +107,9 @@ class LocationDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+
+        
         // TableView colors changing
         tableView.backgroundColor = UIColor.blackColor()
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)

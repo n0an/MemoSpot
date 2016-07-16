@@ -19,6 +19,8 @@
 		1825D0741D1596130018B839 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1825D0731D1596130018B839 /* LocationsViewController.swift */; };
 		1829E5181D3820AC00A2DEED /* HourlyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E5171D3820AC00A2DEED /* HourlyWeather.swift */; };
 		1829E51A1D39789000A2DEED /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E5191D39789000A2DEED /* WeatherViewController.swift */; };
+		1829E51E1D3A647D00A2DEED /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E51D1D3A647D00A2DEED /* CalendarViewController.swift */; };
+		1829E5201D3A650800A2DEED /* ANConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E51F1D3A650800A2DEED /* ANConfigurator.swift */; };
 		184E6A5A1D1B11E4003FC740 /* Sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 184E6A591D1B11E4003FC740 /* Sound.caf */; };
 		185850FC1D35553F0069ED14 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850FB1D35553F0069ED14 /* CurrentWeather.swift */; };
 		185850FE1D35554B0069ED14 /* WeeklyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850FD1D35554B0069ED14 /* WeeklyWeather.swift */; };
@@ -33,9 +35,11 @@
 		18EE88151D187A85005D0334 /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE88141D187A85005D0334 /* MyTabBarController.swift */; };
 		18EE88171D187B47005D0334 /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE88161D187B47005D0334 /* MyNavigationController.swift */; };
 		18EE881A1D187C24005D0334 /* MyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EE88191D187C24005D0334 /* MyImagePickerController.swift */; };
+		A323CDD7773943A556EAFA25 /* Pods_MyLocations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6CACEA2A4FC3AED85E9B13 /* Pods_MyLocations.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13C807C1A2CF60CCEEBAEF6C /* Pods-MyLocations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLocations.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyLocations/Pods-MyLocations.debug.xcconfig"; sourceTree = "<group>"; };
 		15729B6E1D1715F400B5DE1A /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		15FFB9FB1D1066A6006BA3B7 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +54,8 @@
 		1825D0731D1596130018B839 /* LocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		1829E5171D3820AC00A2DEED /* HourlyWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HourlyWeather.swift; sourceTree = "<group>"; };
 		1829E5191D39789000A2DEED /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
+		1829E51D1D3A647D00A2DEED /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		1829E51F1D3A650800A2DEED /* ANConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANConfigurator.swift; sourceTree = "<group>"; };
 		184E6A591D1B11E4003FC740 /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
 		185850FB1D35553F0069ED14 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		185850FD1D35554B0069ED14 /* WeeklyWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyWeather.swift; sourceTree = "<group>"; };
@@ -64,6 +70,8 @@
 		18EE88141D187A85005D0334 /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
 		18EE88161D187B47005D0334 /* MyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
 		18EE88191D187C24005D0334 /* MyImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagePickerController.swift; sourceTree = "<group>"; };
+		4B6CACEA2A4FC3AED85E9B13 /* Pods_MyLocations.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyLocations.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2DEB9541F85918263E705E /* Pods-MyLocations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLocations.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyLocations/Pods-MyLocations.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				186A06211D15D626008188EF /* MapKit.framework in Frameworks */,
+				A323CDD7773943A556EAFA25 /* Pods_MyLocations.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +102,8 @@
 				186A06201D15D626008188EF /* MapKit.framework */,
 				15FFB9FD1D1066A6006BA3B7 /* MyLocations */,
 				15FFB9FC1D1066A6006BA3B7 /* Products */,
+				A43F2EED6ADDFBA289296963 /* Pods */,
+				71747C03557F060F9998E5F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */,
+				1829E51F1D3A650800A2DEED /* ANConfigurator.swift */,
 				185850FF1D3556220069ED14 /* Weather */,
 				15729B701D1715F900B5DE1A /* Extensions */,
 				1825D0691D1573BD0018B839 /* Utils */,
@@ -150,6 +162,8 @@
 				1825D0731D1596130018B839 /* LocationsViewController.swift */,
 				186A06221D15D69C008188EF /* MapViewController.swift */,
 				185851001D3564930069ED14 /* MapLocationViewController.swift */,
+				1829E5191D39789000A2DEED /* WeatherViewController.swift */,
+				1829E51D1D3A647D00A2DEED /* CalendarViewController.swift */,
 				186A061F1D15CB3C008188EF /* Cells */,
 			);
 			name = Controllers;
@@ -169,7 +183,6 @@
 				185850FB1D35553F0069ED14 /* CurrentWeather.swift */,
 				1829E5171D3820AC00A2DEED /* HourlyWeather.swift */,
 				185850FD1D35554B0069ED14 /* WeeklyWeather.swift */,
-				1829E5191D39789000A2DEED /* WeatherViewController.swift */,
 			);
 			name = Weather;
 			sourceTree = "<group>";
@@ -192,6 +205,23 @@
 			name = "Bars Customizers";
 			sourceTree = "<group>";
 		};
+		71747C03557F060F9998E5F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B6CACEA2A4FC3AED85E9B13 /* Pods_MyLocations.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A43F2EED6ADDFBA289296963 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13C807C1A2CF60CCEEBAEF6C /* Pods-MyLocations.debug.xcconfig */,
+				8C2DEB9541F85918263E705E /* Pods-MyLocations.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -199,9 +229,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15FFBA0F1D1066A6006BA3B7 /* Build configuration list for PBXNativeTarget "MyLocations" */;
 			buildPhases = (
+				C9FD4E4CC79D4390D75B5027 /* [CP] Check Pods Manifest.lock */,
 				15FFB9F71D1066A6006BA3B7 /* Sources */,
 				15FFB9F81D1066A6006BA3B7 /* Frameworks */,
 				15FFB9F91D1066A6006BA3B7 /* Resources */,
+				CC4C68D51421FEFE87B7914F /* [CP] Embed Pods Frameworks */,
+				DC3A7EB43E1C7108BFEF3028 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,6 +292,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		C9FD4E4CC79D4390D75B5027 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CC4C68D51421FEFE87B7914F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyLocations/Pods-MyLocations-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC3A7EB43E1C7108BFEF3028 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyLocations/Pods-MyLocations-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		15FFB9F71D1066A6006BA3B7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -268,10 +349,12 @@
 				18EE88171D187B47005D0334 /* MyNavigationController.swift in Sources */,
 				1825D0741D1596130018B839 /* LocationsViewController.swift in Sources */,
 				18EE881A1D187C24005D0334 /* MyImagePickerController.swift in Sources */,
+				1829E51E1D3A647D00A2DEED /* CalendarViewController.swift in Sources */,
 				185850FC1D35553F0069ED14 /* CurrentWeather.swift in Sources */,
 				1825D0681D15730E0018B839 /* DataModel.xcdatamodeld in Sources */,
 				1829E5181D3820AC00A2DEED /* HourlyWeather.swift in Sources */,
 				1825D0711D1575DB0018B839 /* Location.swift in Sources */,
+				1829E5201D3A650800A2DEED /* ANConfigurator.swift in Sources */,
 				18B599E71D149BA400FE9834 /* HudView.swift in Sources */,
 				185851011D3564930069ED14 /* MapLocationViewController.swift in Sources */,
 				15729B6F1D1715F400B5DE1A /* UIImage+Resize.swift in Sources */,
@@ -388,6 +471,7 @@
 		};
 		15FFBA101D1066A6006BA3B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13C807C1A2CF60CCEEBAEF6C /* Pods-MyLocations.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
@@ -402,6 +486,7 @@
 		};
 		15FFBA111D1066A6006BA3B7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C2DEB9541F85918263E705E /* Pods-MyLocations.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
