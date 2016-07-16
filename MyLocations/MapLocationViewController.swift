@@ -60,7 +60,7 @@ class MapLocationViewController: UIViewController {
     
     var diffComponents: NSDateComponents!
     
-    
+//    var timeZoneOffset: Int
     
     
     // MARK: - viewDidLoad
@@ -303,12 +303,17 @@ class MapLocationViewController: UIViewController {
                 
                 self.weather = weeklyWeather
                 
+                
                 print(weatherDictionary)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
                     
-                    self.calculateTimeStamps()
+                    self.getSuriseSunsetAlternative()
+                    
+//                    self.calculateTimeStamps()
+                    
+                    
                     self.weatherImageView.image = self.weather.dayZeroIcon
                     
                     if self.isShadowShowing {
