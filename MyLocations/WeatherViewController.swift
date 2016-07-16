@@ -20,7 +20,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var userLocationLabel: UILabel!
     @IBOutlet weak var iconView: UIImageView!
     
-    
     //@IBOutlet weak var currentTimeLabel: UILabel!
     
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -30,7 +29,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var summaryLabel: UILabel!
     
     //@IBOutlet weak var refreshActivityIndicator: UIActivityIndicatorView!
-    
     
     @IBOutlet weak var degreeButton: UIButton!
     @IBOutlet weak var swipeView: UIView!
@@ -42,8 +40,8 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var rainUILabel: UILabel!
     @IBOutlet weak var humidityUILabel: UILabel!
     
-    
     //Daily Weather outlets
+    
     @IBOutlet weak var dayZeroTemperatureLow: UILabel!
     @IBOutlet weak var dayZeroTemperatureHigh: UILabel!
     
@@ -75,7 +73,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var wAlerts: UILabel!
     
-    
     var seenError : Bool = false
     var locationFixAchieved : Bool = false
     var locationStatus : NSString = "Not Started"
@@ -89,8 +86,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
 
     
     private let apiKey = "da80aefa4ec207511622f3af58b36013"  // https://developer.forecast.io
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,99 +113,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    // MARK: - CORE LOCATION METHODS
-    
-    func initLocationManager() {
-        seenError = false
-        locationFixAchieved = false
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-        locationManager.requestWhenInUseAuthorization()
-    }
-    
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        CLGeocoder().reverseGeocodeLocation(manager.location!, completionHandler: {(placemarks, error)->Void in
-            
-            let pm = placemarks![0]
-            self.displayLocationInfo(pm)
-        })
-        
-        if (locationFixAchieved == false) {
-            locationFixAchieved = true
-            var locationArray = locations as NSArray
-            var locationObj = locationArray.lastObject as! CLLocation
-            var coord = locationObj.coordinate
-            self.userLatitude = coord.latitude
-            self.userLongitude = coord.longitude
-            
-            getCurrentWeatherData()
-            
-            
-        }
-    }
-    
-    
-    func displayLocationInfo(placemark: CLPlacemark?) {
-        if let containsPlacemark = placemark {
-            //stop updating location to save battery life
-            locationManager.stopUpdatingLocation()
-            let locality = (containsPlacemark.locality != nil) ? containsPlacemark.locality : ""
-            let postalCode = (containsPlacemark.postalCode != nil) ? containsPlacemark.postalCode : ""
-            let administrativeArea = (containsPlacemark.administrativeArea != nil) ? containsPlacemark.administrativeArea : ""
-            let country = (containsPlacemark.country != nil) ? containsPlacemark.country : ""
-            //println(locality)
-            //println(postalCode)
-            //println(administrativeArea)
-            //println(country)
-            
-            self.userLocationLabel.text = "\(locality), \(administrativeArea)"
-        }
-    }
 
-    
-    
-    func locationManager(manager: CLLocationManager,
-                         didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        var shouldIAllow = false
-        
-        switch status {
-        case CLAuthorizationStatus.Restricted:
-            locationStatus = "Restricted Access to location"
-        case CLAuthorizationStatus.Denied:
-            locationStatus = "User denied access to location"
-        case CLAuthorizationStatus.NotDetermined:
-            locationStatus = "Status not determined"
-        default:
-            locationStatus = "Allowed to location Access"
-            shouldIAllow = true
-        }
-        NSNotificationCenter.defaultCenter().postNotificationName("LabelHasbeenUpdated", object: nil)
-        if (shouldIAllow == true) {
-            NSLog("Location to Allowed")
-            // Start location services
-            locationManager.startUpdatingLocation()
-        } else {
-            NSLog("Denied access: \(locationStatus)")
-        }
-    }
-
-    
-    
-    
-    
     func stringFromPlacemark(placemark: CLPlacemark) -> String {
         
         var line = ""
-        
-//        line.addText(placemark.subThoroughfare)
-//        line.addText(placemark.thoroughfare, withSeparator: " ")
-        
+ 
         line.addText(placemark.locality, withSeparator: ", ")
         
-//        line.addText(placemark.administrativeArea, withSeparator: ", ")
         line.addText(placemark.country, withSeparator: ", ")
         
         return line
@@ -247,16 +156,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
                 
-                //Test Connection and API with the folllowing
-                //println(currentWeather.temperature)
-                //println(currentWeather.currentTime!)
-                print(weatherDictionary)
-                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    //Current outlook
-                    //                    self.userTemperatureCelsius = true
-                    
                     
                     
                     if self.userTemperatureCelsius == true {
@@ -285,31 +185,13 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     
                     if currentWeather.precipProbability == 1.0 {
                         
-                        var localNotification:UILocalNotification = UILocalNotification()
-                        localNotification.alertAction = "Project RainMan"
-                        localNotification.alertBody = "Don't forget your umbrella today!"
-                        localNotification.fireDate = NSDate(timeIntervalSinceNow: 8)
-                        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-                        
                     }
                     
                     if currentWeather.windSpeed > 38.0 {
                         
-                        var localNotification:UILocalNotification = UILocalNotification()
-                        localNotification.alertAction = "Project RainMan"
-                        localNotification.alertBody = "It's going to be windy today!"
-                        localNotification.fireDate = NSDate(timeIntervalSinceNow: 8)
-                        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
-                        
                     }
                     
                     if weeklyWeather.dayZeroTemperatureMax > 90 {
-                        
-                        var localNotification:UILocalNotification = UILocalNotification()
-                        localNotification.alertAction = "Project RainMan"
-                        localNotification.alertBody = "It's going to be Hot today!"
-                        localNotification.fireDate = NSDate(timeIntervalSinceNow: 8)
-                        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
                         
                     }
                     
@@ -376,24 +258,11 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     //Weather Alerts
                     self.wAlerts.text = ""
                     
-                    
                 })
-                
-                
                 
             } else {
                 
-                let networkIssueController = UIAlertController(title: "NO API KEY", message: "Hello! Looks like you forgot to add the API KEY on line 79", preferredStyle: .Alert)
-                let okButton = UIAlertAction(title: "OK", style: .Default, handler: nil)
-                networkIssueController.addAction(okButton)
-                let cancelButton = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-                networkIssueController.addAction(cancelButton)
-                self.presentViewController(networkIssueController, animated: true, completion: nil)
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
-                    
-                })
             }
             
         })
@@ -407,9 +276,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     
     func refresh() {
-        
-        
-//        initLocationManager()
         
         getCurrentWeatherData()
         
@@ -440,7 +306,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         self.daySixHighLow.alpha = 0
         self.wAlerts.alpha = 0
         
-//        self.weeklyForcastAnimation()
         
         UIView.animateWithDuration(1.5, animations: {
             self.temperatureLabel.alpha = 1.0
@@ -473,49 +338,6 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             
         })
     }
-    
-    
-    func weeklyForcastAnimation() {
-        
-        
-        //DAILY
-        self.dayZeroTemperatureLowLabel.transform = CGAffineTransformMakeTranslation(-300, 0)
-        self.dayZeroTemperatureHighLabel.transform = CGAffineTransformMakeTranslation(300, 0)
-        self.windBag.transform = CGAffineTransformMakeTranslation(0, -600)
-        self.umbrella.transform = CGAffineTransformMakeTranslation(0, -600)
-        self.rainDrop.transform = CGAffineTransformMakeTranslation(0, -600)
-        self.iconView.transform = CGAffineTransformMakeTranslation(-200, 0)
-        self.temperatureLabel.transform = CGAffineTransformMakeTranslation(300, 0)
-        self.summaryLabel.transform = CGAffineTransformMakeTranslation(0, -200)
-        self.heatIndex.transform = CGAffineTransformMakeTranslation(-350, 0)
-        //self.currentTimeLabel.transform = CGAffineTransformMakeTranslation(350,0)
-        self.userLocationLabel.transform = CGAffineTransformMakeTranslation(350, 0)
-        self.degreeButton.transform = CGAffineTransformMakeTranslation(350,0)
-        self.windUILabel.transform = CGAffineTransformMakeTranslation(-350,0)
-        self.humidityUILabel.transform = CGAffineTransformMakeTranslation(350,0)
-        self.degreeButton.transform = CGAffineTransformMakeTranslation(350, 0)
-        
-        
-        //WEEKLY
-        self.dayOneImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.dayTwoImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.dayThreeImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.dayFourImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.dayFiveImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        self.daySixImage.transform = CGAffineTransformMakeTranslation(0, 100)
-        
-        //DAILY SPRING ACTION
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
