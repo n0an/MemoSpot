@@ -491,7 +491,7 @@ class LocationDetailsViewController: UITableViewController {
                 
             }
             
-        case (2, _):
+        case (2, 0):
             return 88
             
         case (3, 2):
@@ -561,15 +561,19 @@ class LocationDetailsViewController: UITableViewController {
     
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
         if indexPath.section == 0 && indexPath.row == 0 {
             descriptionTextView.becomeFirstResponder()
         } else if indexPath.section == 1 && indexPath.row == 0 {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             pickPhoto()
-        } else if indexPath.section == 2 {
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        } else if indexPath.section == 2 && indexPath.row == 0 {
+//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             performSegueWithIdentifier("ShowLocation", sender: nil)
+        } else if indexPath.section == 2 && indexPath.row == 1 {
+//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            performSegueWithIdentifier("ShowWeather", sender: nil)
         }
         
     }
@@ -602,10 +606,16 @@ class LocationDetailsViewController: UITableViewController {
         
         
         
-        if indexPath.row == 2 {
+        if indexPath.section == 3 && indexPath.row == 2 {
             let addressLabel = cell.viewWithTag(100) as! UILabel
             addressLabel.textColor = UIColor.whiteColor()
             addressLabel.highlightedTextColor = addressLabel.textColor
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 1 {
+            let weatherLabel = cell.viewWithTag(101) as! UILabel
+            weatherLabel.textColor = UIColor.whiteColor()
+            weatherLabel.highlightedTextColor = weatherLabel.textColor
         }
         
     }

@@ -459,12 +459,44 @@
                                             <segue destination="yU8-rV-ZLd" kind="show" identifier="ShowLocation" trigger="accessoryAction" id="8bU-FH-i1c"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="44" id="Gnu-3i-oF7">
+                                        <rect key="frame" x="0.0" y="475.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gnu-3i-oF7" id="Odm-Bm-tkZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvQ-PC-6Hq">
+                                                    <rect key="frame" x="15" y="12" width="61.5" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="59.5" id="AvR-0a-kxt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="AvR-0a-kxt"/>
+                                                        </mask>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="mvQ-PC-6Hq" firstAttribute="leading" secondItem="Odm-Bm-tkZ" secondAttribute="leading" constant="15" id="88N-mg-lS3"/>
+                                                <constraint firstAttribute="bottom" secondItem="mvQ-PC-6Hq" secondAttribute="bottom" constant="11.5" id="hFQ-9i-yFU"/>
+                                                <constraint firstItem="mvQ-PC-6Hq" firstAttribute="top" secondItem="Odm-Bm-tkZ" secondAttribute="top" constant="12" id="hZR-x2-zT5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="ZId-tQ-F2b" kind="show" identifier="ShowWeather" trigger="accessoryAction" id="Fog-WS-pxj"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="l3s-OE-kdm">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="D9B-0j-mWc" detailTextLabel="dRt-ud-Qtx" style="IBUITableViewCellStyleValue1" id="FCb-nA-fqb">
-                                        <rect key="frame" x="0.0" y="511.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="555.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FCb-nA-fqb" id="Mqp-nb-DF6">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -488,7 +520,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="LLJ-LT-GEJ" detailTextLabel="CUd-Pw-uwB" style="IBUITableViewCellStyleValue1" id="VJs-q5-y4Z">
-                                        <rect key="frame" x="0.0" y="555.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="599.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VJs-q5-y4Z" id="Xni-Is-6S1">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -510,12 +542,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="ZId-tQ-F2b" kind="show" identifier="ShowWeather" id="uHh-4K-B36"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="dbo-wv-Vhl">
-                                        <rect key="frame" x="0.0" y="599.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="643.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dbo-wv-Vhl" id="0nM-CJ-L82">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -557,7 +586,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" textLabel="3gw-iQ-FwA" detailTextLabel="D3t-Qd-tQ6" style="IBUITableViewCellStyleValue1" id="2aa-n3-3sW">
-                                        <rect key="frame" x="0.0" y="643.5" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="687.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2aa-n3-3sW" id="ulL-Uj-C4z">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
