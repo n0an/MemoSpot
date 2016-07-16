@@ -63,12 +63,7 @@ class MapLocationViewController: UIViewController {
             showLocations()
         }
         
-        let dateFormatter = NSDateFormatter()
-        
-        dateFormatter.dateFormat = "dd.MM.YYYY"
-        
-        dateButton.setTitle(dateFormatter.stringFromDate(weatherDate), forState: .Normal)
-        
+        refreshDateButton()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -181,6 +176,13 @@ class MapLocationViewController: UIViewController {
     }
     
     
+    func refreshDateButton() {
+        
+        let dateString = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(weatherDate)
+        dateButton.setTitle(dateString, forState: .Normal)
+    }
+    
+    
     
     // MARK: - ACTIONS
     
@@ -213,6 +215,18 @@ class MapLocationViewController: UIViewController {
     }
     
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ShowCalendar" {
+            
+            let destinationVC = segue.destinationViewController as! CalendarViewController
+            
+            destinationVC.delegate = self
+            
+        }
+        
+        
+    }
     
 
 }
@@ -320,7 +334,18 @@ extension MapLocationViewController: MKMapViewDelegate {
 
 
 
+extension MapLocationViewController: CalendarViewControllerDelegate {
+    
+    func dateSelected(date: NSDate) {
+        
+        weatherDate = date
+        
+        refreshDateButton()
 
+    }
+    
+    
+}
 
 
 

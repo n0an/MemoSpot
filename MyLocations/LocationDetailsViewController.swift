@@ -431,13 +431,7 @@ class LocationDetailsViewController: UITableViewController {
             let weatherDate = NSDate()
             
             controller.weatherDate = weatherDate
-            
-//            let dateFormatter = NSDateFormatter()
-//            
-//            dateFormatter.dateFormat = "dd.MM.YYYY"
-//            
-//            controller.dateButton.titleLabel?.text = dateFormatter.stringFromDate(weatherDate)
-            
+                        
             
             
         } else if segue.identifier == "ShowWeather" {

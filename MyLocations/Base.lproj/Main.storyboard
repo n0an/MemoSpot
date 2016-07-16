@@ -268,7 +268,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="13.07.2016"/>
                                 <connections>
-                                    <segue destination="Sar-aA-ouK" kind="show" id="z5r-og-K85"/>
+                                    <segue destination="Sar-aA-ouK" kind="show" identifier="ShowCalendar" id="z5r-og-K85"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPl-XY-C9G">

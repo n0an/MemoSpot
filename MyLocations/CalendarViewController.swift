@@ -9,6 +9,13 @@
 import UIKit
 import FSCalendar
 
+protocol CalendarViewControllerDelegate: class {
+    
+    func dateSelected(date:NSDate)
+    
+    
+}
+
 class CalendarViewController: UIViewController {
     
     // MARK: - OUTLETS
@@ -26,6 +33,8 @@ class CalendarViewController: UIViewController {
     var allDueDates: [NSDate] = []
     
     var selectedDate: NSDate!
+    
+    weak var delegate: CalendarViewControllerDelegate!
     
     
     // MARK: - viewDidLoad
@@ -54,7 +63,9 @@ class CalendarViewController: UIViewController {
     
     @IBAction func showButtonPressed(sender: UIBarButtonItem) {
         
-
+//        dismissViewControllerAnimated(true, completion: nil)
+        
+        navigationController?.popViewControllerAnimated(true)
         
     }
     
@@ -93,6 +104,8 @@ extension CalendarViewController: FSCalendarDelegate {
         selectedDate = date
         
         showButton.enabled = true
+        
+        delegate.dateSelected(selectedDate)
         
     }
     
