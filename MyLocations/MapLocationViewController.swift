@@ -68,7 +68,9 @@ class MapLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        getCurrentWeatherData()
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        
+        initShadowView()
 
         updateLocations()
 
@@ -89,12 +91,10 @@ class MapLocationViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-        
-        initShadowView()
         
         if isWeatherAvailable {
             getCurrentWeatherData()
+            
         } else {
             getSuriseSunsetAlternative()
         }
@@ -253,11 +253,6 @@ class MapLocationViewController: UIViewController {
                 
                 self.altCalculateTimeStamps()
                 
-                self.isWeatherAvailable = false
-                
-                self.weatherImageViewContainer.hidden = true
-                
-                self.isShadowShowing = false
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
@@ -323,7 +318,6 @@ class MapLocationViewController: UIViewController {
                     print("dayTwoTime = \(weeklyWeather.dayTwoTime!)")
                     print("dayThreeTime = \(weeklyWeather.dayThreeTime!)")
                     
-                    self.isWeatherAvailable = true
                     self.calculateTimeStamps()
                     self.weatherImageView.image = self.weather.dayZeroIcon
 
@@ -381,6 +375,7 @@ class MapLocationViewController: UIViewController {
         
     }
     
+    // MARK: - NAVIGATION
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -511,6 +506,7 @@ extension MapLocationViewController: CalendarViewControllerDelegate {
             print("USING SUNRISE-SUNSET API")
             
             isWeatherAvailable = false
+            weatherImageViewContainer.hidden = true
             
             
         } else {
