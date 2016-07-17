@@ -39,7 +39,7 @@ class MapLocationViewController: UIViewController {
     var weather: WeeklyWeather!
     var sunriseSunset: SunriseSunset!
     
-    var iconsDict:[Int:UIImage]!
+    var iconsDict:[Int:(UIImage, Bool)]!
     
     var locationToEdit: Location!
     var locations = [Location]()
@@ -322,13 +322,13 @@ class MapLocationViewController: UIViewController {
                 self.currentWeather = currentWeather
                 
                 self.iconsDict =
-                    [currentWeather.currentUnixTime:currentWeather.icon,
-                    weeklyWeather.dayOneUnixTime:weeklyWeather.dayOneIcon,
-                    weeklyWeather.dayTwoUnixTime:weeklyWeather.dayTwoIcon,
-                    weeklyWeather.dayThreeUnixTime:weeklyWeather.dayThreeIcon,
-                    weeklyWeather.dayFourUnixTime:weeklyWeather.dayFourIcon,
-                    weeklyWeather.dayFiveUnixTime:weeklyWeather.dayFiveIcon,
-                    weeklyWeather.daySixUnixTime:weeklyWeather.daySixIcon]
+                    [currentWeather.currentUnixTime:(currentWeather.icon, currentWeather.isClearDay),
+                    weeklyWeather.dayOneUnixTime:(weeklyWeather.dayOneIcon, weeklyWeather.dayOneIsClear),
+                    weeklyWeather.dayTwoUnixTime:(weeklyWeather.dayTwoIcon, weeklyWeather.dayTwoIsClear),
+                    weeklyWeather.dayThreeUnixTime:(weeklyWeather.dayThreeIcon, weeklyWeather.dayThreeIsClear),
+                    weeklyWeather.dayFourUnixTime:(weeklyWeather.dayFourIcon, weeklyWeather.dayFourIsClear),
+                    weeklyWeather.dayFiveUnixTime:(weeklyWeather.dayFiveIcon, weeklyWeather.dayFiveIsClear),
+                    weeklyWeather.daySixUnixTime:(weeklyWeather.daySixIcon, weeklyWeather.daySixIsClear)]
                 
                 self.isClearDay = currentWeather.isClearDay
                 
@@ -400,9 +400,15 @@ class MapLocationViewController: UIViewController {
 
         print("minTime = \(minTime)")
 
-        let icon = iconsDict[minTime]
+        let tuple = iconsDict[minTime]
+        
+        let icon = tuple?.0
         
         self.weatherImageView.image = icon!
+        
+        let isClearSelectedDay = tuple!.1
+        
+        isClearDay = isClearSelectedDay
         
         if self.isShadowShowing {
             self.refreshShadow()
