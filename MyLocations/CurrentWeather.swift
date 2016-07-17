@@ -67,24 +67,34 @@ func weatherIconFromString(stringIcon: String) -> UIImage {
     switch stringIcon {
     case "clear-day":
         imageName = "clear-day"
+        
     case "clear-night":
         imageName = "clear-night"
+        
     case "rain":
         imageName = "rain"
+        
     case "snow":
         imageName = "snow"
+        
     case "sleet":
         imageName = "sleet"
+        
     case "wind":
         imageName = "wind"
+        
     case "fog":
         imageName = "fog"
+        
     case "cloudy":
         imageName = "cloudy"
+        
     case "partly-cloudy-day":
         imageName = "partly-cloudy"
+        
     case "partly-cloudy-night":
         imageName = "cloudy-night"
+        
     default:
         imageName = "default"
     }

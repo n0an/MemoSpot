@@ -298,6 +298,7 @@ class MapLocationViewController: UIViewController {
                 let dataObject = NSData(contentsOfURL: location!)
                 let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
                 
+                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
 
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
@@ -308,13 +309,14 @@ class MapLocationViewController: UIViewController {
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
-                    
                     self.getSuriseSunsetAlternative()
                     
 //                    self.calculateTimeStamps()
                     
+//                    self.weatherImageView.image = self.weather.dayZeroIcon
                     
-                    self.weatherImageView.image = self.weather.dayZeroIcon
+                    self.weatherImageView.image = currentWeather.icon
+
                     
                     if self.isShadowShowing {
                         self.refreshShadow()

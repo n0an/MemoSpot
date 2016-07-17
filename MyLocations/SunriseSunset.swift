@@ -17,11 +17,7 @@ struct SunriseSunset {
     
     init(responseDictionary: NSDictionary) {
         
-        // "2015-05-21T05:05:35+00:00"
-        
         let results = responseDictionary["results"] as! NSDictionary
-        
-        print("results = \(results)")
         
         let sunriseTimeRaw = results["sunrise"] as! String
         let sunsetTimeRaw = results["sunset"] as! String
