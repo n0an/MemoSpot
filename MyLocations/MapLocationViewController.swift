@@ -210,6 +210,12 @@ class MapLocationViewController: UIViewController {
             shadowView?.hidden = true
             
         }
+        
+        if !isClearDay {
+            shadowView.alpha = 0.4
+        } else {
+            shadowView.alpha = 1.0
+        }
 
     }
     
