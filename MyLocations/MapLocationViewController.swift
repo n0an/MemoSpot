@@ -590,6 +590,7 @@ extension MapLocationViewController: CalendarViewControllerDelegate {
             print("USING SUNRISE-SUNSET API")
             
             isWeatherAvailable = false
+            isClearDay = true
             weatherImageViewContainer.hidden = true
             
             
