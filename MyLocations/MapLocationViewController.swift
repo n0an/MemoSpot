@@ -31,6 +31,7 @@ class MapLocationViewController: UIViewController {
     
     var isShadowShowing = false
     
+    var currentWeather: CurrentWeather!
     var weather: WeeklyWeather!
     var sunriseSunset: SunriseSunset!
     
@@ -278,8 +279,12 @@ class MapLocationViewController: UIViewController {
     
     
     
-    
     func getCurrentWeatherData() -> Void {
+        
+        guard weather==nil else {
+            refreshWeatherUI()
+            return
+        }
         
         let userLocation = "\(locationToEdit.coordinate.latitude),\(locationToEdit.coordinate.longitude)"
         
@@ -303,9 +308,9 @@ class MapLocationViewController: UIViewController {
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
                 self.weather = weeklyWeather
+                self.currentWeather = currentWeather
                 
-                
-                print(weatherDictionary)
+//                print(weatherDictionary)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
@@ -315,7 +320,7 @@ class MapLocationViewController: UIViewController {
                     
 //                    self.weatherImageView.image = self.weather.dayZeroIcon
                     
-                    self.weatherImageView.image = currentWeather.icon
+                    self.weatherImageView.image = self.currentWeather.icon
 
                     
                     if self.isShadowShowing {
@@ -337,6 +342,21 @@ class MapLocationViewController: UIViewController {
         downloadTask.resume()
         
     }
+    
+    func refreshWeatherUI() {
+        self.getSuriseSunsetAlternative()
+        
+        
+        self.weatherImageView.image = self.currentWeather.icon
+        
+        
+        if self.isShadowShowing {
+            self.refreshShadow()
+            self.weatherImageViewContainer.hidden = false
+        }
+        
+    }
+
     
     
     
