@@ -23,14 +23,17 @@ class MapLocationViewController: UIViewController {
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var weatherImageViewContainer: UIView!
     
-    // MARK: - PROPERTIES
     
-    // FLAGS
+    // MARK: - FLAGS
     
     var isWeatherAvailable = true
     
     var isShadowShowing = false
     
+    var isClearDay = false
+    
+    // MARK: - PROPERTIES
+
     var currentWeather: CurrentWeather!
     var weather: WeeklyWeather!
     var sunriseSunset: SunriseSunset!
@@ -310,6 +313,8 @@ class MapLocationViewController: UIViewController {
                 self.weather = weeklyWeather
                 self.currentWeather = currentWeather
                 
+                self.isClearDay = currentWeather.isClearDay
+                
 //                print(weatherDictionary)
                 
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -321,6 +326,8 @@ class MapLocationViewController: UIViewController {
 //                    self.weatherImageView.image = self.weather.dayZeroIcon
                     
                     self.weatherImageView.image = self.currentWeather.icon
+                    
+                    
 
                     
                     if self.isShadowShowing {

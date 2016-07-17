@@ -19,6 +19,7 @@ struct CurrentWeather {
     var icon: UIImage
     var windSpeed: Double
     
+    var isClearDay = false
     
     init (weatherDictionary: NSDictionary) {
         
@@ -37,6 +38,9 @@ struct CurrentWeather {
         let iconString = currentWeather["icon"]as! String
         
         icon = weatherIconFromString(iconString)
+        
+        isClearDay = isItClearDay(iconString)
+        
         
     }
 }
@@ -103,6 +107,22 @@ func weatherIconFromString(stringIcon: String) -> UIImage {
     return iconImage!
     
 }
+
+
+func isItClearDay(stringIcon: String) -> Bool {
+    
+    switch stringIcon {
+    case "clear-day", "clear-night", "partly-cloudy-day", "partly-cloudy-night":
+        return true
+        
+    default:
+        return false
+    }
+    
+    
+    
+}
+
 
 
 

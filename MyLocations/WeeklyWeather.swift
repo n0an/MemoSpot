@@ -26,36 +26,43 @@ struct WeeklyWeather {
     var dayOneTime: String?
     
     var dayOneIcon: UIImage
+    var dayOneIsClear: Bool
     
     var dayTwoTemperatureMax: Int
     var dayTwoTemperatureMin: Int
     var dayTwoTime: String?
     
     var dayTwoIcon: UIImage
-    
+    var dayTwoIsClear: Bool
+
     var dayThreeTemperatureMax: Int
     var dayThreeTemperatureMin: Int
     var dayThreeTime: String?
     
     var dayThreeIcon: UIImage
-    
+    var dayThreeIsClear: Bool
+
     var dayFourTemperatureMax: Int
     var dayFourTemperatureMin: Int
     var dayFourTime: String?
     
     var dayFourIcon: UIImage
-    
+    var dayFourIsClear: Bool
+
     var dayFiveTemperatureMax: Int
     var dayFiveTemperatureMin: Int
     var dayFiveTime: String?
     
     var dayFiveIcon: UIImage
-    
+    var dayFiveIsClear: Bool
+
     var daySixTemperatureMax: Int
     var daySixTemperatureMin: Int
     var daySixTime: String?
     
     var daySixIcon: UIImage
+    var daySixIsClear: Bool
+
     
     
     init (weatherDictionary: NSDictionary) {
@@ -89,6 +96,9 @@ struct WeeklyWeather {
         let dayOneIconString = weeklyForcast[1]["icon"] as! String
         dayOneIcon = weatherIconFromString(dayOneIconString)
         
+        dayOneIsClear = isItClearDay(dayOneIconString)
+        
+        
         //DAY TWO
         dayTwoTemperatureMax = weeklyForcast[2]["temperatureMax"] as! Int
         dayTwoTemperatureMin = weeklyForcast[2]["temperatureMin"] as! Int
@@ -96,6 +106,9 @@ struct WeeklyWeather {
         dayTwoTime = weeekDateStringFromUnixtime(dayTwoTimeIntValue)
         let dayTwoIconString = weeklyForcast[2]["icon"] as! String
         dayTwoIcon = weatherIconFromString(dayTwoIconString)
+        
+        dayTwoIsClear = isItClearDay(dayTwoIconString)
+
         
         //DAY THREE
         dayThreeTemperatureMax = weeklyForcast[3]["temperatureMax"] as! Int
@@ -105,6 +118,9 @@ struct WeeklyWeather {
         let dayThreeIconString = weeklyForcast[3]["icon"] as! String
         dayThreeIcon = weatherIconFromString(dayThreeIconString)
         
+        dayThreeIsClear = isItClearDay(dayThreeIconString)
+
+        
         //DAY FOUR
         dayFourTemperatureMax = weeklyForcast[4]["temperatureMax"] as! Int
         dayFourTemperatureMin = weeklyForcast[4]["temperatureMin"] as! Int
@@ -112,6 +128,9 @@ struct WeeklyWeather {
         dayFourTime = weeekDateStringFromUnixtime(dayFourTimeIntValue)
         let dayFourIconString = weeklyForcast[4]["icon"] as! String
         dayFourIcon = weatherIconFromString(dayFourIconString)
+        
+        dayFourIsClear = isItClearDay(dayFourIconString)
+
         
         //DAY FIVE
         dayFiveTemperatureMax = weeklyForcast[5]["temperatureMax"] as! Int
@@ -121,6 +140,9 @@ struct WeeklyWeather {
         let dayFiveIconString = weeklyForcast[5]["icon"] as! String
         dayFiveIcon = weatherIconFromString(dayFiveIconString)
         
+        dayFiveIsClear = isItClearDay(dayFiveIconString)
+
+        
         //DAY SIX
         daySixTemperatureMax = weeklyForcast[6]["temperatureMax"] as! Int
         daySixTemperatureMin = weeklyForcast[6]["temperatureMin"] as! Int
@@ -128,6 +150,9 @@ struct WeeklyWeather {
         daySixTime = weeekDateStringFromUnixtime(daySixTimeIntValue)
         let daySixIconString = weeklyForcast[6]["icon"] as! String
         daySixIcon = weatherIconFromString(daySixIconString)
+        
+        daySixIsClear = isItClearDay(daySixIconString)
+
         
     }
     
