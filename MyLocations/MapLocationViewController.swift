@@ -67,7 +67,7 @@ class MapLocationViewController: UIViewController {
     
     var diffComponents: NSDateComponents!
     
-    
+    var currentAlpha: CGFloat!
     
     // MARK: - viewDidLoad
 
@@ -191,13 +191,37 @@ class MapLocationViewController: UIViewController {
 
     func refreshShadow() {
         
+        if !isClearDay {
+            shadowView.alpha = 0.4
+        } else {
+            shadowView.alpha = 1.0
+        }
+        currentAlpha = shadowView.alpha
+        
         let selectedTime = Int(timeSlider.value * 24)
         
         if selectedTime >= sunriseTime && selectedTime <= sunsetTime {
             
             shadowView?.hidden = false
             
-            currentAngle = CGFloat(selectedTime - sunriseTime!) * deltaAngel
+            
+            let slowSunTime = dayLightSpan / 10
+            
+            let isMorningTime = (selectedTime - sunriseTime) <= slowSunTime
+            let isEveningTime = (sunsetTime - selectedTime) <= slowSunTime
+
+            
+            if isMorningTime || isEveningTime {
+
+                shadowView.alpha = currentAlpha * 0.3
+            
+            } else {
+                
+                shadowView.alpha = currentAlpha
+            }
+            
+            
+            let currentAngle = CGFloat(selectedTime - sunriseTime!) * deltaAngel
             
             let doubleDayLightSpan = Double(dayLightSpan)
             
@@ -213,11 +237,7 @@ class MapLocationViewController: UIViewController {
             
         }
         
-        if !isClearDay {
-            shadowView.alpha = 0.4
-        } else {
-            shadowView.alpha = 1.0
-        }
+        
 
     }
     
