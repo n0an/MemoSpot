@@ -225,7 +225,7 @@ class MapLocationViewController: UIViewController {
             
             let doubleDayLightSpan = Double(dayLightSpan)
             
-            let currentWidth = pow((Double(selectedTime - sunriseTime!) - doubleDayLightSpan/2), 2)*3 + 30
+            let currentWidth = pow((Double(selectedTime - sunriseTime!) - doubleDayLightSpan/2), 2)*Double(877/pow(doubleDayLightSpan, 2)) + 30
             
             shadowView?.transform = CGAffineTransformMakeRotation(currentAngle)
             
