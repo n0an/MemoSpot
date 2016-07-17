@@ -12,6 +12,7 @@ import UIKit
 struct CurrentWeather {
     
     var currentTime: String?
+    var currentUnixTime: Int
     var temperature: Int
     var humidity: Double
     var precipProbability: Double
@@ -32,6 +33,7 @@ struct CurrentWeather {
         windSpeed           = currentWeather["windSpeed"]as! Double
         
         let currentTimeIntValue = currentWeather["time"]as! Int
+        currentUnixTime = currentTimeIntValue
         
         currentTime = dateStringFromUnixtime(currentTimeIntValue)
         

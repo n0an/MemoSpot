@@ -24,6 +24,7 @@ class MapLocationViewController: UIViewController {
     @IBOutlet weak var weatherImageViewContainer: UIView!
     
     
+    
     // MARK: - FLAGS
     
     var isWeatherAvailable = true
@@ -37,6 +38,8 @@ class MapLocationViewController: UIViewController {
     var currentWeather: CurrentWeather!
     var weather: WeeklyWeather!
     var sunriseSunset: SunriseSunset!
+    
+    var iconsDict:[Int:UIImage]!
     
     var locationToEdit: Location!
     var locations = [Location]()
@@ -64,7 +67,6 @@ class MapLocationViewController: UIViewController {
     
     var diffComponents: NSDateComponents!
     
-//    var timeZoneOffset: Int
     
     
     // MARK: - viewDidLoad
@@ -319,6 +321,15 @@ class MapLocationViewController: UIViewController {
                 self.weather = weeklyWeather
                 self.currentWeather = currentWeather
                 
+                self.iconsDict =
+                    [currentWeather.currentUnixTime:currentWeather.icon,
+                    weeklyWeather.dayOneUnixTime:weeklyWeather.dayOneIcon,
+                    weeklyWeather.dayTwoUnixTime:weeklyWeather.dayTwoIcon,
+                    weeklyWeather.dayThreeUnixTime:weeklyWeather.dayThreeIcon,
+                    weeklyWeather.dayFourUnixTime:weeklyWeather.dayFourIcon,
+                    weeklyWeather.dayFiveUnixTime:weeklyWeather.dayFiveIcon,
+                    weeklyWeather.daySixUnixTime:weeklyWeather.daySixIcon]
+                
                 self.isClearDay = currentWeather.isClearDay
                 
 //                print(weatherDictionary)
@@ -356,12 +367,42 @@ class MapLocationViewController: UIViewController {
         
     }
     
+    
+    
     func refreshWeatherUI() {
         self.getSuriseSunsetAlternative()
         
+        // Getting nearest sunrise time
         
-        self.weatherImageView.image = self.currentWeather.icon
+        let times = iconsDict.keys
         
+        var min = NSTimeInterval(INT_MAX)
+        
+        var minTime = 0
+        
+        for time in times {
+            print("time = \(time)")
+            
+            let sunriseTimeInSeconds = NSTimeInterval(time)
+            
+            let sunriseDate = NSDate(timeIntervalSince1970: sunriseTimeInSeconds)
+            
+            let unixTime = abs(weatherDate.timeIntervalSinceDate(sunriseDate))
+            
+            if unixTime < min {
+                min = unixTime
+                
+                minTime = time
+            }
+        
+        }
+        print("min = \(min)")
+
+        print("minTime = \(minTime)")
+
+        let icon = iconsDict[minTime]
+        
+        self.weatherImageView.image = icon!
         
         if self.isShadowShowing {
             self.refreshShadow()

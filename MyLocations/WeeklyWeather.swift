@@ -24,6 +24,7 @@ struct WeeklyWeather {
     var dayOneTemperatureMax: Int
     var dayOneTemperatureMin: Int
     var dayOneTime: String?
+    var dayOneUnixTime: Int
     
     var dayOneIcon: UIImage
     var dayOneIsClear: Bool
@@ -31,6 +32,7 @@ struct WeeklyWeather {
     var dayTwoTemperatureMax: Int
     var dayTwoTemperatureMin: Int
     var dayTwoTime: String?
+    var dayTwoUnixTime: Int
     
     var dayTwoIcon: UIImage
     var dayTwoIsClear: Bool
@@ -38,28 +40,32 @@ struct WeeklyWeather {
     var dayThreeTemperatureMax: Int
     var dayThreeTemperatureMin: Int
     var dayThreeTime: String?
-    
+    var dayThreeUnixTime: Int
+
     var dayThreeIcon: UIImage
     var dayThreeIsClear: Bool
 
     var dayFourTemperatureMax: Int
     var dayFourTemperatureMin: Int
     var dayFourTime: String?
-    
+    var dayFourUnixTime: Int
+
     var dayFourIcon: UIImage
     var dayFourIsClear: Bool
 
     var dayFiveTemperatureMax: Int
     var dayFiveTemperatureMin: Int
     var dayFiveTime: String?
-    
+    var dayFiveUnixTime: Int
+
     var dayFiveIcon: UIImage
     var dayFiveIsClear: Bool
 
     var daySixTemperatureMax: Int
     var daySixTemperatureMin: Int
     var daySixTime: String?
-    
+    var daySixUnixTime: Int
+
     var daySixIcon: UIImage
     var daySixIsClear: Bool
 
@@ -92,6 +98,8 @@ struct WeeklyWeather {
         dayOneTemperatureMax = weeklyForcast[1]["temperatureMax"] as! Int
         dayOneTemperatureMin = weeklyForcast[1]["temperatureMin"] as! Int
         let dayOneTimeIntValue = weeklyForcast[1]["sunriseTime"] as! Int
+        dayOneUnixTime = dayOneTimeIntValue
+        
         dayOneTime = weeekDateStringFromUnixtime(dayOneTimeIntValue)
         let dayOneIconString = weeklyForcast[1]["icon"] as! String
         dayOneIcon = weatherIconFromString(dayOneIconString)
@@ -103,6 +111,8 @@ struct WeeklyWeather {
         dayTwoTemperatureMax = weeklyForcast[2]["temperatureMax"] as! Int
         dayTwoTemperatureMin = weeklyForcast[2]["temperatureMin"] as! Int
         let dayTwoTimeIntValue = weeklyForcast[2]["sunriseTime"] as! Int
+        dayTwoUnixTime = dayTwoTimeIntValue
+
         dayTwoTime = weeekDateStringFromUnixtime(dayTwoTimeIntValue)
         let dayTwoIconString = weeklyForcast[2]["icon"] as! String
         dayTwoIcon = weatherIconFromString(dayTwoIconString)
@@ -114,6 +124,8 @@ struct WeeklyWeather {
         dayThreeTemperatureMax = weeklyForcast[3]["temperatureMax"] as! Int
         dayThreeTemperatureMin = weeklyForcast[3]["temperatureMin"] as! Int
         let dayThreeTimeIntValue = weeklyForcast[3]["sunriseTime"] as! Int
+        dayThreeUnixTime = dayThreeTimeIntValue
+        
         dayThreeTime = weeekDateStringFromUnixtime(dayThreeTimeIntValue)
         let dayThreeIconString = weeklyForcast[3]["icon"] as! String
         dayThreeIcon = weatherIconFromString(dayThreeIconString)
@@ -125,6 +137,8 @@ struct WeeklyWeather {
         dayFourTemperatureMax = weeklyForcast[4]["temperatureMax"] as! Int
         dayFourTemperatureMin = weeklyForcast[4]["temperatureMin"] as! Int
         let dayFourTimeIntValue = weeklyForcast[4]["sunriseTime"] as! Int
+        dayFourUnixTime = dayFourTimeIntValue
+        
         dayFourTime = weeekDateStringFromUnixtime(dayFourTimeIntValue)
         let dayFourIconString = weeklyForcast[4]["icon"] as! String
         dayFourIcon = weatherIconFromString(dayFourIconString)
@@ -136,6 +150,8 @@ struct WeeklyWeather {
         dayFiveTemperatureMax = weeklyForcast[5]["temperatureMax"] as! Int
         dayFiveTemperatureMin = weeklyForcast[5]["temperatureMin"] as! Int
         let dayFiveTimeIntValue = weeklyForcast[5]["sunriseTime"] as! Int
+        dayFiveUnixTime = dayFiveTimeIntValue
+        
         dayFiveTime = weeekDateStringFromUnixtime(dayFiveTimeIntValue)
         let dayFiveIconString = weeklyForcast[5]["icon"] as! String
         dayFiveIcon = weatherIconFromString(dayFiveIconString)
@@ -147,6 +163,8 @@ struct WeeklyWeather {
         daySixTemperatureMax = weeklyForcast[6]["temperatureMax"] as! Int
         daySixTemperatureMin = weeklyForcast[6]["temperatureMin"] as! Int
         let daySixTimeIntValue = weeklyForcast[6]["sunriseTime"] as! Int
+        daySixUnixTime = daySixTimeIntValue
+        
         daySixTime = weeekDateStringFromUnixtime(daySixTimeIntValue)
         let daySixIconString = weeklyForcast[6]["icon"] as! String
         daySixIcon = weatherIconFromString(daySixIconString)
