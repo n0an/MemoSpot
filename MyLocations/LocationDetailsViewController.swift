@@ -195,10 +195,12 @@ class LocationDetailsViewController: UITableViewController {
     }
 
    
-    // MARK: - HELPER METHODS
+    // MARK: - GESTURE RECOGNIZERS
     
     func hideKeyboard(gestureRecognizer: UIGestureRecognizer) {
         let point = gestureRecognizer.locationInView(tableView)
+        
+        // !!!IMPORTANT!!!
         
         let indexPath = tableView.indexPathForRowAtPoint(point)
         
@@ -216,6 +218,8 @@ class LocationDetailsViewController: UITableViewController {
     }
     
     
+    // MARK: - HELPER METHODS
+
     func stringFromPlacemark(placemark: CLPlacemark) -> String {
         
         var line = ""
@@ -506,14 +510,15 @@ class LocationDetailsViewController: UITableViewController {
 
         if indexPath.section == 0 && indexPath.row == 0 {
             descriptionTextView.becomeFirstResponder()
+            
         } else if indexPath.section == 1 && indexPath.row == 0 {
-//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             pickPhoto()
+            
         } else if indexPath.section == 2 && indexPath.row == 0 {
-//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             performSegueWithIdentifier("ShowLocation", sender: nil)
+            
         } else if indexPath.section == 2 && indexPath.row == 1 {
-//            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
             performSegueWithIdentifier("ShowWeather", sender: nil)
         }
         
