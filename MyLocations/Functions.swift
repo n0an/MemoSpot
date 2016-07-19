@@ -22,6 +22,9 @@ let applicationDocumentsDirectory: String = {
 }()
 
 
+// !!!IMPORTANT!!!
+// MAKING OWN CLOSURE RECEIVER
+
 func afterDelay(seconds: Double, closure: ()->()) {
     
     let when = dispatch_time(DISPATCH_TIME_NOW, Int64(seconds * Double(NSEC_PER_SEC)))
