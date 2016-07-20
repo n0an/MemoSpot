@@ -112,6 +112,9 @@ class LocationsViewController: UITableViewController {
             
             controller.managedObjectContext = managedObjectContext
             
+            // !!!IMPORTANT!!!
+            // SEGUE SENDER - INDEXPATH
+            
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
                 
 //                let location = locations[indexPath.row]

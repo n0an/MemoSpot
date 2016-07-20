@@ -10,7 +10,7 @@ import UIKit
 
 import CoreData
 
-
+// !!!IMPORTANT!!!
 // ** NOTIFICATION WHEN COREDATA FAIL
 
 let MyManagedObjectContextSaveDidFailNotification = "MyManagedObjectContextSaveDidFailNotification"
@@ -34,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         customizeAppearance()
+        
+        
+        // !!!IMPORTANT!!!
+        // DEPENDENCY INJECTION. INJECT NSMANAGEDOBJECTCONTEXT IN EVERY TAB ROOT VC
         
         let tabBarController = window!.rootViewController as! UITabBarController
         

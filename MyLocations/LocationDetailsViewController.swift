@@ -201,6 +201,7 @@ class LocationDetailsViewController: UITableViewController {
         let point = gestureRecognizer.locationInView(tableView)
         
         // !!!IMPORTANT!!!
+        // INDEXPATH FOR TAPPED POINT IN TABLEVIEW
         
         let indexPath = tableView.indexPathForRowAtPoint(point)
         
