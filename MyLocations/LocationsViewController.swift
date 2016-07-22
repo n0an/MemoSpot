@@ -14,7 +14,7 @@ class LocationsViewController: UITableViewController {
     
     // MARK: - OUTLETS
     
-    // MARK: - ATTRIBUTES
+    // MARK: - PROPERTIES
     
     var managedObjectContext: NSManagedObjectContext!
     
@@ -225,6 +225,7 @@ class LocationsViewController: UITableViewController {
 
 
 
+// MARK: - NSFetchedResultsControllerDelegate
 
 extension LocationsViewController: NSFetchedResultsControllerDelegate {
     

@@ -48,6 +48,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             locationsViewController.managedObjectContext = managedObjectContext
             
+            
+            // !!!IMPORTANT!!!
+            // COREDATA BUG FIXING
+            
             let _ = locationsViewController.view
             
             

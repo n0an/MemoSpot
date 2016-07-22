@@ -63,6 +63,10 @@ class MapViewController: UIViewController {
 
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     // MARK: - HELPER METHODS
     
     func updateLocations() {
@@ -116,7 +120,7 @@ class MapViewController: UIViewController {
                 latitude: topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) / 2,
                 longitude: topLeftCoord.longitude - (topLeftCoord.longitude - bottomRightCoord.longitude) / 2)
             
-            let extraSpace = 1.5
+            let extraSpace = 1.1
             
             let span = MKCoordinateSpan(
                 latitudeDelta: abs(topLeftCoord.latitude - bottomRightCoord.latitude) * extraSpace,
@@ -127,13 +131,6 @@ class MapViewController: UIViewController {
         }
         
         return mapView.regionThatFits(region)
-        
-    }
-    
-    
-    func showLocationDetails(sender: UIButton) {
-        
-        performSegueWithIdentifier("EditLocation", sender: sender)
         
     }
     
@@ -154,6 +151,12 @@ class MapViewController: UIViewController {
         let region = regionForAnnotations(locations)
         
         mapView.setRegion(region, animated: true)
+        
+    }
+    
+    func showLocationDetails(sender: UIButton) {
+        
+        performSegueWithIdentifier("EditLocation", sender: sender)
         
     }
     

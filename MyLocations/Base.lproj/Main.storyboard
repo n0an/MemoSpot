@@ -663,7 +663,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MoS-7k-jFW">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <connections>
                                     <outlet property="delegate" destination="JHF-3g-2bQ" id="CRb-xq-UYw"/>
                                 </connections>
@@ -698,7 +698,13 @@
                             <constraint firstItem="qDt-vX-SDO" firstAttribute="leading" secondItem="j6U-1E-exm" secondAttribute="leading" id="bbM-RB-0Mg"/>
                             <constraint firstItem="cQ1-q4-fJC" firstAttribute="top" secondItem="MoS-7k-jFW" secondAttribute="bottom" id="c5b-Re-wnm"/>
                             <constraint firstAttribute="trailing" secondItem="MoS-7k-jFW" secondAttribute="trailing" id="cjb-j2-DSG"/>
+                            <constraint firstItem="MoS-7k-jFW" firstAttribute="top" secondItem="qDt-vX-SDO" secondAttribute="bottom" id="vVT-Vq-1Oi"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="G9f-3z-cWQ"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="Map" id="k69-wp-CT2"/>
                     <connections>
@@ -1322,7 +1328,7 @@
         <image name="windbag" width="112" height="108"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ppz-jR-PwY"/>
+        <segue reference="5SZ-hl-jdr"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.93333333333333335" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
 </document>
