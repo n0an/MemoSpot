@@ -421,6 +421,11 @@ class LocationDetailsViewController: UITableViewController {
                             
                             ratio = image.size.height / image.size.width
                         }
+                        
+                    } else {
+                        
+                        ratio = image!.size.height / image!.size.width
+                        
                     }
                     
                 } else {
