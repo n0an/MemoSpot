@@ -87,6 +87,8 @@ class MapLocationViewController: UIViewController {
         components = calend.components([.Month, .Day], fromDate: weatherDate)
         
         refreshDateButton()
+        
+        ANConfigurator.sharedConfigurator.customizeSlider(timeSlider)
     }
     
     override func viewDidAppear(animated: Bool) {
