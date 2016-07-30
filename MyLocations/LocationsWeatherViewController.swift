@@ -23,6 +23,11 @@ class LocationsWeatherViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.backgroundColor = UIColor.blackColor()
+        tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
+        tableView.indicatorStyle = .White
+
+        
         let fetchRequest = NSFetchRequest()
         
         let entity = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
@@ -41,13 +46,78 @@ class LocationsWeatherViewController: UITableViewController {
         } catch {
             fatalCoreDataError(error)
         }
-
-
-        
-        print("locations = \(locations)")
-        
         
     }
 
     
+    
+    // MARK: - ACTIONS
+
+    @IBAction func actionMenuPressed(sender: UIBarButtonItem) {
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    // MARK: - NAVIGATION
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ShowWeather" {
+            
+            
+            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                
+                let location = locations[indexPath.row]
+                
+                let controller = segue.destinationViewController as! WeatherViewController
+                
+                controller.locationToEdit = location
+            }
+            
+        }
+        
+    }
+
+    
+    
+    
+    // MARK: - UITableViewDataSource
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        
+        return locations.count
+    }
+    
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("LocationCell", forIndexPath: indexPath) as! LocationCell
+        
+        let location = locations[indexPath.row]
+        
+        
+        cell.configureForLocation(location)
+        
+        return cell
+        
+    }
+    
+    
+    // MARK: - UITableViewDelegate
+    
+    
+    
 }
+
+
+
+
+
+

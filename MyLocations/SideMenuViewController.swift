@@ -21,6 +21,12 @@ class SideMenuViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        tableView.backgroundColor = UIColor.blackColor()
+        tableView.backgroundColor = UIColor(white: 0.2, alpha: 1.0)
+
+        tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
+        tableView.indicatorStyle = .White
 
         
     }
@@ -37,10 +43,33 @@ class SideMenuViewController: UITableViewController {
             
             destinationVC.managedObjectContext = managedObjectContext
             
+            
         }
         
+    }
+    
+    
+    // MARK: - UITableViewDelegate
+
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        cell.backgroundColor = UIColor(white: 0.2, alpha: 1.0)
+        
+        if let textLabel = cell.textLabel {
+            
+            textLabel.textColor = UIColor.whiteColor()
+            
+            textLabel.highlightedTextColor = textLabel.textColor
+            
+        }
+        
+        let selectionView = UIView(frame: CGRect.zero)
+        
+        selectionView.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
+        
+        cell.selectedBackgroundView = selectionView
+
         
     }
-   
 
 }
