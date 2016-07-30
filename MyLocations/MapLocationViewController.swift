@@ -269,13 +269,14 @@ class MapLocationViewController: UIViewController {
         let url = NSURL(string: "http://api.sunrise-sunset.org/json?\(locationString)\(suffixStr)")
         
         let sharedSession = NSURLSession.sharedSession()
-
         
-        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(url!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+        
+        
+        let dataTask = sharedSession.dataTaskWithURL(url!) { (data, response, error) in
             
             if (error == nil) {
                 
-                let dataObject = NSData(contentsOfURL: location!)
+                let dataObject = data
                 
                 let responseDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
                 
@@ -287,12 +288,12 @@ class MapLocationViewController: UIViewController {
                 self.altCalculateTimeStamps()
                 
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                dispatch_async(dispatch_get_main_queue(), {
                     
                     if self.isShadowShowing {
                         self.refreshShadow()
                     }
-
+                    
                     
                 })
                 
@@ -302,9 +303,11 @@ class MapLocationViewController: UIViewController {
                 
             }
             
-        })
+            
+        }
         
-        downloadTask.resume()
+        dataTask.resume()
+        
         
         
         
