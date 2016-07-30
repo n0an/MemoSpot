@@ -104,6 +104,15 @@
 			name = Extensions;
 			sourceTree = "<group>";
 		};
+		15B52F101D4CD11100ACD249 /* Side Menu */ = {
+			isa = PBXGroup;
+			children = (
+				182A2BC81D4CBD4700209B05 /* LocationsWeatherViewController.swift */,
+				182A2BCA1D4CBE7F00209B05 /* SideMenuViewController.swift */,
+			);
+			name = "Side Menu";
+			sourceTree = "<group>";
+		};
 		15FFB9F21D1066A6006BA3B7 = {
 			isa = PBXGroup;
 			children = (
@@ -174,12 +183,11 @@
 			isa = PBXGroup;
 			children = (
 				18EE88181D187C03005D0334 /* Bars Customizers */,
+				15B52F101D4CD11100ACD249 /* Side Menu */,
 				15FFBA001D1066A6006BA3B7 /* CurrentLocationViewController.swift */,
 				18B599E21D131A3E00FE9834 /* LocationDetailsViewController.swift */,
 				18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */,
 				1825D0731D1596130018B839 /* LocationsViewController.swift */,
-				182A2BC81D4CBD4700209B05 /* LocationsWeatherViewController.swift */,
-				182A2BCA1D4CBE7F00209B05 /* SideMenuViewController.swift */,
 				186A06221D15D69C008188EF /* MapViewController.swift */,
 				185851001D3564930069ED14 /* MapLocationViewController.swift */,
 				1829E5191D39789000A2DEED /* WeatherViewController.swift */,

@@ -131,7 +131,7 @@ class LocationsViewController: UITableViewController {
             
             let controller = navigationController.topViewController as! SideMenuViewController
             
-            controller.locations = fetchedResultsController.fetchedObjects as! [Location]
+            controller.managedObjectContext = managedObjectContext
             
         }
     }

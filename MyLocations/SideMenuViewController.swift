@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class SideMenuViewController: UITableViewController {
     
-    var locations: [Location]!
-
+    // MARK: - PROPERTIES
+    
+    
+    var managedObjectContext: NSManagedObjectContext!
+    
+    
+    // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +25,22 @@ class SideMenuViewController: UITableViewController {
         
     }
 
+    // MARK: - NAVIGATION
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "ShowWeathers" {
+            
+            let destinationNavVC = segue.destinationViewController as! UINavigationController
+            
+            let destinationVC = destinationNavVC.topViewController as! LocationsWeatherViewController
+            
+            destinationVC.managedObjectContext = managedObjectContext
+            
+        }
+        
+        
+    }
    
 
 }
