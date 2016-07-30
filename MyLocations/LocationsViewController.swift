@@ -123,6 +123,17 @@ class LocationsViewController: UITableViewController {
                 controller.locationToEdit = location
             }
         }
+        
+        
+        if segue.identifier == "ShowMenu" {
+            
+            let navigationController = segue.destinationViewController as! UINavigationController
+            
+            let controller = navigationController.topViewController as! SideMenuViewController
+            
+            controller.locations = fetchedResultsController.fetchedObjects as! [Location]
+            
+        }
     }
     
 

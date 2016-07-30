@@ -23,6 +23,8 @@
 		1829E51A1D39789000A2DEED /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E5191D39789000A2DEED /* WeatherViewController.swift */; };
 		1829E51E1D3A647D00A2DEED /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E51D1D3A647D00A2DEED /* CalendarViewController.swift */; };
 		1829E5201D3A650800A2DEED /* ANConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E51F1D3A650800A2DEED /* ANConfigurator.swift */; };
+		182A2BC91D4CBD4700209B05 /* LocationsWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A2BC81D4CBD4700209B05 /* LocationsWeatherViewController.swift */; };
+		182A2BCB1D4CBE7F00209B05 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A2BCA1D4CBE7F00209B05 /* SideMenuViewController.swift */; };
 		184E6A5A1D1B11E4003FC740 /* Sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 184E6A591D1B11E4003FC740 /* Sound.caf */; };
 		185850FC1D35553F0069ED14 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850FB1D35553F0069ED14 /* CurrentWeather.swift */; };
 		185850FE1D35554B0069ED14 /* WeeklyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850FD1D35554B0069ED14 /* WeeklyWeather.swift */; };
@@ -60,6 +62,8 @@
 		1829E5191D39789000A2DEED /* WeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		1829E51D1D3A647D00A2DEED /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		1829E51F1D3A650800A2DEED /* ANConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANConfigurator.swift; sourceTree = "<group>"; };
+		182A2BC81D4CBD4700209B05 /* LocationsWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsWeatherViewController.swift; sourceTree = "<group>"; };
+		182A2BCA1D4CBE7F00209B05 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		184E6A591D1B11E4003FC740 /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
 		185850FB1D35553F0069ED14 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		185850FD1D35554B0069ED14 /* WeeklyWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyWeather.swift; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 				18B599E21D131A3E00FE9834 /* LocationDetailsViewController.swift */,
 				18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */,
 				1825D0731D1596130018B839 /* LocationsViewController.swift */,
+				182A2BC81D4CBD4700209B05 /* LocationsWeatherViewController.swift */,
+				182A2BCA1D4CBE7F00209B05 /* SideMenuViewController.swift */,
 				186A06221D15D69C008188EF /* MapViewController.swift */,
 				185851001D3564930069ED14 /* MapLocationViewController.swift */,
 				1829E5191D39789000A2DEED /* WeatherViewController.swift */,
@@ -363,7 +369,9 @@
 				18EE88171D187B47005D0334 /* MyNavigationController.swift in Sources */,
 				1825D0741D1596130018B839 /* LocationsViewController.swift in Sources */,
 				1813A9E11D3AB00700C61A88 /* SunriseSunset.swift in Sources */,
+				182A2BCB1D4CBE7F00209B05 /* SideMenuViewController.swift in Sources */,
 				18EE881A1D187C24005D0334 /* MyImagePickerController.swift in Sources */,
+				182A2BC91D4CBD4700209B05 /* LocationsWeatherViewController.swift in Sources */,
 				1829E51E1D3A647D00A2DEED /* CalendarViewController.swift in Sources */,
 				185850FC1D35553F0069ED14 /* CurrentWeather.swift in Sources */,
 				1825D0681D15730E0018B839 /* DataModel.xcdatamodeld in Sources */,
