@@ -134,7 +134,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - WEATHER METHODS
     
-    func getCurrentWeatherData() -> Void {
+    func getCurrentWeatherData() {
         
         userLatitude = locationToEdit.coordinate.latitude
         userLongitude = locationToEdit.coordinate.longitude
@@ -147,20 +147,20 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         let sharedSession = NSURLSession.sharedSession()
         
-        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
-            
+        
+        
+        let dataTask = sharedSession.dataTaskWithURL(forecastURL!) { (data, response, error) in
             
             if (error == nil) {
                 
-                let dataObject = NSData(contentsOfURL: location!)
+                let dataObject = data
+                
                 let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
                 
                 let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
+                dispatch_async(dispatch_get_main_queue(), {
                     
                     if self.userTemperatureCelsius == true {
                         self.temperatureLabel.text = "\(Fahrenheit2Celsius(currentWeather.temperature))"
@@ -260,17 +260,24 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     
                     //Weather Alerts
                     self.wAlerts.text = ""
+
                     
                 })
+                
                 
             } else {
                 
                 
             }
             
-        })
+            
+        }
         
-        downloadTask.resume()
+        dataTask.resume()
+        
+        
+        
+        
         
         
     }

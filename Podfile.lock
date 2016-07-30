@@ -1,12 +1,15 @@
 PODS:
   - FSCalendar (2.1.1)
+  - SideMenu (1.1.7)
 
 DEPENDENCIES:
   - FSCalendar
+  - SideMenu
 
 SPEC CHECKSUMS:
   FSCalendar: 04dc531f06fbde8a8e5b7394e9d4edebd45a591f
+  SideMenu: 7b420772e1aa7a2b3a0b0e191566e7e8e0868f53
 
-PODFILE CHECKSUM: b709e8b8a6e05801cfa25940d5d4ca7cadbb8d1f
+PODFILE CHECKSUM: 494f1b7026361b4a00b6ca730676a605aa8ea3fb
 
 COCOAPODS: 1.0.1
