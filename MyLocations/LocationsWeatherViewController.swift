@@ -17,11 +17,16 @@ class LocationsWeatherViewController: UITableViewController {
     
     var managedObjectContext: NSManagedObjectContext!
     
+    var userTemperatureCelsius : Bool!
+
+    
     
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userTemperatureCelsius = true
         
         tableView.backgroundColor = UIColor.blackColor()
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
@@ -49,6 +54,81 @@ class LocationsWeatherViewController: UITableViewController {
         
     }
 
+    
+    
+    // MARK: - WEATHER METHODS
+    
+    func getCurrentWeatherDataForLocation(location: Location, andSetCell cell: LocationCell) {
+        
+        let userLatitude = location.coordinate.latitude
+        let userLongitude = location.coordinate.longitude
+        
+        let userLocation = "\(userLatitude),\(userLongitude)"
+        
+        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
+        let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
+        
+        
+        let sharedSession = NSURLSession.sharedSession()
+        
+        
+        
+        let dataTask = sharedSession.dataTaskWithURL(forecastURL!) { (data, response, error) in
+            
+            if (error == nil) {
+                
+                let dataObject = data
+                
+                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+                
+                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
+                
+                
+                dispatch_async(dispatch_get_main_queue(), {
+
+                    var addingText: String
+                    
+                    if self.userTemperatureCelsius == true {
+                        addingText = "\(Fahrenheit2Celsius(currentWeather.temperature))"
+                        
+                    } else {
+                        addingText = "\(currentWeather.temperature)"
+                    }
+                    
+                    if currentWeather.temperature > 0 {
+                        cell.addressLabel.text = "Temperature: +" + addingText
+
+                    } else {
+                        cell.addressLabel.text = "Temperature: -" + addingText
+
+                    }
+                    
+                    
+                    
+                    cell.weatherImageView.image = currentWeather.altIcon
+                    
+                    
+                    
+                })
+                
+                
+            } else {
+                
+                
+            }
+            
+            
+        }
+        
+        dataTask.resume()
+        
+        
+        
+        
+        
+        
+    }
+    
     
     
     // MARK: - ACTIONS
@@ -102,8 +182,9 @@ class LocationsWeatherViewController: UITableViewController {
         
         let location = locations[indexPath.row]
         
-        
         cell.configureForLocation(location)
+        
+        getCurrentWeatherDataForLocation(location, andSetCell: cell)
         
         return cell
         
