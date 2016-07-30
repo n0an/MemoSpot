@@ -16,6 +16,8 @@ class LocationCell: UITableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var weatherImageView: UIImageView!
+
     
     
     // MARK: - HELPER METHODS

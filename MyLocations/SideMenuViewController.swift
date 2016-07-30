@@ -22,7 +22,6 @@ class SideMenuViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tableView.backgroundColor = UIColor.blackColor()
         tableView.backgroundColor = UIColor(white: 0.2, alpha: 1.0)
 
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)

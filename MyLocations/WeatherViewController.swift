@@ -147,20 +147,20 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         let sharedSession = NSURLSession.sharedSession()
         
-        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
-            
+        
+        
+        let dataTask = sharedSession.dataTaskWithURL(forecastURL!) { (data, response, error) in
             
             if (error == nil) {
                 
-                let dataObject = NSData(contentsOfURL: location!)
+                let dataObject = data
+                
                 let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
                 
                 let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
+                dispatch_async(dispatch_get_main_queue(), {
                     
                     if self.userTemperatureCelsius == true {
                         self.temperatureLabel.text = "\(Fahrenheit2Celsius(currentWeather.temperature))"
@@ -260,17 +260,150 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     
                     //Weather Alerts
                     self.wAlerts.text = ""
+
                     
                 })
+                
                 
             } else {
                 
                 
             }
             
-        })
+            
+        }
         
-        downloadTask.resume()
+        dataTask.resume()
+        
+        
+        
+        
+        
+//        
+//        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+//            
+//            
+//            if (error == nil) {
+//                
+//                let dataObject = NSData(contentsOfURL: location!)
+//                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+//                
+//                let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
+//                let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
+//                
+//                
+//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                    
+//                    
+//                    if self.userTemperatureCelsius == true {
+//                        self.temperatureLabel.text = "\(Fahrenheit2Celsius(currentWeather.temperature))"
+//                    } else {
+//                        self.temperatureLabel.text = "\(currentWeather.temperature)"
+//                    }
+//                    
+//                    self.iconView.image = currentWeather.icon
+//                    //self.currentTimeLabel.text = "\(currentWeather.currentTime!)"
+//                    self.humidityLabel.text = "\(currentWeather.humidity)"
+//                    self.precipitationLabel.text = "\(currentWeather.precipProbability)"
+//                    self.summaryLabel.text = "\(currentWeather.summary)"
+//                    self.windSpeedLabel.text = "\(currentWeather.windSpeed)"
+//                    
+//                    if self.userTemperatureCelsius == true {
+//                        self.dayZeroTemperatureHigh.text = "\(Fahrenheit2Celsius(weeklyWeather.dayZeroTemperatureMax))"
+//                        self.dayZeroTemperatureLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayZeroTemperatureMin))"
+//                    } else {
+//                        self.temperatureLabel.text = "\(currentWeather.temperature)"
+//                        self.dayZeroTemperatureHigh.text = "\(weeklyWeather.dayZeroTemperatureMax)"
+//                        self.dayZeroTemperatureLow.text = "\(weeklyWeather.dayZeroTemperatureMin)"
+//                    }
+//                    
+//                    // Notification Statements
+//                    
+//                    if currentWeather.precipProbability == 1.0 {
+//                        
+//                    }
+//                    
+//                    if currentWeather.windSpeed > 38.0 {
+//                        
+//                    }
+//                    
+//                    if weeklyWeather.dayZeroTemperatureMax > 90 {
+//                        
+//                    }
+//                    
+//                    
+//                    
+//                    //HEAT INDEX
+//                    
+//                    if currentWeather.temperature < 60 {
+//                        self.heatIndex.image = UIImage(named: "heatindexWinter")
+//                        self.dayZeroTemperatureLow.textColor = UIColor(red: 0/255.0, green: 121/255.0, blue: 255/255.0, alpha: 1.0)
+//                        self.dayZeroTemperatureHigh.textColor = UIColor(red: 245/255.0, green: 6/255.0, blue: 93/255.0, alpha: 1.0)
+//                        
+//                        
+//                    } else {
+//                        self.heatIndex.image = UIImage(named:"heatindex")
+//                        
+//                    }
+//                    
+//                    
+//                    //7 day out look
+//                    
+//                    if self.userTemperatureCelsius == true {
+//                        self.dayOneHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayOneTemperatureMax))°"
+//                        
+//                        self.dayTwoHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayTwoTemperatureMax))°"
+//                        
+//                        self.dayThreeHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayThreeTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayThreeTemperatureMax))°"
+//                        
+//                        self.dayFourHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayFourTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayFourTemperatureMax))°"
+//                        
+//                        self.dayFiveHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.dayFiveTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.dayFiveTemperatureMax))°"
+//                        
+//                        self.daySixHighLow.text = "\(Fahrenheit2Celsius(weeklyWeather.daySixTemperatureMin))°/ \(Fahrenheit2Celsius(weeklyWeather.daySixTemperatureMax))°"
+//                        
+//                    } else {
+//                        self.dayOneHighLow.text = "\(weeklyWeather.dayOneTemperatureMin)°/ \(weeklyWeather.dayOneTemperatureMax)°"
+//                        self.dayTwoHighLow.text = "\(weeklyWeather.dayTwoTemperatureMin)°/ \(weeklyWeather.dayTwoTemperatureMax)°"
+//                        self.dayThreeHighLow.text = "\(weeklyWeather.dayThreeTemperatureMin)°/ \(weeklyWeather.dayThreeTemperatureMax)°"
+//                        self.dayFourHighLow.text = "\(weeklyWeather.dayFourTemperatureMin)°/ \(weeklyWeather.dayFourTemperatureMax)°"
+//                        self.dayFiveHighLow.text = "\(weeklyWeather.dayFiveTemperatureMin)°/ \(weeklyWeather.dayFiveTemperatureMax)°"
+//                        self.daySixHighLow.text = "\(weeklyWeather.daySixTemperatureMin)°/ \(weeklyWeather.daySixTemperatureMax)°"
+//                    }
+//                    
+//                    
+//                    
+//                    self.dayOneWeekDayLabel.text = "\(weeklyWeather.dayOneTime!)"
+//                    self.dayOneImage.image = weeklyWeather.dayOneIcon
+//                    
+//                    self.dayTwoWeekDayLabel.text = "\(weeklyWeather.dayTwoTime!)"
+//                    self.dayTwoImage.image = weeklyWeather.dayTwoIcon
+//                    
+//                    self.dayThreeWeekDayLabel.text = "\(weeklyWeather.dayThreeTime!)"
+//                    self.dayThreeImage.image = weeklyWeather.dayThreeIcon
+//                    
+//                    self.dayFourWeekDayLabel.text = "\(weeklyWeather.dayFourTime!)"
+//                    self.dayFourImage.image = weeklyWeather.dayFourIcon
+//                    
+//                    self.dayFiveWeekDayLabel.text = "\(weeklyWeather.dayFiveTime!)"
+//                    self.dayFiveImage.image = weeklyWeather.dayFiveIcon
+//                    
+//                    self.daySixWeekDayLabel.text = "\(weeklyWeather.daySixTime!)"
+//                    self.daySixImage.image = weeklyWeather.dayFiveIcon
+//                    
+//                    //Weather Alerts
+//                    self.wAlerts.text = ""
+//                    
+//                })
+//                
+//            } else {
+//                
+//                
+//            }
+//            
+//        })
+//        
+//        downloadTask.resume()
         
         
     }
