@@ -214,7 +214,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Locations" id="xsU-DI-7C6">
-                        <barButtonItem key="leftBarButtonItem" title="W" id="O3s-zb-bVE">
+                        <barButtonItem key="leftBarButtonItem" image="showWeather" id="O3s-zb-bVE">
                             <connections>
                                 <segue destination="HUd-kq-6P3" kind="presentation" identifier="ShowMenu" id="T2u-GC-b8i"/>
                             </connections>
@@ -720,7 +720,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYl-o5-Sr9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1142" y="929"/>
+            <point key="canvasLocation" x="1134" y="1055"/>
         </scene>
         <!--Category Picker View Controller-->
         <scene sceneID="dOY-18-K0a">
@@ -1317,7 +1317,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aSI-k7-w99" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2139" y="1648"/>
+            <point key="canvasLocation" x="2155" y="1648"/>
         </scene>
         <!--Data Source-->
         <scene sceneID="2WV-jO-4Pt">
@@ -1479,7 +1479,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Weather" id="Klb-az-0xB">
-                        <barButtonItem key="leftBarButtonItem" title="W" id="rhv-Y3-Psa">
+                        <barButtonItem key="leftBarButtonItem" image="showWeather" id="rhv-Y3-Psa">
                             <connections>
                                 <action selector="actionMenuPressed:" destination="C86-KO-Ffv" id="Evg-fR-G8G"/>
                             </connections>
@@ -1521,11 +1521,12 @@
         <image name="heatindex" width="820" height="66"/>
         <image name="humidity" width="41" height="46"/>
         <image name="rain" width="60" height="48"/>
+        <image name="showWeather" width="31" height="34"/>
         <image name="umbrella" width="120" height="110"/>
         <image name="windbag" width="112" height="108"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MAq-3i-Q3L"/>
+        <segue reference="5SZ-hl-jdr"/>
         <segue reference="lvd-V2-bsL"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.93333333333333335" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
