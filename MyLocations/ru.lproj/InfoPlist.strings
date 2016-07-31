@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  MyLocations
+
+  Created by Anton Novoselov on 31/07/16.
+  Copyright © 2016 Anton Novoselov. All rights reserved.
+*/
+
+CFBundleDisplayName = "MemoSpot";
