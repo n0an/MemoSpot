@@ -19,6 +19,7 @@ class CategoryPickerViewController: UITableViewController {
                        NSLocalizedString("CATEGORY_CITY", comment: ""),
                        NSLocalizedString("CATEGORY_INTERESTING_PLACE", comment: ""),
                        NSLocalizedString("CATEGORY_ARCHITECTURE", comment: ""),
+                       NSLocalizedString("CATEGORY_INDUSTRIAL", comment: ""),
                        NSLocalizedString("CATEGORY_BUILDING", comment: ""),
                        NSLocalizedString("CATEGORY_CHURCH", comment: ""),
                        NSLocalizedString("CATEGORY_LANDSCAPE", comment: ""),

@@ -162,7 +162,7 @@
 "osG-wG-cDb.title" = "Отметить локацию";
 
 /* Class = "UIButton"; normalTitle = "Get my location"; ObjectID = "pZ1-wh-4Qw"; */
-"pZ1-wh-4Qw.normalTitle" = "Узнать мое местопложение";
+"pZ1-wh-4Qw.normalTitle" = "Где Я?";
 
 /* Class = "UILabel"; text = "Address"; ObjectID = "pe6-bU-IU7"; */
 "pe6-bU-IU7.text" = "Адрес";

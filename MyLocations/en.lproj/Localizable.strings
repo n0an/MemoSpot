@@ -24,7 +24,7 @@ ADDRESSLABEL_TEXT_SEARCHING = "Searching for Address...";
 ADDRESSLABEL_TEXT_ERROR1 = "Error Finding Address";
 ADDRESSLABEL_TEXT_ERROR2 = "No Address Found";
 
-MESAGGE_LABEL_TAPTO = "Tap 'Get My Location' to Start";
+MESAGGE_LABEL_TAPTO = "Tap 'Where Am I?' to Start";
 
 STATUSMESSAGE_ERROR_GETTING = "Error Getting Location";
 STATUSMESSAGE_ERROR_DISABLED = "Location Services Disabled";
@@ -32,7 +32,7 @@ STATUSMESSAGE_SEARCHING = "Searching...";
 
 
 BUTTON_STOP_SEARCH = "Stop";
-BUTTON_GET_LOCATION = "Get My Location";
+BUTTON_GET_LOCATION = "Where Am I?";
 
 
 // LocationDetailViewController
@@ -59,6 +59,7 @@ CATEGORY_NO = "No Category";
 CATEGORY_CITY = "City";
 CATEGORY_INTERESTING_PLACE = "Interesting Place";
 CATEGORY_ARCHITECTURE = "Architecture";
+CATEGORY_INDUSTRIAL = "Industrial";
 CATEGORY_BUILDING = "Nice Building";
 CATEGORY_CHURCH = "Church";
 CATEGORY_LANDSCAPE = "Landscape";

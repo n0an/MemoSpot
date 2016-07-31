@@ -22,7 +22,7 @@ ADDRESSLABEL_TEXT_SEARCHING = "Определяем адрес...";
 ADDRESSLABEL_TEXT_ERROR1 = "Не удалось определить адрес";
 ADDRESSLABEL_TEXT_ERROR2 = "Адрес не найден";
 
-MESAGGE_LABEL_TAPTO = "Нажмите 'Узнать мое местопложение' чтобы начать";
+MESAGGE_LABEL_TAPTO = "Нажмите 'Где Я?' чтобы начать";
 
 STATUSMESSAGE_ERROR_GETTING = "Ошибка определения местопложения";
 STATUSMESSAGE_ERROR_DISABLED = "Сервис определения местопложения отключен";
@@ -30,7 +30,7 @@ STATUSMESSAGE_SEARCHING = "Поиск...";
 
 
 BUTTON_STOP_SEARCH = "Остановить";
-BUTTON_GET_LOCATION = "Узнать мое местопложение";
+BUTTON_GET_LOCATION = "Где Я?";
 
 
 // LocationDetailViewController
@@ -57,6 +57,7 @@ CATEGORY_NO = "Без Категории";
 CATEGORY_CITY = "Город";
 CATEGORY_INTERESTING_PLACE = "Интересное место";
 CATEGORY_ARCHITECTURE = "Архитектура";
+CATEGORY_INDUSTRIAL = "Индастриал";
 CATEGORY_BUILDING = "Красивое здание";
 CATEGORY_CHURCH = "Храм";
 CATEGORY_LANDSCAPE = "Ландшафт";
