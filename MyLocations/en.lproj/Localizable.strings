@@ -51,6 +51,34 @@ CAMERA_ALERT_LIBRARY_ACTION = "Choose From Library";
 
 
 
+// CategoryPickerViewController
+
+CATEGORY_NO = "No Category";
+CATEGORY_CITY = "City";
+CATEGORY_INTERESTING_PLACE = "Interesting Place";
+CATEGORY_ARCHITECTURE = "Architecture";
+CATEGORY_BUILDING = "Nice Building";
+CATEGORY_CHURCH = "Church";
+CATEGORY_LANDSCAPE = "Landscape";
+CATEGORY_PARK = "Park";
+CATEGORY_FOREST = "Forest";
+CATEGORY_MOUNTAIN = "Mountains";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
