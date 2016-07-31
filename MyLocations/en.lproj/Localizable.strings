@@ -74,7 +74,9 @@ CATEGORY_MOUNTAIN = "Mountains";
 NO_DESCRIPTION = "(No Description)";
 
 
+// Weather
 
+SUFFIX_URL_STRING = "?lang=en&units=us";
 
 
 

@@ -74,5 +74,9 @@ NO_DESCRIPTION = "(Нет описания)";
 
 
 
+// Weather
+
+SUFFIX_URL_STRING = "?lang=ru&units=si";
+
 
 

@@ -92,7 +92,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userTemperatureCelsius = true
+        userTemperatureCelsius = false
 
         swipeRec.addTarget(self, action: #selector(WeatherViewController.swipedView))
         swipeRec.direction = UISwipeGestureRecognizerDirection.Down
@@ -142,7 +142,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         userLocation = "\(userLatitude),\(userLongitude)"
         
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
-        let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
+        
+        let suffixStr = NSLocalizedString("SUFFIX_URL_STRING", comment: "")
+        
+        let forecastURL = NSURL(string: "\(userLocation)\(suffixStr)", relativeToURL:baseURL)
         
         
         let sharedSession = NSURLSession.sharedSession()
@@ -202,7 +205,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     
                     //HEAT INDEX
                     
-                    if currentWeather.temperature < 60 {
+                    var tempThreshold = 60
+
+                    if NSLocalizedString("SUFFIX_URL_STRING", comment: "") == "?lang=en&units=us" {
+                        tempThreshold = 60
+                    } else {
+                        tempThreshold = 15
+                    }
+                    
+                    if currentWeather.temperature < tempThreshold {
                         self.heatIndex.image = UIImage(named: "heatindexWinter")
                         self.dayZeroTemperatureLow.textColor = UIColor(red: 0/255.0, green: 121/255.0, blue: 255/255.0, alpha: 1.0)
                         self.dayZeroTemperatureHigh.textColor = UIColor(red: 245/255.0, green: 6/255.0, blue: 93/255.0, alpha: 1.0)
