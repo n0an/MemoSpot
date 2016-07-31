@@ -56,7 +56,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     lazy var logoButton: UIButton = {
         
         let button = UIButton(type: .Custom)
-        button.setBackgroundImage(UIImage(named: "Logo"), forState: .Normal)
+        button.setBackgroundImage(UIImage(named: "Logo5"), forState: .Normal)
         button.sizeToFit()
         
         button.addTarget(self, action: #selector(CurrentLocationViewController.getLocation), forControlEvents: .TouchUpInside)
@@ -90,7 +90,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     func showLocationServicesDeniedAlert() {
         
-        let alert = UIAlertController(title: "Location Services Disabled", message: "Please enable location services for this app in Settings.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("LOCATION_SERVICES_DENIED_ALERT_TITLE", comment: ""), message: NSLocalizedString("", comment: "LOCATION_SERVICES_DENIED_ALERT_MESSAGE"), preferredStyle: .Alert)
         
         let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         
@@ -115,11 +115,11 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             if let placemark = placemark {
                 addressLabel.text = stringFromPlacemark(placemark)
             } else if performingReverseGeocoding {
-                addressLabel.text = "Searching for Address..."
+                addressLabel.text = NSLocalizedString("ADDRESSLABEL_TEXT_SEARCHING", comment: "")
             } else if lastGeocodingError != nil {
-                addressLabel.text = "Error Finding Address"
+                addressLabel.text = NSLocalizedString("ADDRESSLABEL_TEXT_ERROR1", comment: "")
             } else {
-                addressLabel.text = "No Address Found"
+                addressLabel.text = NSLocalizedString("ADDRESSLABEL_TEXT_ERROR2", comment: "")
             }
             
         } else {
@@ -131,21 +131,21 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             longitudeLabel.text = ""
             addressLabel.text = ""
             tagButton.hidden = true
-            messageLabel.text = "Tap 'Get My Location' to Start"
+            messageLabel.text = NSLocalizedString("MESAGGE_LABEL_TAPTO", comment: "")
             
             
             let statusMessage: String
             if let error = lastLocationError {
                 if error.domain == kCLErrorDomain && error.code == CLError.Denied.rawValue {
-                    statusMessage = "Location Services Disabled"
+                    statusMessage = NSLocalizedString("STATUSMESSAGE_ERROR_DISABLED", comment: "")
                 } else {
-                    statusMessage = "Error Getting Location"
+                    statusMessage = NSLocalizedString("STATUSMESSAGE_ERROR_GETTING", comment: "")
                 }
                 
             } else if !CLLocationManager.locationServicesEnabled() {
-                statusMessage = "Location Services Disabled"
+                statusMessage = NSLocalizedString("STATUSMESSAGE_ERROR_DISABLED", comment: "")
             } else if updatingLocation {
-                statusMessage = "Searching..."
+                statusMessage = NSLocalizedString("STATUSMESSAGE_SEARCHING", comment: "")
             } else {
                 statusMessage = ""
                 
@@ -190,7 +190,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         let spinnerTag = 1000
         
         if updatingLocation {
-            getButton.setTitle("Stop", forState: .Normal)
+            getButton.setTitle(NSLocalizedString("BUTTON_STOP_SEARCH", comment: ""), forState: .Normal)
             
             if view.viewWithTag(spinnerTag) == nil {
                 let spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
@@ -205,7 +205,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             }
             
         } else {
-            getButton.setTitle("Get My Location", forState: .Normal)
+            getButton.setTitle(NSLocalizedString("BUTTON_GET_LOCATION", comment: ""), forState: .Normal)
             
             if let spinner = view.viewWithTag(spinnerTag) {
                 spinner.removeFromSuperview()

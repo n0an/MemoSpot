@@ -96,10 +96,10 @@ class LocationsWeatherViewController: UITableViewController {
                     }
                     
                     if currentWeather.temperature > 0 {
-                        cell.addressLabel.text = "Temperature: +" + addingText
+                        cell.addressLabel.text = NSLocalizedString("TEMPERATURE", comment: "") + " +" + addingText
 
                     } else {
-                        cell.addressLabel.text = "Temperature: -" + addingText
+                        cell.addressLabel.text = NSLocalizedString("TEMPERATURE", comment: "") + " -" + addingText
 
                     }
                     

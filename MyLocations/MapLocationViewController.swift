@@ -571,7 +571,11 @@ extension MapLocationViewController: MKMapViewDelegate {
             annotationView.enabled = true
             annotationView.canShowCallout = true
             annotationView.animatesDrop = false
-            annotationView.pinTintColor = UIColor(red: 0.32, green: 0.82, blue: 0.4, alpha: 1)
+            if #available(iOS 9.0, *) {
+                annotationView.pinTintColor = UIColor(red: 0.32, green: 0.82, blue: 0.4, alpha: 1)
+            } else {
+                // Fallback on earlier versions
+            }
             
             annotationView.tintColor = UIColor(white: 0.0, alpha: 0.5)
             

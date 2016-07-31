@@ -26,7 +26,7 @@ class LocationCell: UITableViewCell {
         
         if location.locationDescription.isEmpty {
             
-            descriptionLabel.text = "(No Description)"
+            descriptionLabel.text = NSLocalizedString("NO_DESCRIPTION", comment: "")
             
         } else {
             

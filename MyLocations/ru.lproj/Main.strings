@@ -1,0 +1,192 @@
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "0OZ-0W-D9s"; */
+"0OZ-0W-D9s.text" = "Описание";
+
+/* Class = "UILabel"; text = "Thur"; ObjectID = "0Tb-mi-bhc"; */
+"0Tb-mi-bhc.text" = "Thur";
+
+/* Class = "UILabel"; text = "WIND"; ObjectID = "233-Su-0ox"; */
+"233-Su-0ox.text" = "Ветер";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "3gw-iQ-FwA"; */
+"3gw-iQ-FwA.text" = "Дата";
+
+/* Class = "UIButton"; normalTitle = "13.07.2016"; ObjectID = "51L-r6-Fis"; */
+"51L-r6-Fis.normalTitle" = "13.07.2016";
+
+/* Class = "UIBarButtonItem"; title = "Weather"; ObjectID = "5lA-iQ-Rz7"; */
+"5lA-iQ-Rz7.title" = "Погода";
+
+/* Class = "UILabel"; text = "60"; ObjectID = "6A2-Qt-Fpn"; */
+"6A2-Qt-Fpn.text" = "60";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "6Qs-u6-Ksj"; */
+"6Qs-u6-Ksj.text" = "Label";
+
+/* Class = "UILabel"; text = "LOW"; ObjectID = "6u7-b5-R3p"; */
+"6u7-b5-R3p.text" = "MIN";
+
+/* Class = "UILabel"; text = "Stormy and rainy"; ObjectID = "8F3-WC-bSP"; */
+"8F3-WC-bSP.text" = "Шторм и дождь";
+
+/* Class = "UILabel"; text = "-122.03121860"; ObjectID = "CUd-Pw-uwB"; */
+"CUd-Pw-uwB.text" = "-122.03121860";
+
+/* Class = "UILabel"; text = "0.88"; ObjectID = "CcP-Jr-cDv"; */
+"CcP-Jr-cDv.text" = "0.88";
+
+/* Class = "UILabel"; text = "Tues"; ObjectID = "CeF-be-5AO"; */
+"CeF-be-5AO.text" = "Tues";
+
+/* Class = "UILabel"; text = "Aug 10, 2015, 2:08 PM"; ObjectID = "D3t-Qd-tQ6"; */
+"D3t-Qd-tQ6.text" = "Aug 10, 2015, 2:08 PM";
+
+/* Class = "UILabel"; text = "Latitude"; ObjectID = "D9B-0j-mWc"; */
+"D9B-0j-mWc.text" = "Широта";
+
+/* Class = "UILabel"; text = "RAIN"; ObjectID = "Dr6-7k-iIf"; */
+"Dr6-7k-iIf.text" = "Дождь";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "FxJ-aK-493"; */
+"FxJ-aK-493.text" = "Детали";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "H23-oT-Be8"; */
+"H23-oT-Be8.text" = "Label";
+
+/* Class = "UILabel"; text = "Message Label"; ObjectID = "ILP-5O-683"; */
+"ILP-5O-683.text" = "Message Label";
+
+/* Class = "UILabel"; text = "56°/ 87°"; ObjectID = "IMc-jd-oYY"; */
+"IMc-jd-oYY.text" = "56°/ 87°";
+
+/* Class = "UINavigationItem"; title = "Weather"; ObjectID = "Klb-az-0xB"; */
+"Klb-az-0xB.title" = "Погода";
+
+/* Class = "UILabel"; text = "Longitude"; ObjectID = "LLJ-LT-GEJ"; */
+"LLJ-LT-GEJ.text" = "Долгота";
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "Lq7-tG-yXX"; */
+"Lq7-tG-yXX.title" = "Title";
+
+/* Class = "UILabel"; text = "56°/ 87°"; ObjectID = "Nq9-r5-bTW"; */
+"Nq9-r5-bTW.text" = "56°/ 87°";
+
+/* Class = "UILabel"; text = "Category"; ObjectID = "PbR-Te-Hq1"; */
+"PbR-Te-Hq1.text" = "Категория";
+
+/* Class = "UITableViewSection"; headerTitle = "Description"; ObjectID = "Q4Q-0G-MMp"; */
+"Q4Q-0G-MMp.headerTitle" = "Описание";
+
+/* Class = "UILabel"; text = "No Category"; ObjectID = "RB9-Ue-Jm0"; */
+"RB9-Ue-Jm0.text" = "Без категории";
+
+/* Class = "UILabel"; text = "Mon"; ObjectID = "RBC-nc-gts"; */
+"RBC-nc-gts.text" = "Пон";
+
+/* Class = "UILabel"; text = "Purcellville, VA"; ObjectID = "Vce-0p-5QQ"; */
+"Vce-0p-5QQ.text" = "Purcellville, VA";
+
+/* Class = "UILabel"; text = "80"; ObjectID = "Voi-Oy-rKd"; */
+"Voi-Oy-rKd.text" = "80";
+
+/* Class = "UILabel"; text = "Longitude:"; ObjectID = "WLg-Wo-Hfk"; */
+"WLg-Wo-Hfk.text" = "Долгота:";
+
+/* Class = "UITextView"; text = "Apple HQ"; ObjectID = "X96-Fq-tRg"; */
+"X96-Fq-tRg.text" = "Apple HQ";
+
+/* Class = "UILabel"; text = "Address here"; ObjectID = "Y0t-Kg-IrQ"; */
+"Y0t-Kg-IrQ.text" = "Address here";
+
+/* Class = "UIButton"; normalTitle = "Tag location"; ObjectID = "YL1-U9-64i"; */
+"YL1-U9-64i.normalTitle" = "Запомнить локацию";
+
+/* Class = "UITabBarItem"; title = "Locations"; ObjectID = "Zf7-hB-7ys"; */
+"Zf7-hB-7ys.title" = "Локации";
+
+/* Class = "UILabel"; text = "56°/ 87°"; ObjectID = "a84-Th-dTO"; */
+"a84-Th-dTO.text" = "56°/ 87°";
+
+/* Class = "UILabel"; text = "56°/ 87°"; ObjectID = "aJ6-5p-wcu"; */
+"aJ6-5p-wcu.text" = "56°/ 87°";
+
+/* Class = "UITabBarItem"; title = "Tag"; ObjectID = "acW-dT-cKf"; */
+"acW-dT-cKf.title" = "Отметить";
+
+/* Class = "UILabel"; text = "Fri"; ObjectID = "dDy-ZM-nbC"; */
+"dDy-ZM-nbC.text" = "Пят";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "dPl-XY-C9G"; */
+"dPl-XY-C9G.text" = "00:00";
+
+/* Class = "UILabel"; text = "37.33233141"; ObjectID = "dRt-ud-Qtx"; */
+"dRt-ud-Qtx.text" = "37.33233141";
+
+/* Class = "UILabel"; text = "Longitude"; ObjectID = "f34-ii-21d"; */
+"f34-ii-21d.text" = "Долгота";
+
+/* Class = "UILabel"; text = "Latitude"; ObjectID = "fCs-tm-8Oq"; */
+"fCs-tm-8Oq.text" = "Широта";
+
+/* Class = "UILabel"; text = "HIGH"; ObjectID = "gVi-vb-bOR"; */
+"gVi-vb-bOR.text" = "MAX";
+
+/* Class = "UILabel"; text = "0.70"; ObjectID = "h6r-v5-Hia"; */
+"h6r-v5-Hia.text" = "0.70";
+
+/* Class = "UILabel"; text = "56°/ 87°"; ObjectID = "iZv-1k-4Id"; */
+"iZv-1k-4Id.text" = "56°/ 87°";
+
+/* Class = "UITabBarItem"; title = "Map"; ObjectID = "k69-wp-CT2"; */
+"k69-wp-CT2.title" = "Карта";
+
+/* Class = "UILabel"; text = "HUMIDITY"; ObjectID = "lwd-5K-Fie"; */
+"lwd-5K-Fie.text" = "Влажность";
+
+/* Class = "UINavigationItem"; title = "Menu"; ObjectID = "lxx-zC-lpN"; */
+"lxx-zC-lpN.title" = "Меню";
+
+/* Class = "UILabel"; text = "Add Photo"; ObjectID = "mXq-iv-otP"; */
+"mXq-iv-otP.text" = "Добавить фото";
+
+/* Class = "UILabel"; text = "Weather"; ObjectID = "mvQ-PC-6Hq"; */
+"mvQ-PC-6Hq.text" = "Погода";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "nHr-kZ-0iu"; */
+"nHr-kZ-0iu.text" = "Описание";
+
+/* Class = "UILabel"; text = "Latitude:"; ObjectID = "oZj-yM-Oqq"; */
+"oZj-yM-Oqq.text" = "Широта:";
+
+/* Class = "UINavigationItem"; title = "Tag Location"; ObjectID = "osG-wG-cDb"; */
+"osG-wG-cDb.title" = "Отметить локацию";
+
+/* Class = "UIButton"; normalTitle = "Get my location"; ObjectID = "pZ1-wh-4Qw"; */
+"pZ1-wh-4Qw.normalTitle" = "Узнать мое местопложение";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "pe6-bU-IU7"; */
+"pe6-bU-IU7.text" = "Адрес";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "q7B-74-2lE"; */
+"q7B-74-2lE.text" = "Title";
+
+/* Class = "UILabel"; text = "56°/ 87°"; ObjectID = "qQu-Cj-vOp"; */
+"qQu-Cj-vOp.text" = "56°/ 87°";
+
+/* Class = "UILabel"; text = "Weather"; ObjectID = "qW0-BV-jX0"; */
+"qW0-BV-jX0.text" = "Погода";
+
+/* Class = "UILabel"; text = "Wed"; ObjectID = "qaD-Ll-gvn"; */
+"qaD-Ll-gvn.text" = "Срд";
+
+/* Class = "UINavigationItem"; title = "Map"; ObjectID = "voo-SO-fRL"; */
+"voo-SO-fRL.title" = "Карта";
+
+/* Class = "UINavigationItem"; title = "Locations"; ObjectID = "xsU-DI-7C6"; */
+"xsU-DI-7C6.title" = "Локации";
+
+/* Class = "UILabel"; text = "Sat"; ObjectID = "yio-pe-5nc"; */
+"yio-pe-5nc.text" = "Сбт";
+
+/* Class = "UILabel"; text = "0.70"; ObjectID = "zvp-T6-CCc"; */
+"zvp-T6-CCc.text" = "0.70";

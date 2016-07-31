@@ -124,7 +124,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="sBj-Cj-069" secondAttribute="trailing" constant="-20" id="toA-jd-bQn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tag" image="Tag" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Tag" image="tab_tag" selectedImage="tab_tag_f" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="addressLabel" destination="Y0t-Kg-IrQ" id="040-F9-Ozf"/>
                         <outlet property="containerView" destination="sBj-Cj-069" id="KvI-vc-qbB"/>
@@ -229,7 +229,7 @@
         <scene sceneID="P2K-hc-5Ic">
             <objects>
                 <navigationController id="MHF-vq-UAd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Locations" image="Locations" id="Zf7-hB-7ys"/>
+                    <tabBarItem key="tabBarItem" title="Locations" image="tab_locations" selectedImage="tab_locations_f" id="Zf7-hB-7ys"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kQo-Ae-r8y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -712,7 +712,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="k69-wp-CT2"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="tab_map" selectedImage="tab_map_f" id="k69-wp-CT2"/>
                     <connections>
                         <outlet property="mapView" destination="MoS-7k-jFW" id="Mgi-6L-rAz"/>
                         <segue destination="TFA-Ab-ZrL" kind="presentation" identifier="EditLocation" id="5SZ-hl-jdr"/>
@@ -1510,10 +1510,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Locations" width="30" height="30"/>
-        <image name="Map" width="30" height="30"/>
         <image name="Pin" width="24" height="24"/>
-        <image name="Tag" width="30" height="30"/>
         <image name="User" width="24" height="24"/>
         <image name="clear-day" width="60" height="60"/>
         <image name="cloudy-night" width="73" height="42"/>
@@ -1522,6 +1519,12 @@
         <image name="humidity" width="41" height="46"/>
         <image name="rain" width="60" height="48"/>
         <image name="showWeather" width="31" height="34"/>
+        <image name="tab_locations" width="24" height="31"/>
+        <image name="tab_locations_f" width="24" height="31"/>
+        <image name="tab_map" width="30" height="31"/>
+        <image name="tab_map_f" width="30" height="31"/>
+        <image name="tab_tag" width="32" height="17"/>
+        <image name="tab_tag_f" width="32" height="17"/>
         <image name="umbrella" width="120" height="110"/>
         <image name="windbag" width="112" height="108"/>
     </resources>

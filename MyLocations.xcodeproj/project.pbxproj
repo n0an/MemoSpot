@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		15729B6F1D1715F400B5DE1A /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15729B6E1D1715F400B5DE1A /* UIImage+Resize.swift */; };
+		15B52F141D4D1CB000ACD249 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15B52F161D4D1CB000ACD249 /* Localizable.strings */; };
 		15FFB9FF1D1066A6006BA3B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */; };
 		15FFBA011D1066A6006BA3B7 /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FFBA001D1066A6006BA3B7 /* CurrentLocationViewController.swift */; };
 		15FFBA061D1066A6006BA3B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15FFBA041D1066A6006BA3B7 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 		1829E5201D3A650800A2DEED /* ANConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E51F1D3A650800A2DEED /* ANConfigurator.swift */; };
 		182A2BC91D4CBD4700209B05 /* LocationsWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A2BC81D4CBD4700209B05 /* LocationsWeatherViewController.swift */; };
 		182A2BCB1D4CBE7F00209B05 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182A2BCA1D4CBE7F00209B05 /* SideMenuViewController.swift */; };
+		182A2BCE1D4DF26200209B05 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182A2BD01D4DF26200209B05 /* InfoPlist.strings */; };
 		184E6A5A1D1B11E4003FC740 /* Sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 184E6A591D1B11E4003FC740 /* Sound.caf */; };
 		185850FC1D35553F0069ED14 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850FB1D35553F0069ED14 /* CurrentWeather.swift */; };
 		185850FE1D35554B0069ED14 /* WeeklyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185850FD1D35554B0069ED14 /* WeeklyWeather.swift */; };
@@ -45,6 +47,9 @@
 /* Begin PBXFileReference section */
 		13C807C1A2CF60CCEEBAEF6C /* Pods-MyLocations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyLocations.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyLocations/Pods-MyLocations.debug.xcconfig"; sourceTree = "<group>"; };
 		15729B6E1D1715F400B5DE1A /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		15B52F111D4D185A00ACD249 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		15B52F151D4D1CB000ACD249 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		15B52F171D4D1CB200ACD249 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		15FFB9FB1D1066A6006BA3B7 /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15FFBA001D1066A6006BA3B7 /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +69,8 @@
 		1829E51F1D3A650800A2DEED /* ANConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ANConfigurator.swift; sourceTree = "<group>"; };
 		182A2BC81D4CBD4700209B05 /* LocationsWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsWeatherViewController.swift; sourceTree = "<group>"; };
 		182A2BCA1D4CBE7F00209B05 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		182A2BCF1D4DF26200209B05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		182A2BD11D4DF26600209B05 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		184E6A591D1B11E4003FC740 /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
 		185850FB1D35553F0069ED14 /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		185850FD1D35554B0069ED14 /* WeeklyWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyWeather.swift; sourceTree = "<group>"; };
@@ -136,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */,
+				15B52F161D4D1CB000ACD249 /* Localizable.strings */,
 				1813A9DE1D3A8C2800C61A88 /* ANDataManager.swift */,
 				1829E51F1D3A650800A2DEED /* ANConfigurator.swift */,
 				1813A9E21D3AB04D00C61A88 /* API */,
@@ -147,6 +155,7 @@
 				15FFBA071D1066A6006BA3B7 /* Assets.xcassets */,
 				184E6A581D1B11E4003FC740 /* Sound */,
 				15FFBA0C1D1066A6006BA3B7 /* Info.plist */,
+				182A2BD01D4DF26200209B05 /* InfoPlist.strings */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -296,6 +305,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 15FFB9F21D1066A6006BA3B7;
 			productRefGroup = 15FFB9FC1D1066A6006BA3B7 /* Products */;
@@ -313,8 +323,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				15FFBA081D1066A6006BA3B7 /* Assets.xcassets in Resources */,
+				15B52F141D4D1CB000ACD249 /* Localizable.strings in Resources */,
 				184E6A5A1D1B11E4003FC740 /* Sound.caf in Resources */,
 				15FFBA061D1066A6006BA3B7 /* Main.storyboard in Resources */,
+				182A2BCE1D4DF26200209B05 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,12 +419,31 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		15B52F161D4D1CB000ACD249 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15B52F151D4D1CB000ACD249 /* en */,
+				15B52F171D4D1CB200ACD249 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		15FFBA041D1066A6006BA3B7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				15FFBA051D1066A6006BA3B7 /* Base */,
+				15B52F111D4D185A00ACD249 /* ru */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		182A2BD01D4DF26200209B05 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				182A2BCF1D4DF26200209B05 /* Base */,
+				182A2BD11D4DF26600209B05 /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -509,8 +540,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MyLocations/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.MyLocations;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.MemoSpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -524,8 +556,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MyLocations/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.MyLocations;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.MemoSpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

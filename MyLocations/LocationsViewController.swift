@@ -59,27 +59,6 @@ class LocationsViewController: UITableViewController {
         tableView.indicatorStyle = .White
         
         
-        // vvv FETCH USING MANUAL FETCHREQUEST vvvv
-        /*
-        let fetchRequest = NSFetchRequest()
-        
-        let entity = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
-        
-        fetchRequest.entity = entity
-        
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        do {
-            let foundObjects = try managedObjectContext.executeFetchRequest(fetchRequest)
-            
-            locations = foundObjects as! [Location]
-            
-        } catch {
-            fatalCoreDataError(error)
-        }
-        */
         
     }
     

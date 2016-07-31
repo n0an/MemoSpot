@@ -1,0 +1,92 @@
+/* 
+  Localizable.strings
+  MyLocations
+
+  Created by nag on 30.07.16.
+  Copyright © 2016 Anton Novoselov. All rights reserved.
+*/
+
+
+
+
+// LocationsWeatherViewController
+
+TEMPERATURE = "Temperature:";
+
+// CurrentLocationViewController
+
+LOCATION_SERVICES_DENIED_ALERT_TITLE = "Location Services Disabled";
+LOCATION_SERVICES_DENIED_ALERT_MESSAGE = "Please enable location services for this app in Settings.";
+
+
+
+ADDRESSLABEL_TEXT_SEARCHING = "Searching for Address...";
+ADDRESSLABEL_TEXT_ERROR1 = "Error Finding Address";
+ADDRESSLABEL_TEXT_ERROR2 = "No Address Found";
+
+MESAGGE_LABEL_TAPTO = "Tap 'Get My Location' to Start";
+
+STATUSMESSAGE_ERROR_GETTING = "Error Getting Location";
+STATUSMESSAGE_ERROR_DISABLED = "Location Services Disabled";
+STATUSMESSAGE_SEARCHING = "Searching...";
+
+
+BUTTON_STOP_SEARCH = "Stop";
+BUTTON_GET_LOCATION = "Get My Location";
+
+
+// LocationDetailViewController
+
+CATEGORY_NAME_NO = "No Category";
+
+TITLE_EDIT = "Edit Location";
+
+ADDRESSLABEL_NO_FOUND = "No Address Found";
+
+HUDVIEW_UPDATED = "Updated";
+HUDVIEW_TAGGED = "Tagged";
+
+
+CAMERA_ALERT_CANCEL_ACTION = "Cancel";
+CAMERA_ALERT_PHOTO_ACTION = "Take Photo";
+CAMERA_ALERT_LIBRARY_ACTION = "Choose From Library";
+
+
+
+// CategoryPickerViewController
+
+CATEGORY_NO = "No Category";
+CATEGORY_CITY = "City";
+CATEGORY_INTERESTING_PLACE = "Interesting Place";
+CATEGORY_ARCHITECTURE = "Architecture";
+CATEGORY_BUILDING = "Nice Building";
+CATEGORY_CHURCH = "Church";
+CATEGORY_LANDSCAPE = "Landscape";
+CATEGORY_PARK = "Park";
+CATEGORY_FOREST = "Forest";
+CATEGORY_MOUNTAIN = "Mountains";
+
+
+
+// LocationCell
+
+NO_DESCRIPTION = "(No Description)";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
