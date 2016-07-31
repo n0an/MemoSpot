@@ -7,3 +7,5 @@
 */
 
 CFBundleDisplayName = "MemoSpot";
+
+"NSLocationWhenInUseUsageDescription" = "This app lets you keep track of interesting places. It needs access to the GPS coordinates for your location.";
