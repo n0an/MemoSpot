@@ -7,6 +7,8 @@
 */
 
 
+
+
 // LocationsWeatherViewController
 
 TEMPERATURE = "Temperature:";
@@ -66,7 +68,9 @@ CATEGORY_MOUNTAIN = "Mountains";
 
 
 
+// LocationCell
 
+NO_DESCRIPTION = "(No Description)";
 
 
 
