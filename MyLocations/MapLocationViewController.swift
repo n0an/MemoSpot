@@ -24,7 +24,6 @@ class MapLocationViewController: UIViewController {
     @IBOutlet weak var weatherImageViewContainer: UIView!
     
     
-    
     // MARK: - FLAGS
     
     var isWeatherAvailable = true
@@ -153,9 +152,18 @@ class MapLocationViewController: UIViewController {
         sunriseTime = Int(dateFormatter.stringFromDate(sunriseDate))
         sunsetTime = Int(dateFormatter.stringFromDate(sunsetDate))
         
-        dayLightSpan = sunsetTime! - sunriseTime!
+        if let sunsetT = sunsetTime, sunriseT = sunriseTime {
+            
+            dayLightSpan = sunsetT - sunriseT
+            
+            deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
+            
+        } else {
+            
+            deltaAngel = 0
+
+        }
         
-        deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
         
         
     }
@@ -169,12 +177,29 @@ class MapLocationViewController: UIViewController {
         let sunriseComponents = altSunriseTime.componentsSeparatedByString(":")
         let sunsetComponents = altSunsetTime.componentsSeparatedByString(":")
         
-        sunriseTime = Int(sunriseComponents[0])! + weather.offset
-        sunsetTime = Int(sunsetComponents[0])! + weather.offset
         
-        dayLightSpan = sunsetTime! - sunriseTime!
+        if let comp1 = Int(sunriseComponents[0]), let comp2 = Int(sunsetComponents[0]) {
+            
+            sunriseTime = comp1 + weather.offset
+            sunsetTime = comp2 + weather.offset
+            
+            
+            if let sunsetT = sunsetTime, sunriseT = sunriseTime {
+                
+                dayLightSpan = sunsetT - sunriseT
+                
+                deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
+                
+            } else {
+                
+                deltaAngel = 0
+                
+            }
+        }
         
-        deltaAngel = CGFloat(M_PI) / CGFloat(dayLightSpan)
+        
+        
+        
         
     }
     
@@ -223,15 +248,19 @@ class MapLocationViewController: UIViewController {
             }
             
             
-            let currentAngle = CGFloat(selectedTime - sunriseTime!) * deltaAngel
+            if let sunriseT = sunriseTime {
+                
+                let currentAngle = CGFloat(selectedTime - sunriseT) * deltaAngel
+                
+                let doubleDayLightSpan = Double(dayLightSpan)
+                
+                let currentWidth = pow((Double(selectedTime - sunriseT) - doubleDayLightSpan/2), 2)*Double(877/pow(doubleDayLightSpan, 2)) + 30
+                
+                shadowView?.transform = CGAffineTransformMakeRotation(currentAngle)
+                
+                shadowView?.bounds.size.width = CGFloat(currentWidth)
+            }
             
-            let doubleDayLightSpan = Double(dayLightSpan)
-            
-            let currentWidth = pow((Double(selectedTime - sunriseTime!) - doubleDayLightSpan/2), 2)*Double(877/pow(doubleDayLightSpan, 2)) + 30
-            
-            shadowView?.transform = CGAffineTransformMakeRotation(currentAngle)
-            
-            shadowView?.bounds.size.width = CGFloat(currentWidth)
             
         } else {
             
@@ -270,9 +299,10 @@ class MapLocationViewController: UIViewController {
         
         let sharedSession = NSURLSession.sharedSession()
         
+        guard let pUrl = url else { return }
         
         
-        let dataTask = sharedSession.dataTaskWithURL(url!) { (data, response, error) in
+        let dataTask = sharedSession.dataTaskWithURL(pUrl) { (data, response, error) in
             
             if (error == nil) {
                 
@@ -357,20 +387,11 @@ class MapLocationViewController: UIViewController {
                 
                 self.isClearDay = currentWeather.isClearDay
                 
-//                print(weatherDictionary)
-                
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     
                     self.getSuriseSunsetAlternative()
                     
-//                    self.calculateTimeStamps()
-                    
-//                    self.weatherImageView.image = self.weather.dayZeroIcon
-                    
                     self.weatherImageView.image = self.currentWeather.icon
-                    
-                    
-
                     
                     if self.isShadowShowing {
                         self.refreshShadow()
@@ -429,11 +450,19 @@ class MapLocationViewController: UIViewController {
         
         let icon = tuple?.0
         
-        self.weatherImageView.image = icon!
+        if let pIcon = icon {
+            
+            self.weatherImageView.image = pIcon
+        }
         
-        let isClearSelectedDay = tuple!.1
         
-        isClearDay = isClearSelectedDay
+        let isClearSelectedDay = tuple?.1
+        
+        if let isClear = isClearSelectedDay {
+            
+            isClearDay = isClear
+        }
+        
         
         if self.isShadowShowing {
             self.refreshShadow()
@@ -629,7 +658,6 @@ extension MapLocationViewController: CalendarViewControllerDelegate {
             isWeatherAvailable = true
 
         }
-        
         
         weatherDate = date
         
