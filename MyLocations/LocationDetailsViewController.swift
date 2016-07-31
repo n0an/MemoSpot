@@ -44,7 +44,7 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var favoriteMapView: MKMapView!
 
     
-    // MARK: - ATTRIBUTES
+    // MARK: - PROPERTIES
     
     var weather: WeeklyWeather!
     
@@ -100,7 +100,7 @@ class LocationDetailsViewController: UITableViewController {
     let latitudeDelta = 0.005
     let longitudeDelta = 0.005
     
-
+    
     // MARK: - viewDidLoad
 
     override func viewDidLoad() {
@@ -137,6 +137,14 @@ class LocationDetailsViewController: UITableViewController {
                 }
             }
             
+            favoriteMapView.userInteractionEnabled = true
+            
+            let mapTapGesture = UITapGestureRecognizer(target: self, action: #selector(LocationDetailsViewController.mapViewTapped(_:)))
+            favoriteMapView.addGestureRecognizer(mapTapGesture)
+
+            
+        } else {
+            favoriteMapView.userInteractionEnabled = false
         }
         
         descriptionTextView.text = descriptionText
@@ -180,8 +188,6 @@ class LocationDetailsViewController: UITableViewController {
         
         favoriteMapView.setRegion(region, animated: false)
         
-        let mapTapGesture = UITapGestureRecognizer(target: self, action: #selector(LocationDetailsViewController.mapViewTapped(_:)))
-        favoriteMapView.addGestureRecognizer(mapTapGesture)
         
         
         
@@ -394,7 +400,6 @@ class LocationDetailsViewController: UITableViewController {
     
     
     
-    
     // MARK: - UITableViewDelegate
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -459,7 +464,18 @@ class LocationDetailsViewController: UITableViewController {
     }
     
     
+    
+    
     override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        
+        if locationToEdit == nil {
+            
+            if (indexPath.section == 2 && indexPath.row == 0) || (indexPath.section == 2 && indexPath.row == 1) {
+                return nil
+            }
+            
+            
+        }
         
         if indexPath.section == 0 || indexPath.section == 1 || indexPath.section == 2 {
             
@@ -484,11 +500,20 @@ class LocationDetailsViewController: UITableViewController {
             pickPhoto()
             
         } else if indexPath.section == 2 && indexPath.row == 0 {
-            performSegueWithIdentifier("ShowLocation", sender: nil)
+            
+            if locationToEdit != nil {
+                performSegueWithIdentifier("ShowLocation", sender: nil)
+            }
+            
+            
             
         } else if indexPath.section == 2 && indexPath.row == 1 {
 
-            performSegueWithIdentifier("ShowWeather", sender: nil)
+            if locationToEdit != nil {
+                performSegueWithIdentifier("ShowWeather", sender: nil)
+
+            }
+            
         }
         
     }
