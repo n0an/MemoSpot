@@ -56,7 +56,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     lazy var logoButton: UIButton = {
         
         let button = UIButton(type: .Custom)
-        button.setBackgroundImage(UIImage(named: "Logo"), forState: .Normal)
+        button.setBackgroundImage(UIImage(named: "Logo5"), forState: .Normal)
         button.sizeToFit()
         
         button.addTarget(self, action: #selector(CurrentLocationViewController.getLocation), forControlEvents: .TouchUpInside)
