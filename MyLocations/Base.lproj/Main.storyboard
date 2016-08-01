@@ -242,7 +242,7 @@
             </objects>
             <point key="canvasLocation" x="766" y="0.0"/>
         </scene>
-        <!--Title-->
+        <!--Shadow Simulator-->
         <scene sceneID="yHr-Jo-tYW">
             <objects>
                 <viewController id="yU8-rV-ZLd" customClass="MapLocationViewController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
@@ -333,7 +333,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Lq7-tG-yXX">
+                    <navigationItem key="navigationItem" title="Shadow Simulator" id="Lq7-tG-yXX">
                         <barButtonItem key="rightBarButtonItem" title="Weather" id="5lA-iQ-Rz7">
                             <connections>
                                 <action selector="showShadows:" destination="yU8-rV-ZLd" id="uW4-Ly-kTk"/>
