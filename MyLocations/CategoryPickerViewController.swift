@@ -15,17 +15,18 @@ class CategoryPickerViewController: UITableViewController {
     
     var selectedCategoryName = ""
     
-    let categories = [ "No Category",
-                       "Apple Store",
-                       "Bar",
-                       "Bookstore",
-                       "Club",
-                       "Grocery Store",
-                       "Historic Building",
-                       "House",
-                       "Icecream Vendor",
-                       "Landmark",
-                       "Park"]
+    let categories = [ NSLocalizedString("CATEGORY_NO", comment: ""),
+                       NSLocalizedString("CATEGORY_CITY", comment: ""),
+                       NSLocalizedString("CATEGORY_INTERESTING_PLACE", comment: ""),
+                       NSLocalizedString("CATEGORY_ARCHITECTURE", comment: ""),
+                       NSLocalizedString("CATEGORY_INDUSTRIAL", comment: ""),
+                       NSLocalizedString("CATEGORY_BUILDING", comment: ""),
+                       NSLocalizedString("CATEGORY_CHURCH", comment: ""),
+                       NSLocalizedString("CATEGORY_LANDSCAPE", comment: ""),
+                       NSLocalizedString("CATEGORY_PARK", comment: ""),
+                       NSLocalizedString("CATEGORY_FOREST", comment: ""),
+                       NSLocalizedString("CATEGORY_MOUNTAIN", comment: ""),
+                       ]
     
     var selectedIndexPath = NSIndexPath()
     

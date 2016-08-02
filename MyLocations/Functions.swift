@@ -13,13 +13,11 @@ let applicationDocumentsDirectory: String = {
     
     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
-    
-    print("paths = \(paths)")
-    
     return paths[0]
     
     
 }()
+
 
 
 func afterDelay(seconds: Double, closure: ()->()) {

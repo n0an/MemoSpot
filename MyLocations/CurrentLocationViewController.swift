@@ -56,7 +56,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     lazy var logoButton: UIButton = {
         
         let button = UIButton(type: .Custom)
-        button.setBackgroundImage(UIImage(named: "Logo"), forState: .Normal)
+        button.setBackgroundImage(UIImage(named: "Logo5"), forState: .Normal)
         button.sizeToFit()
         
         button.addTarget(self, action: #selector(CurrentLocationViewController.getLocation), forControlEvents: .TouchUpInside)
@@ -84,13 +84,26 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         loadSoundEffect("Sound.caf")
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let name = "MemoSpot~\(title)"
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: name)
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
+    }
+    
     
     
     // MARK: - HELPER METHODS
     
     func showLocationServicesDeniedAlert() {
         
-        let alert = UIAlertController(title: "Location Services Disabled", message: "Please enable location services for this app in Settings.", preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("LOCATION_SERVICES_DENIED_ALERT_TITLE", comment: ""), message: NSLocalizedString("", comment: "LOCATION_SERVICES_DENIED_ALERT_MESSAGE"), preferredStyle: .Alert)
         
         let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         
@@ -115,11 +128,11 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             if let placemark = placemark {
                 addressLabel.text = stringFromPlacemark(placemark)
             } else if performingReverseGeocoding {
-                addressLabel.text = "Searching for Address..."
+                addressLabel.text = NSLocalizedString("ADDRESSLABEL_TEXT_SEARCHING", comment: "")
             } else if lastGeocodingError != nil {
-                addressLabel.text = "Error Finding Address"
+                addressLabel.text = NSLocalizedString("ADDRESSLABEL_TEXT_ERROR1", comment: "")
             } else {
-                addressLabel.text = "No Address Found"
+                addressLabel.text = NSLocalizedString("ADDRESSLABEL_TEXT_ERROR2", comment: "")
             }
             
         } else {
@@ -131,21 +144,21 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             longitudeLabel.text = ""
             addressLabel.text = ""
             tagButton.hidden = true
-            messageLabel.text = "Tap 'Get My Location' to Start"
+            messageLabel.text = NSLocalizedString("MESAGGE_LABEL_TAPTO", comment: "")
             
             
             let statusMessage: String
             if let error = lastLocationError {
                 if error.domain == kCLErrorDomain && error.code == CLError.Denied.rawValue {
-                    statusMessage = "Location Services Disabled"
+                    statusMessage = NSLocalizedString("STATUSMESSAGE_ERROR_DISABLED", comment: "")
                 } else {
-                    statusMessage = "Error Getting Location"
+                    statusMessage = NSLocalizedString("STATUSMESSAGE_ERROR_GETTING", comment: "")
                 }
                 
             } else if !CLLocationManager.locationServicesEnabled() {
-                statusMessage = "Location Services Disabled"
+                statusMessage = NSLocalizedString("STATUSMESSAGE_ERROR_DISABLED", comment: "")
             } else if updatingLocation {
-                statusMessage = "Searching..."
+                statusMessage = NSLocalizedString("STATUSMESSAGE_SEARCHING", comment: "")
             } else {
                 statusMessage = ""
                 
@@ -190,7 +203,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         let spinnerTag = 1000
         
         if updatingLocation {
-            getButton.setTitle("Stop", forState: .Normal)
+            getButton.setTitle(NSLocalizedString("BUTTON_STOP_SEARCH", comment: ""), forState: .Normal)
             
             if view.viewWithTag(spinnerTag) == nil {
                 let spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
@@ -205,7 +218,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             }
             
         } else {
-            getButton.setTitle("Get My Location", forState: .Normal)
+            getButton.setTitle(NSLocalizedString("BUTTON_GET_LOCATION", comment: ""), forState: .Normal)
             
             if let spinner = view.viewWithTag(spinnerTag) {
                 spinner.removeFromSuperview()
@@ -236,7 +249,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
 
     
     func didTimeOut() {
-        print("*** Time out")
         
         if location == nil {
             stopLocationManager()
@@ -383,7 +395,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     // MARK: - CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("didFailWithError \(error)")
         
         if error.code == CLError.LocationUnknown.rawValue {
             return
@@ -404,7 +415,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         
         let newLocation = locations.last!
         
-//        print("didUpdateLocations \(newLocation)")
         
         
         if newLocation.timestamp.timeIntervalSinceNow < -5 { // Caching location
@@ -428,7 +438,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             updateLabels()
             
             if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
-                print("*** We're done!")
                 
                 stopLocationManager()
                 configureGetButton()
@@ -440,13 +449,11 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             if !performingReverseGeocoding {
                 
-                print("*** Going to geocode")
                 
                 performingReverseGeocoding = true
                 
                 geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (placemarks, error) in
                     
-//                    print("*** Found placemarks: \(placemarks), error: \(error)")
                     
                     self.lastLocationError = error
                     
@@ -454,12 +461,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                         
                         if self.placemark == nil {
                             
-                            print("FIRST TIME!")
                             self.playSoundEffect()
                             
                         }
                         
-                        // ** FAKE CRASH HERE BY COMMENTING LINE
                         self.placemark = p.last!
                         
                     } else {
@@ -480,7 +485,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             if timeInterval > 10 {
                 
-                print("*** Force done!")
                 
                 stopLocationManager()
                 
@@ -497,10 +501,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     }
     
     
-    
-    
-    // MARK: !!!IMPORTANT!!!
-    // MARK: - Sound Effect
+  
     func loadSoundEffect(name: String) {
         
         if let path = NSBundle.mainBundle().pathForResource(name, ofType: nil) {
@@ -510,7 +511,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             let error = AudioServicesCreateSystemSoundID(fileURL, &soundID)
             
             if error != kAudioServicesNoError {
-                print("Error code \(error) loading sound at path: \(path)")
             }
         }
     }

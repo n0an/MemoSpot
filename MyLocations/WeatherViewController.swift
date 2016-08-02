@@ -92,7 +92,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userTemperatureCelsius = true
+        userTemperatureCelsius = false
 
         swipeRec.addTarget(self, action: #selector(WeatherViewController.swipedView))
         swipeRec.direction = UISwipeGestureRecognizerDirection.Down
@@ -105,6 +105,22 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         userLocationLabel.text = "\(addressLine)"
 
 
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        
+        let name = "MemoSpot~\(title)"
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: name)
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
     }
 
     
@@ -134,7 +150,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - WEATHER METHODS
     
-    func getCurrentWeatherData() -> Void {
+    func getCurrentWeatherData() {
         
         userLatitude = locationToEdit.coordinate.latitude
         userLongitude = locationToEdit.coordinate.longitude
@@ -142,25 +158,28 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         userLocation = "\(userLatitude),\(userLongitude)"
         
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
-        let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
+        
+        let suffixStr = NSLocalizedString("SUFFIX_URL_STRING", comment: "")
+        
+        let forecastURL = NSURL(string: "\(userLocation)\(suffixStr)", relativeToURL:baseURL)
         
         
         let sharedSession = NSURLSession.sharedSession()
         
-        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
-            
+        
+        
+        let dataTask = sharedSession.dataTaskWithURL(forecastURL!) { (data, response, error) in
             
             if (error == nil) {
                 
-                let dataObject = NSData(contentsOfURL: location!)
+                let dataObject = data
+                
                 let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
                 
                 let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
-                
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    
+                dispatch_async(dispatch_get_main_queue(), {
                     
                     if self.userTemperatureCelsius == true {
                         self.temperatureLabel.text = "\(Fahrenheit2Celsius(currentWeather.temperature))"
@@ -169,7 +188,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     }
                     
                     self.iconView.image = currentWeather.icon
-                    //self.currentTimeLabel.text = "\(currentWeather.currentTime!)"
+                    
                     self.humidityLabel.text = "\(currentWeather.humidity)"
                     self.precipitationLabel.text = "\(currentWeather.precipProbability)"
                     self.summaryLabel.text = "\(currentWeather.summary)"
@@ -202,7 +221,15 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     
                     //HEAT INDEX
                     
-                    if currentWeather.temperature < 60 {
+                    var tempThreshold = 60
+
+                    if NSLocalizedString("SUFFIX_URL_STRING", comment: "") == "?lang=en&units=us" {
+                        tempThreshold = 60
+                    } else {
+                        tempThreshold = 15
+                    }
+                    
+                    if currentWeather.temperature < tempThreshold {
                         self.heatIndex.image = UIImage(named: "heatindexWinter")
                         self.dayZeroTemperatureLow.textColor = UIColor(red: 0/255.0, green: 121/255.0, blue: 255/255.0, alpha: 1.0)
                         self.dayZeroTemperatureHigh.textColor = UIColor(red: 245/255.0, green: 6/255.0, blue: 93/255.0, alpha: 1.0)
@@ -260,17 +287,24 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
                     
                     //Weather Alerts
                     self.wAlerts.text = ""
+
                     
                 })
+                
                 
             } else {
                 
                 
             }
             
-        })
+            
+        }
         
-        downloadTask.resume()
+        dataTask.resume()
+        
+        
+        
+        
         
         
     }

@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  MyLocations
+
+  Created by Anton Novoselov on 31/07/16.
+  Copyright © 2016 Anton Novoselov. All rights reserved.
+*/
+
+CFBundleDisplayName = "MemoSpot";
+
+"NSLocationWhenInUseUsageDescription" = "Это приложение поможет вам запомнить места, понравившиеся Вам. Приложению необходим доступ к GPS координатам, для определния Вашего местоположения.";

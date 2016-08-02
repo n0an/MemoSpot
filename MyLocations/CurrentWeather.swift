@@ -18,6 +18,7 @@ struct CurrentWeather {
     var precipProbability: Double
     var summary: String
     var icon: UIImage
+    var altIcon: UIImage
     var windSpeed: Double
     
     var isClearDay = false
@@ -40,6 +41,7 @@ struct CurrentWeather {
         let iconString = currentWeather["icon"]as! String
         
         icon = weatherIconFromString(iconString)
+        altIcon = altWeatherIconFromString(iconString)
         
         isClearDay = isItClearDay(iconString)
         
@@ -66,11 +68,32 @@ func dateStringFromUnixtime(unixTime: Int) -> String {
 
 //Images
 
+
 func weatherIconFromString(stringIcon: String) -> UIImage {
+    
+    let imageName = processString(stringIcon)
+    
+    let iconImage = UIImage(named: imageName)
+    return iconImage!
+    
+}
+
+func altWeatherIconFromString(stringIcon: String) -> UIImage {
+    
+    let imageName = processString(stringIcon) + "-alt"
+    
+    let iconImage = UIImage(named: imageName)
+    
+    return iconImage!
+    
+    
+}
+
+func processString(inputStr: String) -> String {
     
     var imageName: String
     
-    switch stringIcon {
+    switch inputStr {
     case "clear-day":
         imageName = "clear-day"
         
@@ -105,9 +128,8 @@ func weatherIconFromString(stringIcon: String) -> UIImage {
         imageName = "default"
     }
     
-    let iconImage = UIImage(named: imageName)
-    return iconImage!
-    
+    return imageName
+
 }
 
 

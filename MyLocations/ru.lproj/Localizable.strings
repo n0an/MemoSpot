@@ -1,0 +1,82 @@
+/* 
+  Localizable.strings
+  MyLocations
+
+  Created by nag on 30.07.16.
+  Copyright © 2016 Anton Novoselov. All rights reserved.
+*/
+
+
+// LocationsWeatherViewController
+
+TEMPERATURE = "Температура:";
+
+// CurrentLocationViewController
+
+LOCATION_SERVICES_DENIED_ALERT_TITLE = "Сервис определения местоположения отключен";
+LOCATION_SERVICES_DENIED_ALERT_MESSAGE = "Пожалуйста, включите сервис определения местоположения в Настройках.";
+
+
+
+ADDRESSLABEL_TEXT_SEARCHING = "Определяем адрес...";
+ADDRESSLABEL_TEXT_ERROR1 = "Не удалось определить адрес";
+ADDRESSLABEL_TEXT_ERROR2 = "Адрес не найден";
+
+MESAGGE_LABEL_TAPTO = "Нажмите 'Где Я?' чтобы начать";
+
+STATUSMESSAGE_ERROR_GETTING = "Ошибка определения местопложения";
+STATUSMESSAGE_ERROR_DISABLED = "Сервис определения местопложения отключен";
+STATUSMESSAGE_SEARCHING = "Поиск...";
+
+
+BUTTON_STOP_SEARCH = "Остановить";
+BUTTON_GET_LOCATION = "Где Я?";
+
+
+// LocationDetailViewController
+
+CATEGORY_NAME_NO = "Без Категории";
+
+TITLE_EDIT = "Редактировать Локацию";
+
+ADDRESSLABEL_NO_FOUND = "Адрес не найден";
+
+HUDVIEW_UPDATED = "Обновлено";
+HUDVIEW_TAGGED = "Добавлено";
+
+
+CAMERA_ALERT_CANCEL_ACTION = "Отмена";
+CAMERA_ALERT_PHOTO_ACTION = "Сделать снимок";
+CAMERA_ALERT_LIBRARY_ACTION = "Выбрать из фото библиотеки";
+
+
+
+// CategoryPickerViewController
+
+CATEGORY_NO = "Без Категории";
+CATEGORY_CITY = "Город";
+CATEGORY_INTERESTING_PLACE = "Интересное место";
+CATEGORY_ARCHITECTURE = "Архитектура";
+CATEGORY_INDUSTRIAL = "Индастриал";
+CATEGORY_BUILDING = "Красивое здание";
+CATEGORY_CHURCH = "Храм";
+CATEGORY_LANDSCAPE = "Ландшафт";
+CATEGORY_PARK = "Парк";
+CATEGORY_FOREST = "Лес";
+CATEGORY_MOUNTAIN = "Горы";
+
+
+
+// LocationCell
+
+NO_DESCRIPTION = "(Нет описания)";
+
+
+
+
+// Weather
+
+SUFFIX_URL_STRING = "?lang=ru&units=si";
+
+
+

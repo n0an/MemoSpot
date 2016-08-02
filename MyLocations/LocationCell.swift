@@ -16,6 +16,8 @@ class LocationCell: UITableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var weatherImageView: UIImageView!
+
     
     
     // MARK: - HELPER METHODS
@@ -24,7 +26,7 @@ class LocationCell: UITableViewCell {
         
         if location.locationDescription.isEmpty {
             
-            descriptionLabel.text = "(No Description)"
+            descriptionLabel.text = NSLocalizedString("NO_DESCRIPTION", comment: "")
             
         } else {
             
@@ -60,8 +62,6 @@ class LocationCell: UITableViewCell {
         
         if location.hasPhoto, let image = location.photoImage {
             
-//            return image
-            
             let processedImage = image.resizedImageWithBounds(CGSize(width: 52, height: 52))
             
             return processedImage
@@ -78,16 +78,14 @@ class LocationCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // !!!IMPORTANT!!!
-        // CUSTOMIZE CELL COLORS
+     
         backgroundColor = UIColor.blackColor()
         descriptionLabel.textColor = UIColor.whiteColor()
         descriptionLabel.highlightedTextColor = descriptionLabel.textColor
         addressLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
         addressLabel.highlightedTextColor = addressLabel.textColor
         
-        // !!!IMPORTANT!!!
-        // CUSTOMIZE TABLEVIEW CELL SELECTION COLOR
+     
         let selectionView = UIView(frame: CGRect.zero)
         selectionView.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
         selectedBackgroundView = selectionView
@@ -104,7 +102,7 @@ class LocationCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+        
     }
     
 }

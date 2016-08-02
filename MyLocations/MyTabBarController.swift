@@ -11,8 +11,6 @@
 import UIKit
 
 
-// !!!IMPORTANT!!!
-// MAKING STATUS BAR WHITE IN ALL VIEW CONTROLLERS OF PROJECT
 class MyTabBarController: UITabBarController {
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

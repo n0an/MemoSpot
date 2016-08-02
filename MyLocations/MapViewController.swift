@@ -21,9 +21,6 @@ class MapViewController: UIViewController {
 
     var managedObjectContext: NSManagedObjectContext! {
         
-        // !!!IMPORTANT!!!
-        // Listening for Notification - changing in CoreData
-        
         didSet {
             
             NSNotificationCenter.defaultCenter().addObserverForName(
@@ -31,14 +28,11 @@ class MapViewController: UIViewController {
                 object: managedObjectContext,
                 queue: NSOperationQueue.mainQueue()) { notification in
                     
-                    // TODO: make the reloading of the locations more efficient by not re-fetching the entire list of Location objects, but by only inserting or deleting those that have changed
-                    if let dictionary = notification.userInfo {
-                        print(dictionary["inserted"])
-                        print(dictionary["deleted"])
-                        print(dictionary["updated"])
+                    if notification.userInfo != nil {
+                        
                     }
                     
-                    if self.isViewLoaded() { // CHECKING IF VIEW LOADED TO AVOID CRASH WHEN RECEIVE NOTIFICATION
+                    if self.isViewLoaded() {
                         self.updateLocations()
                     }
                     
@@ -61,6 +55,10 @@ class MapViewController: UIViewController {
             showLocations()
         }
 
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: - HELPER METHODS
@@ -116,7 +114,7 @@ class MapViewController: UIViewController {
                 latitude: topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) / 2,
                 longitude: topLeftCoord.longitude - (topLeftCoord.longitude - bottomRightCoord.longitude) / 2)
             
-            let extraSpace = 1.5
+            let extraSpace = 1.1
             
             let span = MKCoordinateSpan(
                 latitudeDelta: abs(topLeftCoord.latitude - bottomRightCoord.latitude) * extraSpace,
@@ -127,13 +125,6 @@ class MapViewController: UIViewController {
         }
         
         return mapView.regionThatFits(region)
-        
-    }
-    
-    
-    func showLocationDetails(sender: UIButton) {
-        
-        performSegueWithIdentifier("EditLocation", sender: sender)
         
     }
     
@@ -154,6 +145,12 @@ class MapViewController: UIViewController {
         let region = regionForAnnotations(locations)
         
         mapView.setRegion(region, animated: true)
+        
+    }
+    
+    func showLocationDetails(sender: UIButton) {
+        
+        performSegueWithIdentifier("EditLocation", sender: sender)
         
     }
     
@@ -198,13 +195,17 @@ extension MapViewController: MKMapViewDelegate {
         
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as! MKPinAnnotationView!
         
-        if annotationView == nil { // Create annotationView, if there's no annotationView already
+        if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             
             annotationView.enabled = true
             annotationView.canShowCallout = true
             annotationView.animatesDrop = false
-            annotationView.pinTintColor = UIColor(red: 0.32, green: 0.82, blue: 0.4, alpha: 1)
+            if #available(iOS 9.0, *) {
+                annotationView.pinTintColor = UIColor(red: 0.32, green: 0.82, blue: 0.4, alpha: 1)
+            } else {
+                
+            }
             
             annotationView.tintColor = UIColor(white: 0.0, alpha: 0.5)
             
@@ -214,7 +215,7 @@ extension MapViewController: MKMapViewDelegate {
             
             annotationView.rightCalloutAccessoryView = rightButton
             
-        } else { // Reuse annotationView
+        } else {
             
             annotationView.annotation = annotation
             
@@ -235,8 +236,6 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 
-// !!!IMPORTANT!!!
-// SOLVING HIDDEN STATUS BAR ISSUE
 
 extension MapViewController: UINavigationBarDelegate {
     

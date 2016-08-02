@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="tI4-Ei-RBy">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--Tag-->
+        <scene sceneID="QIj-na-4fH">
+            <objects>
+                <viewController id="tI4-Ei-RBy" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9O2-z0-v6N"/>
+                        <viewControllerLayoutGuide type="bottom" id="WFt-0M-rCU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Wbi-ge-eT8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n2B-qq-tOi">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem image="tab_tag" id="uUQ-jJ-lEJ"/>
+                                    <tabBarItem image="tab_locations" id="Uwd-nI-rdA"/>
+                                    <tabBarItem image="tab_map" id="cLt-RZ-pcQ"/>
+                                </items>
+                                <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </tabBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo5" translatesAutoresizingMaskIntoConstraints="NO" id="42J-n6-1xy">
+                                <rect key="frame" x="198" y="118" width="204" height="204"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="n2B-qq-tOi" firstAttribute="leading" secondItem="Wbi-ge-eT8" secondAttribute="leading" id="9Gh-lL-ymE"/>
+                            <constraint firstItem="42J-n6-1xy" firstAttribute="top" secondItem="9O2-z0-v6N" secondAttribute="bottom" constant="98" id="Hr9-4i-zXM"/>
+                            <constraint firstAttribute="trailing" secondItem="n2B-qq-tOi" secondAttribute="trailing" id="Sya-Lc-oTg"/>
+                            <constraint firstItem="WFt-0M-rCU" firstAttribute="top" secondItem="n2B-qq-tOi" secondAttribute="bottom" id="gl6-Gn-SLj"/>
+                            <constraint firstItem="42J-n6-1xy" firstAttribute="centerX" secondItem="Wbi-ge-eT8" secondAttribute="centerX" id="z6g-FZ-K7V"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Tag" image="tab_tag" selectedImage="tab_tag_f" id="o6B-wr-sPu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cN6-Zm-3fO" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="490" y="-408"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Logo5" width="204" height="204"/>
+        <image name="tab_locations" width="24" height="31"/>
+        <image name="tab_map" width="30" height="31"/>
+        <image name="tab_tag" width="32" height="17"/>
+        <image name="tab_tag_f" width="32" height="17"/>
+    </resources>
+    <color key="tintColor" red="1" green="0.93333333330000001" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+</document>
