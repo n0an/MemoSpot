@@ -21,9 +21,6 @@ class MapViewController: UIViewController {
 
     var managedObjectContext: NSManagedObjectContext! {
         
-        // !!!IMPORTANT!!!
-        // Listening for Notification - changing in CoreData
-        
         didSet {
             
             NSNotificationCenter.defaultCenter().addObserverForName(
@@ -31,14 +28,11 @@ class MapViewController: UIViewController {
                 object: managedObjectContext,
                 queue: NSOperationQueue.mainQueue()) { notification in
                     
-                    // TODO: make the reloading of the locations more efficient by not re-fetching the entire list of Location objects, but by only inserting or deleting those that have changed
-                    if let dictionary = notification.userInfo {
-                        print(dictionary["inserted"])
-                        print(dictionary["deleted"])
-                        print(dictionary["updated"])
+                    if notification.userInfo != nil {
+                        
                     }
                     
-                    if self.isViewLoaded() { // CHECKING IF VIEW LOADED TO AVOID CRASH WHEN RECEIVE NOTIFICATION
+                    if self.isViewLoaded() {
                         self.updateLocations()
                     }
                     
@@ -201,7 +195,7 @@ extension MapViewController: MKMapViewDelegate {
         
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as! MKPinAnnotationView!
         
-        if annotationView == nil { // Create annotationView, if there's no annotationView already
+        if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             
             annotationView.enabled = true
@@ -210,7 +204,7 @@ extension MapViewController: MKMapViewDelegate {
             if #available(iOS 9.0, *) {
                 annotationView.pinTintColor = UIColor(red: 0.32, green: 0.82, blue: 0.4, alpha: 1)
             } else {
-                // Fallback on earlier versions
+                
             }
             
             annotationView.tintColor = UIColor(white: 0.0, alpha: 0.5)
@@ -221,7 +215,7 @@ extension MapViewController: MKMapViewDelegate {
             
             annotationView.rightCalloutAccessoryView = rightButton
             
-        } else { // Reuse annotationView
+        } else {
             
             annotationView.annotation = annotation
             
@@ -242,8 +236,6 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 
-// !!!IMPORTANT!!!
-// SOLVING HIDDEN STATUS BAR ISSUE
 
 extension MapViewController: UINavigationBarDelegate {
     

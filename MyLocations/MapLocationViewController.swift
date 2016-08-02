@@ -354,7 +354,6 @@ class MapLocationViewController: UIViewController {
         
         let userLocation = "\(locationToEdit.coordinate.latitude),\(locationToEdit.coordinate.longitude)"
         
-        print(userLocation)
         
         let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
         let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
@@ -427,7 +426,6 @@ class MapLocationViewController: UIViewController {
         var minTime = 0
         
         for time in times {
-            print("time = \(time)")
             
             let sunriseTimeInSeconds = NSTimeInterval(time)
             
@@ -442,9 +440,6 @@ class MapLocationViewController: UIViewController {
             }
         
         }
-        print("min = \(min)")
-
-        print("minTime = \(minTime)")
 
         let tuple = iconsDict[minTime]
         
@@ -594,7 +589,7 @@ extension MapLocationViewController: MKMapViewDelegate {
         
         var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as! MKPinAnnotationView!
         
-        if annotationView == nil { // Create annotationView, if there's no annotationView already
+        if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             
             annotationView.enabled = true
@@ -603,7 +598,7 @@ extension MapLocationViewController: MKMapViewDelegate {
             if #available(iOS 9.0, *) {
                 annotationView.pinTintColor = UIColor(red: 0.32, green: 0.82, blue: 0.4, alpha: 1)
             } else {
-                // Fallback on earlier versions
+                
             }
             
             annotationView.tintColor = UIColor(white: 0.0, alpha: 0.5)
@@ -614,7 +609,7 @@ extension MapLocationViewController: MKMapViewDelegate {
             
             annotationView.rightCalloutAccessoryView = rightButton
             
-        } else { // Reuse annotationView
+        } else { 
             
             annotationView.annotation = annotation
             
@@ -642,10 +637,8 @@ extension MapLocationViewController: CalendarViewControllerDelegate {
         
         diffComponents = calend.components([.Day], fromDate: NSDate(), toDate: date, options: [])
         
-        print("diffComponents.day = \(diffComponents.day)")
         
         if 0 > diffComponents.day || diffComponents.day > 5 {
-            print("USING SUNRISE-SUNSET API")
             
             isWeatherAvailable = false
             isClearDay = true
@@ -653,7 +646,6 @@ extension MapLocationViewController: CalendarViewControllerDelegate {
             
             
         } else {
-            print("USING FORECAST.IO API")
             
             isWeatherAvailable = true
 

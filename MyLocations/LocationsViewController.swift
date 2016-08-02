@@ -62,6 +62,21 @@ class LocationsViewController: UITableViewController {
         
     }
     
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let name = "MemoSpot~\(title)"
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: name)
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
+    }
+    
+    
     deinit {
         fetchedResultsController.delegate = nil
     }
@@ -91,12 +106,9 @@ class LocationsViewController: UITableViewController {
             
             controller.managedObjectContext = managedObjectContext
             
-            // !!!IMPORTANT!!!
-            // SEGUE SENDER - INDEXPATH
             
             if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
                 
-//                let location = locations[indexPath.row]
                 let location = fetchedResultsController.objectAtIndexPath(indexPath) as! Location
 
                 controller.locationToEdit = location
@@ -140,8 +152,6 @@ class LocationsViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("LocationCell", forIndexPath: indexPath) as! LocationCell
         
-//        let location = locations[indexPath.row]
-        
         let location = fetchedResultsController.objectAtIndexPath(indexPath) as! Location
         
         cell.configureForLocation(location)
@@ -153,8 +163,6 @@ class LocationsViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    // !!!IMPORTANT!!!
-    // ADVANCED viewForHeaderInSection
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let labelRect = CGRect(x: 15, y: tableView.sectionHeaderHeight - 14, width: 300, height: 14)
@@ -163,7 +171,6 @@ class LocationsViewController: UITableViewController {
         
         label.font = UIFont.boldSystemFontOfSize(11)
         
-//        label.text = tableView.dataSource!.tableView!(tableView, titleForHeaderInSection: section)
         label.text = self.tableView(tableView, titleForHeaderInSection: section)
         
         label.textColor = UIColor(white: 1.0, alpha: 0.4)
@@ -221,7 +228,7 @@ extension LocationsViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         
-        print("*** controllerWillChangeContent")
+        
         
         tableView.beginUpdates()
     }
@@ -230,15 +237,15 @@ extension LocationsViewController: NSFetchedResultsControllerDelegate {
         
         switch type {
         case .Insert:
-            print("*** NSFetchedResultsChangeInsert (object)")
+            
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
             
         case .Delete:
-            print("*** NSFetchedResultsChangeDelete (object)")
+            
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation:.Fade)
             
         case .Update:
-            print("*** NSFetchedResultsChangeUpdate (object)")
+            
             if let cell = tableView.cellForRowAtIndexPath(indexPath!) as? LocationCell {
                 
                 let location = controller.objectAtIndexPath(indexPath!) as! Location
@@ -246,7 +253,7 @@ extension LocationsViewController: NSFetchedResultsControllerDelegate {
             }
             
         case .Move:
-            print("*** NSFetchedResultsChangeMove (object)")
+            
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
@@ -260,25 +267,25 @@ extension LocationsViewController: NSFetchedResultsControllerDelegate {
         switch type {
             
         case .Insert:
-            print("*** NSFetchedResultsChangeInsert (section)")
+            
             tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
             
         case .Delete:
-            print("*** NSFetchedResultsChangeDelete (section)")
+            
             tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
             
-        case .Update:
-            print("*** NSFetchedResultsChangeUpdate (section)")
+        case .Update: break
             
-        case .Move:
-            print("*** NSFetchedResultsChangeMove (section)")
+            
+        case .Move: break
+            
         }
     }
     
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         
-        print("*** controllerDidChangeContent")
+        
         
         tableView.endUpdates()
     }

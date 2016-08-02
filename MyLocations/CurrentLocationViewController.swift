@@ -84,6 +84,19 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         loadSoundEffect("Sound.caf")
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let name = "MemoSpot~\(title)"
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: name)
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
+    }
+    
     
     
     // MARK: - HELPER METHODS
@@ -236,7 +249,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
 
     
     func didTimeOut() {
-        print("*** Time out")
         
         if location == nil {
             stopLocationManager()
@@ -383,7 +395,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     // MARK: - CLLocationManagerDelegate
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("didFailWithError \(error)")
         
         if error.code == CLError.LocationUnknown.rawValue {
             return
@@ -404,7 +415,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         
         let newLocation = locations.last!
         
-//        print("didUpdateLocations \(newLocation)")
         
         
         if newLocation.timestamp.timeIntervalSinceNow < -5 { // Caching location
@@ -428,7 +438,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             updateLabels()
             
             if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
-                print("*** We're done!")
                 
                 stopLocationManager()
                 configureGetButton()
@@ -440,13 +449,11 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             if !performingReverseGeocoding {
                 
-                print("*** Going to geocode")
                 
                 performingReverseGeocoding = true
                 
                 geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (placemarks, error) in
                     
-//                    print("*** Found placemarks: \(placemarks), error: \(error)")
                     
                     self.lastLocationError = error
                     
@@ -454,12 +461,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                         
                         if self.placemark == nil {
                             
-                            print("FIRST TIME!")
                             self.playSoundEffect()
                             
                         }
                         
-                        // ** FAKE CRASH HERE BY COMMENTING LINE
                         self.placemark = p.last!
                         
                     } else {
@@ -480,7 +485,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             if timeInterval > 10 {
                 
-                print("*** Force done!")
                 
                 stopLocationManager()
                 
@@ -497,10 +501,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     }
     
     
-    
-    
-    // MARK: !!!IMPORTANT!!!
-    // MARK: - Sound Effect
+  
     func loadSoundEffect(name: String) {
         
         if let path = NSBundle.mainBundle().pathForResource(name, ofType: nil) {
@@ -510,7 +511,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             let error = AudioServicesCreateSystemSoundID(fileURL, &soundID)
             
             if error != kAudioServicesNoError {
-                print("Error code \(error) loading sound at path: \(path)")
             }
         }
     }

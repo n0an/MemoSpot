@@ -21,7 +21,7 @@ private let dateFormatter: NSDateFormatter = {
     formatter.dateStyle = .MediumStyle
     formatter.timeStyle = .ShortStyle
     
-    print("return formatter")
+    
     
     return formatter
 }()
@@ -182,6 +182,18 @@ class LocationDetailsViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         
+        
+        let name = "MemoSpot~\(title)"
+        
+        let tracker = GAI.sharedInstance().defaultTracker
+        tracker.set(kGAIScreenName, value: name)
+        
+        let builder = GAIDictionaryBuilder.createScreenView()
+        tracker.send(builder.build() as [NSObject : AnyObject])
+        
+        
+        
+        
         let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
         
         let region = MKCoordinateRegionMake(coordinate, span)
@@ -196,7 +208,7 @@ class LocationDetailsViewController: UITableViewController {
     }
     
     deinit {
-        print("*** deinit \(self)")
+        
         NSNotificationCenter.defaultCenter().removeObserver(observer)
     }
 
@@ -206,8 +218,7 @@ class LocationDetailsViewController: UITableViewController {
     func hideKeyboard(gestureRecognizer: UIGestureRecognizer) {
         let point = gestureRecognizer.locationInView(tableView)
         
-        // !!!IMPORTANT!!!
-        // INDEXPATH FOR TAPPED POINT IN TABLEVIEW
+ 
         
         let indexPath = tableView.indexPathForRowAtPoint(point)
         
@@ -261,15 +272,7 @@ class LocationDetailsViewController: UITableViewController {
     
     
     
-    
-    
-    
-    
     // MARK: - NOTIFICATIONS
-    
-    
-    // !!!IMPORTANT!!! HIG
-    // HIDING ALERTS, ACTIONS SHEETS, PICKERS WHEN APP GOES TO BACKGROUND
     
     func listenForBackgroundNotification() {
         
@@ -576,9 +579,7 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     
     func pickPhoto() {
         
-        // TODO: remove true before release
-        
-        if true || UIImagePickerController.isSourceTypeAvailable(.Camera) {
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             showPhotoMenu()
         } else {
             choosePhotoFromLibrary()
@@ -601,6 +602,13 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
         let chooseFromLibraryAction = UIAlertAction(title: NSLocalizedString("CAMERA_ALERT_LIBRARY_ACTION", comment: ""), style: .Default, handler: { _ in self.choosePhotoFromLibrary() })
         
         alertController.addAction(chooseFromLibraryAction)
+        
+        let addPhotoCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))
+        
+        alertController.popoverPresentationController?.sourceView = addPhotoCell?.contentView
+        
+        alertController.popoverPresentationController?.permittedArrowDirections = [.Down]
+
         
         presentViewController(alertController, animated: true, completion: nil)
     }

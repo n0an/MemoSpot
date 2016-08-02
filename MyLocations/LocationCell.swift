@@ -78,16 +78,14 @@ class LocationCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        // !!!IMPORTANT!!!
-        // CUSTOMIZE CELL COLORS
+     
         backgroundColor = UIColor.blackColor()
         descriptionLabel.textColor = UIColor.whiteColor()
         descriptionLabel.highlightedTextColor = descriptionLabel.textColor
         addressLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
         addressLabel.highlightedTextColor = addressLabel.textColor
         
-        // !!!IMPORTANT!!!
-        // CUSTOMIZE TABLEVIEW CELL SELECTION COLOR
+     
         let selectionView = UIView(frame: CGRect.zero)
         selectionView.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
         selectedBackgroundView = selectionView
@@ -104,7 +102,7 @@ class LocationCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+        
     }
     
 }

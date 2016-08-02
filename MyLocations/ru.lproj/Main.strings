@@ -27,7 +27,7 @@
 "6u7-b5-R3p.text" = "MIN";
 
 /* Class = "UILabel"; text = "Stormy and rainy"; ObjectID = "8F3-WC-bSP"; */
-"8F3-WC-bSP.text" = "Шторм и дождь";
+"8F3-WC-bSP.text" = "";
 
 /* Class = "UILabel"; text = "-122.03121860"; ObjectID = "CUd-Pw-uwB"; */
 "CUd-Pw-uwB.text" = "-122.03121860";
@@ -66,7 +66,7 @@
 "LLJ-LT-GEJ.text" = "Долгота";
 
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "Lq7-tG-yXX"; */
-"Lq7-tG-yXX.title" = "Title";
+"Lq7-tG-yXX.title" = "Симулятор теней";
 
 /* Class = "UILabel"; text = "56°/ 87°"; ObjectID = "Nq9-r5-bTW"; */
 "Nq9-r5-bTW.text" = "56°/ 87°";
@@ -84,7 +84,7 @@
 "RBC-nc-gts.text" = "Пон";
 
 /* Class = "UILabel"; text = "Purcellville, VA"; ObjectID = "Vce-0p-5QQ"; */
-"Vce-0p-5QQ.text" = "Purcellville, VA";
+"Vce-0p-5QQ.text" = "";
 
 /* Class = "UILabel"; text = "80"; ObjectID = "Voi-Oy-rKd"; */
 "Voi-Oy-rKd.text" = "80";

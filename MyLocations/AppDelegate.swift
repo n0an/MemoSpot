@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 import CoreData
 
-// !!!IMPORTANT!!!
-// ** NOTIFICATION WHEN COREDATA FAIL
+
 
 let MyManagedObjectContextSaveDidFailNotification = "MyManagedObjectContextSaveDidFailNotification"
 
@@ -33,11 +34,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        
+        // GOOGLE ANALYTICS
+        var configureError:NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(configureError)")
+        let gai = GAI.sharedInstance()
+        gai.trackUncaughtExceptions = true
+
+        
+        // FABRIC AND CRASHLYTICS
+        Fabric.with([Crashlytics.self])
+        
+        
+        
         customizeAppearance()
-        
-        
-        // !!!IMPORTANT!!!
-        // DEPENDENCY INJECTION. INJECT NSMANAGEDOBJECTCONTEXT IN EVERY TAB ROOT VC
+      
         
         let tabBarController = window!.rootViewController as! UITabBarController
         
@@ -48,9 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             locationsViewController.managedObjectContext = managedObjectContext
             
-            
-            // !!!IMPORTANT!!!
-            // COREDATA BUG FIXING
             
             let _ = locationsViewController.view
             
@@ -94,9 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     // MARK: - HELPER METHODS
-    
-    // !!!IMPORTANT!!!
-    // CHANGE BG AND TINT COLOR OF NAVBAR AND TABBAR
+   
     func customizeAppearance() {
         UINavigationBar.appearance().barTintColor = UIColor.blackColor()
         
@@ -159,8 +166,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         guard let modelURL = NSBundle.mainBundle().URLForResource("DataModel", withExtension: "momd") else { fatalError("Could not find data model in app bundle") }
         
-//        print("modelURL = \(modelURL)")
-        
         guard let model = NSManagedObjectModel(contentsOfURL: modelURL) else { fatalError("Error initializing model from: \(modelURL)") }
         
         let urls = NSFileManager.defaultManager().URLsForDirectory( .DocumentDirectory, inDomains: .UserDomainMask)
@@ -169,7 +174,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let storeURL = documentsDirectory.URLByAppendingPathComponent("DataStore.sqlite")
         
-        print("storeURL = \(storeURL)")
         
         do {
             let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
