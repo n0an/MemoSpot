@@ -579,8 +579,6 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     
     func pickPhoto() {
         
-        // TODO: remove true before release
-        
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             showPhotoMenu()
         } else {

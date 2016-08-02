@@ -465,7 +465,6 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                             
                         }
                         
-                        // ** FAKE CRASH HERE BY COMMENTING LINE
                         self.placemark = p.last!
                         
                     } else {

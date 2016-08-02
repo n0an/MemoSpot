@@ -13,8 +13,6 @@ let applicationDocumentsDirectory: String = {
     
     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
     
-    
-    
     return paths[0]
     
     
