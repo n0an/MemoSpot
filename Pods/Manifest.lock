@@ -1,15 +1,22 @@
 PODS:
+  - Crashlytics (3.7.2):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.7)
   - FSCalendar (2.1.1)
   - SideMenu (1.1.7)
 
 DEPENDENCIES:
+  - Crashlytics
+  - Fabric
   - FSCalendar
   - SideMenu
 
 SPEC CHECKSUMS:
+  Crashlytics: 130ab943f8c78cda7a814b434f270b2e2c8a3cba
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   FSCalendar: 04dc531f06fbde8a8e5b7394e9d4edebd45a591f
   SideMenu: 7b420772e1aa7a2b3a0b0e191566e7e8e0868f53
 
-PODFILE CHECKSUM: 494f1b7026361b4a00b6ca730676a605aa8ea3fb
+PODFILE CHECKSUM: f1b98bcf3ee722322e99201170bf6bb713e7bbaa
 
 COCOAPODS: 1.0.1

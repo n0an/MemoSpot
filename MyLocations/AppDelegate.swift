@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 import CoreData
 
@@ -33,8 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        customizeAppearance()
+        Fabric.with([Crashlytics.self])
         
+        customizeAppearance()
         
         // !!!IMPORTANT!!!
         // DEPENDENCY INJECTION. INJECT NSMANAGEDOBJECTCONTEXT IN EVERY TAB ROOT VC
