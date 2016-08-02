@@ -578,7 +578,7 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
         
         // TODO: remove true before release
         
-        if true || UIImagePickerController.isSourceTypeAvailable(.Camera) {
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             showPhotoMenu()
         } else {
             choosePhotoFromLibrary()
@@ -601,6 +601,13 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
         let chooseFromLibraryAction = UIAlertAction(title: NSLocalizedString("CAMERA_ALERT_LIBRARY_ACTION", comment: ""), style: .Default, handler: { _ in self.choosePhotoFromLibrary() })
         
         alertController.addAction(chooseFromLibraryAction)
+        
+        let addPhotoCell = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1))
+        
+        alertController.popoverPresentationController?.sourceView = addPhotoCell?.contentView
+        
+        alertController.popoverPresentationController?.permittedArrowDirections = [.Down]
+
         
         presentViewController(alertController, animated: true, completion: nil)
     }
