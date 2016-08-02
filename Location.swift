@@ -16,7 +16,7 @@ class Location: NSManagedObject, MKAnnotation {
     // MARK: - PHOTO FEATURE PROPERTIES AND METHODS
     
     var hasPhoto: Bool {
-        print(photoID?.intValue)
+        
         return photoID != nil
     }
     
@@ -32,11 +32,7 @@ class Location: NSManagedObject, MKAnnotation {
     var photoImage: UIImage? {
         return UIImage(contentsOfFile: photoPath)
     }
-    
-    // !!!IMPORTANT!!!
-    // CYCLING THROUGH IDS USING NSUSERDEFAULTS
-    
-    // TODO: - Implement IDs using CoreData
+   
     
     class func nextPhotoID() -> Int {
         
@@ -67,7 +63,7 @@ class Location: NSManagedObject, MKAnnotation {
                 do {
                     try fileManager.removeItemAtPath(path)
                 } catch {
-                    print("Error removing file: \(error)")
+                    
                 
                 }
             

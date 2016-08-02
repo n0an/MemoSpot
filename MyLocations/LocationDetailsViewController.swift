@@ -21,7 +21,7 @@ private let dateFormatter: NSDateFormatter = {
     formatter.dateStyle = .MediumStyle
     formatter.timeStyle = .ShortStyle
     
-    print("return formatter")
+    
     
     return formatter
 }()
@@ -208,7 +208,7 @@ class LocationDetailsViewController: UITableViewController {
     }
     
     deinit {
-        print("*** deinit \(self)")
+        
         NSNotificationCenter.defaultCenter().removeObserver(observer)
     }
 
@@ -218,8 +218,7 @@ class LocationDetailsViewController: UITableViewController {
     func hideKeyboard(gestureRecognizer: UIGestureRecognizer) {
         let point = gestureRecognizer.locationInView(tableView)
         
-        // !!!IMPORTANT!!!
-        // INDEXPATH FOR TAPPED POINT IN TABLEVIEW
+ 
         
         let indexPath = tableView.indexPathForRowAtPoint(point)
         
@@ -273,15 +272,7 @@ class LocationDetailsViewController: UITableViewController {
     
     
     
-    
-    
-    
-    
     // MARK: - NOTIFICATIONS
-    
-    
-    // !!!IMPORTANT!!! HIG
-    // HIDING ALERTS, ACTIONS SHEETS, PICKERS WHEN APP GOES TO BACKGROUND
     
     func listenForBackgroundNotification() {
         
