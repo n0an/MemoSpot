@@ -6,4 +6,5 @@ target 'MyLocations' do
   pod 'SideMenu'
   pod 'Fabric'
   pod 'Crashlytics'
+ pod 'Google/Analytics'
 end

@@ -35,6 +35,8 @@
 		186A061E1D15BE60008188EF /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A061D1D15BE60008188EF /* LocationCell.swift */; };
 		186A06211D15D626008188EF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 186A06201D15D626008188EF /* MapKit.framework */; };
 		186A06231D15D69C008188EF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186A06221D15D69C008188EF /* MapViewController.swift */; };
+		186E10FD1D512B6F0094D131 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 186E10FC1D512B6F0094D131 /* GoogleService-Info.plist */; };
+		186E11001D512BF50094D131 /* temp.m in Sources */ = {isa = PBXBuildFile; fileRef = 186E10FF1D512BF50094D131 /* temp.m */; };
 		18B599E31D131A3E00FE9834 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B599E21D131A3E00FE9834 /* LocationDetailsViewController.swift */; };
 		18B599E51D132ED900FE9834 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */; };
 		18B599E71D149BA400FE9834 /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B599E61D149BA400FE9834 /* HudView.swift */; };
@@ -80,6 +82,9 @@
 		186A061D1D15BE60008188EF /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		186A06201D15D626008188EF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		186A06221D15D69C008188EF /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		186E10FC1D512B6F0094D131 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		186E10FE1D512BF50094D131 /* MyLocations-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyLocations-Bridging-Header.h"; sourceTree = "<group>"; };
+		186E10FF1D512BF50094D131 /* temp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = temp.m; sourceTree = "<group>"; };
 		18B599E21D131A3E00FE9834 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		18B599E41D132ED900FE9834 /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 		18B599E61D149BA400FE9834 /* HudView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
@@ -145,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				15FFB9FE1D1066A6006BA3B7 /* AppDelegate.swift */,
+				186E10FF1D512BF50094D131 /* temp.m */,
 				15B52F161D4D1CB000ACD249 /* Localizable.strings */,
 				1813A9DE1D3A8C2800C61A88 /* ANDataManager.swift */,
 				1829E51F1D3A650800A2DEED /* ANConfigurator.swift */,
@@ -159,6 +165,8 @@
 				184E6A581D1B11E4003FC740 /* Sound */,
 				15FFBA0C1D1066A6006BA3B7 /* Info.plist */,
 				182A2BD01D4DF26200209B05 /* InfoPlist.strings */,
+				186E10FC1D512B6F0094D131 /* GoogleService-Info.plist */,
+				186E10FE1D512BF50094D131 /* MyLocations-Bridging-Header.h */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -332,6 +340,7 @@
 				184E6A5A1D1B11E4003FC740 /* Sound.caf in Resources */,
 				15FFBA061D1066A6006BA3B7 /* Main.storyboard in Resources */,
 				182A2BCE1D4DF26200209B05 /* InfoPlist.strings in Resources */,
+				186E10FD1D512B6F0094D131 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +414,7 @@
 			files = (
 				18B599E31D131A3E00FE9834 /* LocationDetailsViewController.swift in Sources */,
 				18EE88171D187B47005D0334 /* MyNavigationController.swift in Sources */,
+				186E11001D512BF50094D131 /* temp.m in Sources */,
 				1825D0741D1596130018B839 /* LocationsViewController.swift in Sources */,
 				1813A9E11D3AB00700C61A88 /* SunriseSunset.swift in Sources */,
 				182A2BCB1D4CBE7F00209B05 /* SideMenuViewController.swift in Sources */,
@@ -556,6 +566,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Anton Novoselov (T9AJNB68MF)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = MyLocations/Info.plist;
@@ -563,6 +574,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.MemoSpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyLocations/MyLocations-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -573,6 +586,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Anton Novoselov (358V8FBM3U)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = MyLocations/Info.plist;
@@ -580,6 +594,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.MemoSpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MyLocations/MyLocations-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
