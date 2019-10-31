@@ -40,56 +40,56 @@ open class SideMenuManager {
      - ViewSlideInOut: The existing view slides out while the menu slides in.
      - MenuDissolveIn: The menu dissolves in over the existing view controller.
      */
-    open static var menuPresentMode: MenuPresentMode = .viewSlideOut
+    public static var menuPresentMode: MenuPresentMode = .viewSlideOut
     
     /// Prevents the same view controller (or a view controller of the same class) from being pushed more than once. Defaults to true.
-    open static var menuAllowPushOfSameClassTwice = true
+    public static var menuAllowPushOfSameClassTwice = true
     
     /// Pops to any view controller already in the navigation stack instead of the view controller being pushed if they share the same class. Defaults to false.
-    open static var menuAllowPopIfPossible = false
+    public static var menuAllowPopIfPossible = false
     
     /// Width of the menu when presented on screen, showing the existing view controller in the remaining space. Default is 75% of the screen width.
-    open static var menuWidth: CGFloat = max(round(min((appScreenRect.width), (appScreenRect.height)) * 0.75), 240)
+    public static var menuWidth: CGFloat = max(round(min((appScreenRect.width), (appScreenRect.height)) * 0.75), 240)
     
     /// Duration of the animation when the menu is presented without gestures. Default is 0.35 seconds.
-    open static var menuAnimationPresentDuration = 0.35
+    public static var menuAnimationPresentDuration = 0.35
     
     /// Duration of the animation when the menu is dismissed without gestures. Default is 0.35 seconds.
-    open static var menuAnimationDismissDuration = 0.35
+    public static var menuAnimationDismissDuration = 0.35
     
     /// Amount to fade the existing view controller when the menu is presented. Default is 0 for no fade. Set to 1 to fade completely.
-    open static var menuAnimationFadeStrength: CGFloat = 0
+    public static var menuAnimationFadeStrength: CGFloat = 0
     
     /// The amount to scale the existing view controller or the menu view controller depending on the `menuPresentMode`. Default is 1 for no scaling. Less than 1 will shrink, greater than 1 will grow.
-    open static var menuAnimationTransformScaleFactor: CGFloat = 1
+    public static var menuAnimationTransformScaleFactor: CGFloat = 1
     
     /// The background color behind menu animations. Depending on the animation settings this may not be visible. If `menuFadeStatusBar` is true, this color is used to fade it. Default is black.
-    open static var menuAnimationBackgroundColor: UIColor?
+    public static var menuAnimationBackgroundColor: UIColor?
     
     /// The shadow opacity around the menu view controller or existing view controller depending on the `menuPresentMode`. Default is 0.5 for 50% opacity.
-    open static var menuShadowOpacity: Float = 0.5
+    public static var menuShadowOpacity: Float = 0.5
     
     /// The shadow color around the menu view controller or existing view controller depending on the `menuPresentMode`. Default is black.
-    open static var menuShadowColor = UIColor.black
+    public static var menuShadowColor = UIColor.black
     
     /// The radius of the shadow around the menu view controller or existing view controller depending on the `menuPresentMode`. Default is 5.
-    open static var menuShadowRadius: CGFloat = 5
+    public static var menuShadowRadius: CGFloat = 5
     
     /// The left menu swipe to dismiss gesture.
-    open static weak var menuLeftSwipeToDismissGesture: UIPanGestureRecognizer?
+    public static weak var menuLeftSwipeToDismissGesture: UIPanGestureRecognizer?
     
     /// The right menu swipe to dismiss gesture.
-    open static weak var menuRightSwipeToDismissGesture: UIPanGestureRecognizer?
+    public static weak var menuRightSwipeToDismissGesture: UIPanGestureRecognizer?
     
     /// The strength of the parallax effect on the existing view controller. Does not apply to `menuPresentMode` when set to `ViewSlideOut`. Default is 0.
-    open static var menuParallaxStrength: Int = 0
+    public static var menuParallaxStrength: Int = 0
     
     /// Draws the `menuAnimationBackgroundColor` behind the status bar. Default is true.
-    open static var menuFadeStatusBar = true
+    public static var menuFadeStatusBar = true
     
     /// - Warning: Deprecated. Use `menuAnimationTransformScaleFactor` instead.
     @available(*, deprecated, renamed: "menuAnimationTransformScaleFactor")
-    open static var menuAnimationShrinkStrength: CGFloat {
+    public static var menuAnimationShrinkStrength: CGFloat {
         get {
             return menuAnimationTransformScaleFactor
         }
@@ -106,7 +106,7 @@ open class SideMenuManager {
      
      - Note: If you want cells in a UITableViewController menu to show vibrancy, make them a subclass of UITableViewVibrantCell.
      */
-    open static var menuBlurEffectStyle: UIBlurEffect.Style? {
+    public static var menuBlurEffectStyle: UIBlurEffect.Style? {
         didSet {
             if oldValue != menuBlurEffectStyle {
                 updateMenuBlurIfNecessary()
@@ -115,7 +115,7 @@ open class SideMenuManager {
     }
     
     /// The left menu.
-    open static var menuLeftNavigationController: UISideMenuNavigationController? {
+    public static var menuLeftNavigationController: UISideMenuNavigationController? {
         willSet {
             if menuLeftNavigationController?.presentingViewController == nil {
                 removeMenuBlurForMenu(menuLeftNavigationController)
@@ -132,7 +132,7 @@ open class SideMenuManager {
     }
     
     /// The right menu.
-    open static var menuRightNavigationController: UISideMenuNavigationController? {
+    public static var menuRightNavigationController: UISideMenuNavigationController? {
         willSet {
             if menuRightNavigationController?.presentingViewController == nil {
                 removeMenuBlurForMenu(menuRightNavigationController)

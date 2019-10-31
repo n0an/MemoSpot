@@ -587,7 +587,7 @@ extension MapLocationViewController: MKMapViewDelegate {
         
         let identifier = "Location"
         
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as! MKPinAnnotationView!
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as! MKPinAnnotationView?
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
@@ -617,7 +617,7 @@ extension MapLocationViewController: MKMapViewDelegate {
         
         let button = annotationView?.rightCalloutAccessoryView as! UIButton
         
-        if let index = locations.index(of: annotation as! Location) {
+        if let index = locations.firstIndex(of: annotation as! Location) {
             button.tag = index
         }
         
