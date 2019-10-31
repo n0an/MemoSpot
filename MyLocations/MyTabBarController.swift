@@ -13,13 +13,13 @@ import UIKit
 
 class MyTabBarController: UITabBarController {
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    override var preferredStatusBarStyle : UIStatusBarStyle {
         
-        return .LightContent
+        return .lightContent
     
     }
     
-    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+    override var childViewControllerForStatusBarStyle : UIViewController? {
         
         return nil
     }

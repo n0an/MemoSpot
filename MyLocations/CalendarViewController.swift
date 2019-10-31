@@ -11,7 +11,7 @@ import FSCalendar
 
 protocol CalendarViewControllerDelegate: class {
     
-    func dateSelected(date:NSDate)
+    func dateSelected(_ date:Date)
     
     
 }
@@ -30,9 +30,9 @@ class CalendarViewController: UIViewController {
     
     let calend = ANConfigurator.sharedConfigurator.calendar
     
-    var allDueDates: [NSDate] = []
+    var allDueDates: [Date] = []
     
-    var selectedDate: NSDate!
+    var selectedDate: Date!
     
     weak var delegate: CalendarViewControllerDelegate!
     
@@ -42,28 +42,28 @@ class CalendarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         fsCalendar.reloadData()
         
         if selectedDate == nil {
-            showButton.enabled = false
+            showButton.isEnabled = false
         }
         
     }
 
     // MARK: - HELPER METHODS
     
-    func formatDate(date: NSDate) -> String {
-        return ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(date)
+    func formatDate(_ date: Date) -> String {
+        return ANConfigurator.sharedConfigurator.dateFormatter.string(from: date)
     }
     
     
     // MARK: - ACTIONS
     
-    @IBAction func showButtonPressed(sender: UIBarButtonItem) {
+    @IBAction func showButtonPressed(_ sender: UIBarButtonItem) {
         
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
         
     }
     
@@ -88,11 +88,11 @@ extension CalendarViewController: FSCalendarDataSource {
 
 extension CalendarViewController: FSCalendarDelegate {
     
-    func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
+    func calendar(_ calendar: FSCalendar, didSelect date: Date) {
         
         selectedDate = date
         
-        showButton.enabled = true
+        showButton.isEnabled = true
         
         delegate.dateSelected(selectedDate)
         

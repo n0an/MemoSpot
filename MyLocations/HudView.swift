@@ -12,15 +12,15 @@ class HudView: UIView {
     
     var text = ""
     
-    class func hudInView(view: UIView, animated: Bool) -> HudView {
+    class func hudInView(_ view: UIView, animated: Bool) -> HudView {
         
         let hudView = HudView(frame: view.bounds)
         
-        hudView.opaque = false
+        hudView.isOpaque = false
         
         view.addSubview(hudView)
         
-        view.userInteractionEnabled = false
+        view.isUserInteractionEnabled = false
         
         hudView.showAnimated(animated)
         return hudView
@@ -30,7 +30,7 @@ class HudView: UIView {
     
     // ** Draws a filled rectangle with rounded corners in the center of the screen
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         
         // *** Square drawing
         let boxWidth: CGFloat = 96
@@ -53,37 +53,37 @@ class HudView: UIView {
             let imagePoint = CGPoint(x: center.x - round(image.size.width / 2),
                                      y: center.y - round(image.size.height / 2) - boxHeight / 8)
             
-            image.drawAtPoint(imagePoint)
+            image.draw(at: imagePoint)
         }
         
         // *** Text drawing
         
-        let attribs = [ NSFontAttributeName: UIFont.systemFontOfSize(16),
-                        NSForegroundColorAttributeName: UIColor.whiteColor() ]
+        let attribs = [ NSFontAttributeName: UIFont.systemFont(ofSize: 16),
+                        NSForegroundColorAttributeName: UIColor.white ]
         
-        let textSize = text.sizeWithAttributes(attribs)
+        let textSize = text.size(attributes: attribs)
         
         let textPoint = CGPoint( x: center.x - round(textSize.width / 2),
                                  y: center.y - round(textSize.height / 2) + boxHeight / 4)
         
         
-        text.drawAtPoint(textPoint, withAttributes: attribs)
+        text.draw(at: textPoint, withAttributes: attribs)
         
     }
     
     
     // ** Animate HUDView
-    func showAnimated(animated: Bool) {
+    func showAnimated(_ animated: Bool) {
         
         if animated {
             
         alpha = 0
             
-        transform = CGAffineTransformMakeScale(1.3, 1.3)
+        transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             
-            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: [], animations: {
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: [], animations: {
                 self.alpha = 1
-                self.transform = CGAffineTransformIdentity },
+                self.transform = CGAffineTransform.identity },
                 completion: nil)
             
         }

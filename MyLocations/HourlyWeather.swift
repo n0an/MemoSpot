@@ -138,16 +138,16 @@ struct HourlyWeather {
 
 
 
-func weeekDateStringFromUnixtime(unixTime: Int) -> String {
+func weeekDateStringFromUnixtime(_ unixTime: Int) -> String {
     
-    let timeInSeconds = NSTimeInterval(unixTime)
-    let weatherDate = NSDate(timeIntervalSince1970: timeInSeconds)
+    let timeInSeconds = TimeInterval(unixTime)
+    let weatherDate = Date(timeIntervalSince1970: timeInSeconds)
     
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     //dateFormatter.timeStyle = .MediumStyle
     dateFormatter.dateFormat = "EEE"
     
-    return dateFormatter.stringFromDate(weatherDate)
+    return dateFormatter.string(from: weatherDate)
     
     
 }
@@ -156,15 +156,15 @@ func weeekDateStringFromUnixtime(unixTime: Int) -> String {
 
 //Time formatter
 
-func timeStringFromUnixtime(unixTime: Int) -> String {
+func timeStringFromUnixtime(_ unixTime: Int) -> String {
     
-    let timeInSeconds = NSTimeInterval(unixTime)
-    let weatherDate = NSDate(timeIntervalSince1970: timeInSeconds)
+    let timeInSeconds = TimeInterval(unixTime)
+    let weatherDate = Date(timeIntervalSince1970: timeInSeconds)
     
-    let dateFormatter = NSDateFormatter()
+    let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "HH:mm"
     
-    return dateFormatter.stringFromDate(weatherDate)
+    return dateFormatter.string(from: weatherDate)
     
     
 }

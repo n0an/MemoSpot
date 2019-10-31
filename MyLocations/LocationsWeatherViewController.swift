@@ -28,14 +28,14 @@ class LocationsWeatherViewController: UITableViewController {
         
         userTemperatureCelsius = true
         
-        tableView.backgroundColor = UIColor.blackColor()
+        tableView.backgroundColor = UIColor.black
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
-        tableView.indicatorStyle = .White
+        tableView.indicatorStyle = .white
 
         
-        let fetchRequest = NSFetchRequest()
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
-        let entity = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
+        let entity = NSEntityDescription.entity(forEntityName: "Location", in: managedObjectContext)
         
         fetchRequest.entity = entity
         
@@ -44,7 +44,7 @@ class LocationsWeatherViewController: UITableViewController {
         fetchRequest.sortDescriptors = [sortDescriptor]
         
         do {
-            let foundObjects = try managedObjectContext.executeFetchRequest(fetchRequest)
+            let foundObjects = try managedObjectContext.fetch(fetchRequest)
             
             locations = foundObjects as! [Location]
             
@@ -58,33 +58,33 @@ class LocationsWeatherViewController: UITableViewController {
     
     // MARK: - WEATHER METHODS
     
-    func getCurrentWeatherDataForLocation(location: Location, andSetCell cell: LocationCell) {
+    func getCurrentWeatherDataForLocation(_ location: Location, andSetCell cell: LocationCell) {
         
         let userLatitude = location.coordinate.latitude
         let userLongitude = location.coordinate.longitude
         
         let userLocation = "\(userLatitude),\(userLongitude)"
         
-        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
-        let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
+        let baseURL = URL(string: "https://api.forecast.io/forecast/\(apiKey)/")
+        let forecastURL = URL(string: "\(userLocation)", relativeTo:baseURL)
         
         
-        let sharedSession = NSURLSession.sharedSession()
+        let sharedSession = URLSession.shared
         
         
         
-        let dataTask = sharedSession.dataTaskWithURL(forecastURL!) { (data, response, error) in
+        let dataTask = sharedSession.dataTask(with: forecastURL!, completionHandler: { (data, response, error) in
             
             if (error == nil) {
                 
                 let dataObject = data
                 
-                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+                let weatherDictionary: NSDictionary = (try! JSONSerialization.jsonObject(with: dataObject!, options: [])) as! NSDictionary
                 
                 let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
                 
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
 
                     var addingText: String
                     
@@ -118,7 +118,7 @@ class LocationsWeatherViewController: UITableViewController {
             }
             
             
-        }
+        }) 
         
         dataTask.resume()
         
@@ -133,24 +133,24 @@ class LocationsWeatherViewController: UITableViewController {
     
     // MARK: - ACTIONS
 
-    @IBAction func actionMenuPressed(sender: UIBarButtonItem) {
+    @IBAction func actionMenuPressed(_ sender: UIBarButtonItem) {
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: - NAVIGATION
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowWeather" {
             
             
-            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
                 
                 let location = locations[indexPath.row]
                 
-                let controller = segue.destinationViewController as! WeatherViewController
+                let controller = segue.destination as! WeatherViewController
                 
                 controller.locationToEdit = location
             }
@@ -164,21 +164,21 @@ class LocationsWeatherViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
         return locations.count
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("LocationCell", forIndexPath: indexPath) as! LocationCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationCell", for: indexPath) as! LocationCell
         
         let location = locations[indexPath.row]
         

@@ -25,18 +25,18 @@ class SideMenuViewController: UITableViewController {
         tableView.backgroundColor = UIColor(white: 0.2, alpha: 1.0)
 
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
-        tableView.indicatorStyle = .White
+        tableView.indicatorStyle = .white
 
         
     }
 
     // MARK: - NAVIGATION
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowWeathers" {
             
-            let destinationNavVC = segue.destinationViewController as! UINavigationController
+            let destinationNavVC = segue.destination as! UINavigationController
             
             let destinationVC = destinationNavVC.topViewController as! LocationsWeatherViewController
             
@@ -50,13 +50,13 @@ class SideMenuViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
 
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         cell.backgroundColor = UIColor(white: 0.2, alpha: 1.0)
         
         if let textLabel = cell.textLabel {
             
-            textLabel.textColor = UIColor.whiteColor()
+            textLabel.textColor = UIColor.white
             
             textLabel.highlightedTextColor = textLabel.textColor
             

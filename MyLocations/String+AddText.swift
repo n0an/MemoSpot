@@ -9,7 +9,7 @@
 
 extension String {
     
-    mutating func addText(text: String?, withSeparator separator: String = "") {
+    mutating func addText(_ text: String?, withSeparator separator: String = "") {
         
         if let text = text {
             if !isEmpty {

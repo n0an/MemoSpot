@@ -95,7 +95,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         userTemperatureCelsius = false
 
         swipeRec.addTarget(self, action: #selector(WeatherViewController.swipedView))
-        swipeRec.direction = UISwipeGestureRecognizerDirection.Down
+        swipeRec.direction = UISwipeGestureRecognizerDirection.down
         swipeView.addGestureRecognizer(swipeRec)
 
         refresh()
@@ -108,7 +108,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         
@@ -116,10 +116,10 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         let name = "MemoSpot~\(title)"
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: name)
+        tracker?.set(kGAIScreenName, value: name)
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
     }
 
@@ -133,7 +133,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     }
     
 
-    func stringFromPlacemark(placemark: CLPlacemark) -> String {
+    func stringFromPlacemark(_ placemark: CLPlacemark) -> String {
         
         var line = ""
  
@@ -157,29 +157,29 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         
         userLocation = "\(userLatitude),\(userLongitude)"
         
-        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
+        let baseURL = URL(string: "https://api.forecast.io/forecast/\(apiKey)/")
         
         let suffixStr = NSLocalizedString("SUFFIX_URL_STRING", comment: "")
         
-        let forecastURL = NSURL(string: "\(userLocation)\(suffixStr)", relativeToURL:baseURL)
+        let forecastURL = URL(string: "\(userLocation)\(suffixStr)", relativeTo:baseURL)
         
         
-        let sharedSession = NSURLSession.sharedSession()
+        let sharedSession = URLSession.shared
         
         
         
-        let dataTask = sharedSession.dataTaskWithURL(forecastURL!) { (data, response, error) in
+        let dataTask = sharedSession.dataTask(with: forecastURL!, completionHandler: { (data, response, error) in
             
             if (error == nil) {
                 
                 let dataObject = data
                 
-                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+                let weatherDictionary: NSDictionary = (try! JSONSerialization.jsonObject(with: dataObject!, options: [])) as! NSDictionary
                 
                 let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
                 let weeklyWeather = WeeklyWeather(weatherDictionary: weatherDictionary)
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     if self.userTemperatureCelsius == true {
                         self.temperatureLabel.text = "\(Fahrenheit2Celsius(currentWeather.temperature))"
@@ -298,7 +298,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
             }
             
             
-        }
+        }) 
         
         dataTask.resume()
         
@@ -344,7 +344,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         self.wAlerts.alpha = 0
         
         
-        UIView.animateWithDuration(1.5, animations: {
+        UIView.animate(withDuration: 1.5, animations: {
             self.temperatureLabel.alpha = 1.0
             self.heatIndex.alpha = 1.0
             self.dayOneImage.alpha = 1.0

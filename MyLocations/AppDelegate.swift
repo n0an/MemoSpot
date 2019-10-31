@@ -16,10 +16,10 @@ import CoreData
 
 let MyManagedObjectContextSaveDidFailNotification = "MyManagedObjectContextSaveDidFailNotification"
 
-func fatalCoreDataError(error: ErrorType) {
+func fatalCoreDataError(_ error: Error) {
     
     print("*** Fatal error: \(error)")
-    NSNotificationCenter.defaultCenter().postNotificationName(MyManagedObjectContextSaveDidFailNotification, object: nil)
+    NotificationCenter.default.post(name: Notification.Name(rawValue: MyManagedObjectContextSaveDidFailNotification), object: nil)
     
 }
 
@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - didFinishLaunchingWithOptions
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         
         // GOOGLE ANALYTICS
@@ -40,7 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GGLContext.sharedInstance().configureWithError(&configureError)
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         let gai = GAI.sharedInstance()
-        gai.trackUncaughtExceptions = true
+        gai?.trackUncaughtExceptions = true
 
         
         // FABRIC AND CRASHLYTICS
@@ -79,25 +79,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
@@ -105,11 +105,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - HELPER METHODS
    
     func customizeAppearance() {
-        UINavigationBar.appearance().barTintColor = UIColor.blackColor()
+        UINavigationBar.appearance().barTintColor = UIColor.black
         
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-        UITabBar.appearance().barTintColor = UIColor.blackColor()
+        UITabBar.appearance().barTintColor = UIColor.black
         
         let tintColor = UIColor(red: 255/255.0, green: 238/255.0, blue: 136/255.0, alpha: 1.0)
         
@@ -122,14 +122,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func listenForFatalCoreDataNotifications() {
         
-        NSNotificationCenter.defaultCenter().addObserverForName( MyManagedObjectContextSaveDidFailNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: { notification in
+        NotificationCenter.default.addObserver( forName: NSNotification.Name(rawValue: MyManagedObjectContextSaveDidFailNotification), object: nil, queue: OperationQueue.main, using: { notification in
             
-            let alert = UIAlertController(title: "Internal Error", message: "There was a fatal error in the app and it cannot continue.\n\n" + "Press OK to terminate the app. Sorry for the inconvenience.", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Internal Error", message: "There was a fatal error in the app and it cannot continue.\n\n" + "Press OK to terminate the app. Sorry for the inconvenience.", preferredStyle: .alert)
             
-            let action = UIAlertAction(title: "OK", style: .Default) { _ in
+            let action = UIAlertAction(title: "OK", style: .default) { _ in
                 
                 let exception = NSException(
-                name: NSInternalInconsistencyException,
+                name: NSExceptionName.internalInconsistencyException,
                 reason: "Fatal Core Data error", userInfo: nil)
                 
                 exception.raise()
@@ -137,7 +137,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             alert.addAction(action)
             
-            self.viewControllerForShowingAlert().presentViewController(alert, animated: true, completion: nil)
+            self.viewControllerForShowingAlert().present(alert, animated: true, completion: nil)
             
         })
     }
@@ -164,23 +164,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var managedObjectContext: NSManagedObjectContext = {
         
-        guard let modelURL = NSBundle.mainBundle().URLForResource("DataModel", withExtension: "momd") else { fatalError("Could not find data model in app bundle") }
+        guard let modelURL = Bundle.main.url(forResource: "DataModel", withExtension: "momd") else { fatalError("Could not find data model in app bundle") }
         
-        guard let model = NSManagedObjectModel(contentsOfURL: modelURL) else { fatalError("Error initializing model from: \(modelURL)") }
+        guard let model = NSManagedObjectModel(contentsOf: modelURL) else { fatalError("Error initializing model from: \(modelURL)") }
         
-        let urls = NSFileManager.defaultManager().URLsForDirectory( .DocumentDirectory, inDomains: .UserDomainMask)
+        let urls = FileManager.default.urls( for: .documentDirectory, in: .userDomainMask)
         
         let documentsDirectory = urls[0]
         
-        let storeURL = documentsDirectory.URLByAppendingPathComponent("DataStore.sqlite")
+        let storeURL = documentsDirectory.appendingPathComponent("DataStore.sqlite")
         
         
         do {
             let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
             
-            try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
             
-            let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+            let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
             
             context.persistentStoreCoordinator = coordinator
             

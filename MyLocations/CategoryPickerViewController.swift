@@ -28,7 +28,7 @@ class CategoryPickerViewController: UITableViewController {
                        NSLocalizedString("CATEGORY_MOUNTAIN", comment: ""),
                        ]
     
-    var selectedIndexPath = NSIndexPath()
+    var selectedIndexPath = IndexPath()
     
     
     
@@ -37,13 +37,13 @@ class CategoryPickerViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.backgroundColor = UIColor.blackColor()
+        tableView.backgroundColor = UIColor.black
         tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
-        tableView.indicatorStyle = .White
+        tableView.indicatorStyle = .white
         
         for i in 0..<categories.count {
             if categories[i] == selectedCategoryName {
-                selectedIndexPath = NSIndexPath(forRow: i, inSection: 0)
+                selectedIndexPath = IndexPath(row: i, section: 0)
                 break
             }
         }
@@ -54,11 +54,11 @@ class CategoryPickerViewController: UITableViewController {
 
     // MARK: - UNWIND NAVIGATION WITH PARAMETER PASSING BACK
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PickedCategory" {
             let cell = sender as! UITableViewCell
             
-            if let indexPath = tableView.indexPathForCell(cell) {
+            if let indexPath = tableView.indexPath(for: cell) {
                 selectedCategoryName = categories[indexPath.row]
             }
         }
@@ -68,24 +68,24 @@ class CategoryPickerViewController: UITableViewController {
     
     // MARK: - UITableViewDataSource
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return categories.count
     }
     
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let categoryName = categories[indexPath.row]
         
         cell.textLabel!.text = categoryName
         
         if categoryName == selectedCategoryName {
-            cell.accessoryType = .Checkmark
+            cell.accessoryType = .checkmark
         } else {
-            cell.accessoryType = .None
+            cell.accessoryType = .none
         }
         
         return cell
@@ -97,18 +97,18 @@ class CategoryPickerViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row != selectedIndexPath.row {
             
-            if let newCell = tableView.cellForRowAtIndexPath(indexPath) {
+            if let newCell = tableView.cellForRow(at: indexPath) {
                 
-                newCell.accessoryType = .Checkmark
+                newCell.accessoryType = .checkmark
             }
             
-            if let oldCell = tableView.cellForRowAtIndexPath(selectedIndexPath) {
+            if let oldCell = tableView.cellForRow(at: selectedIndexPath) {
                 
-                oldCell.accessoryType = .None
+                oldCell.accessoryType = .none
                 
             }
             
@@ -119,13 +119,13 @@ class CategoryPickerViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        cell.backgroundColor = UIColor.blackColor()
+        cell.backgroundColor = UIColor.black
         
         if let textLabel = cell.textLabel {
             
-            textLabel.textColor = UIColor.whiteColor()
+            textLabel.textColor = UIColor.white
             
             textLabel.highlightedTextColor = textLabel.textColor
             

@@ -25,10 +25,10 @@ struct SunriseSunset {
         let tempStrSunrise = sunriseTimeRaw as NSString
         let tempStrSunset = sunsetTimeRaw as NSString
         
-        let separatorsSet = NSCharacterSet.init(charactersInString: "T+")
+        let separatorsSet = CharacterSet.init(charactersIn: "T+")
         
-        let sunriseComponents = tempStrSunrise.componentsSeparatedByCharactersInSet(separatorsSet)
-        let sunsetComponents = tempStrSunset.componentsSeparatedByCharactersInSet(separatorsSet)
+        let sunriseComponents = tempStrSunrise.components(separatedBy: separatorsSet)
+        let sunsetComponents = tempStrSunset.components(separatedBy: separatorsSet)
         
         sunriseTime = sunriseComponents[1]
         sunsetTime = sunsetComponents[1]

@@ -301,6 +301,7 @@
 					15FFB9FA1D1066A6006BA3B7 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 358V8FBM3U;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -568,6 +569,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyLocations/MyLocations-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -587,6 +589,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.antonnovoselov.MemoSpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyLocations/MyLocations-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -46,7 +46,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     var performingReverseGeocoding = false
     var lastGeocodingError: NSError?
     
-    var timer: NSTimer?
+    var timer: Timer?
     
     var managedObjectContext: NSManagedObjectContext!
     
@@ -55,13 +55,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     lazy var logoButton: UIButton = {
         
-        let button = UIButton(type: .Custom)
-        button.setBackgroundImage(UIImage(named: "Logo5"), forState: .Normal)
+        let button = UIButton(type: .custom)
+        button.setBackgroundImage(UIImage(named: "Logo5"), for: UIControlState())
         button.sizeToFit()
         
-        button.addTarget(self, action: #selector(CurrentLocationViewController.getLocation), forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(CurrentLocationViewController.getLocation), for: .touchUpInside)
         
-        button.center.x = CGRectGetMidX(self.view.bounds)
+        button.center.x = self.view.bounds.midX
         button.center.y = 220
         
         return button
@@ -84,16 +84,16 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         loadSoundEffect("Sound.caf")
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let name = "MemoSpot~\(title)"
         
         let tracker = GAI.sharedInstance().defaultTracker
-        tracker.set(kGAIScreenName, value: name)
+        tracker?.set(kGAIScreenName, value: name)
         
         let builder = GAIDictionaryBuilder.createScreenView()
-        tracker.send(builder.build() as [NSObject : AnyObject])
+        tracker?.send(builder?.build() as! [AnyHashable: Any])
         
     }
     
@@ -103,13 +103,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     func showLocationServicesDeniedAlert() {
         
-        let alert = UIAlertController(title: NSLocalizedString("LOCATION_SERVICES_DENIED_ALERT_TITLE", comment: ""), message: NSLocalizedString("", comment: "LOCATION_SERVICES_DENIED_ALERT_MESSAGE"), preferredStyle: .Alert)
+        let alert = UIAlertController(title: NSLocalizedString("LOCATION_SERVICES_DENIED_ALERT_TITLE", comment: ""), message: NSLocalizedString("", comment: "LOCATION_SERVICES_DENIED_ALERT_MESSAGE"), preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         
         alert.addAction(okAction)
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
         
     }
     
@@ -117,12 +117,12 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         
         if let location = location {
             
-            latitudeTextLabel.hidden = false
-            longitudeTextLabel.hidden = false
+            latitudeTextLabel.isHidden = false
+            longitudeTextLabel.isHidden = false
             
             latitudeLabel.text = String(format: "%.8f", location.coordinate.latitude)
             longitudeLabel.text = String(format: "%.8f", location.coordinate.longitude)
-            tagButton.hidden = false
+            tagButton.isHidden = false
             messageLabel.text = ""
             
             if let placemark = placemark {
@@ -137,19 +137,19 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
         } else {
             
-            latitudeTextLabel.hidden = true
-            longitudeTextLabel.hidden = true
+            latitudeTextLabel.isHidden = true
+            longitudeTextLabel.isHidden = true
             
             latitudeLabel.text = ""
             longitudeLabel.text = ""
             addressLabel.text = ""
-            tagButton.hidden = true
+            tagButton.isHidden = true
             messageLabel.text = NSLocalizedString("MESAGGE_LABEL_TAPTO", comment: "")
             
             
             let statusMessage: String
             if let error = lastLocationError {
-                if error.domain == kCLErrorDomain && error.code == CLError.Denied.rawValue {
+                if error.domain == kCLErrorDomain && error.code == CLError.Code.denied.rawValue {
                     statusMessage = NSLocalizedString("STATUSMESSAGE_ERROR_DISABLED", comment: "")
                 } else {
                     statusMessage = NSLocalizedString("STATUSMESSAGE_ERROR_GETTING", comment: "")
@@ -179,7 +179,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             updatingLocation = true
             
-            timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(CurrentLocationViewController.didTimeOut), userInfo: nil, repeats: false)
+            timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(CurrentLocationViewController.didTimeOut), userInfo: nil, repeats: false)
         }
     }
     
@@ -203,10 +203,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         let spinnerTag = 1000
         
         if updatingLocation {
-            getButton.setTitle(NSLocalizedString("BUTTON_STOP_SEARCH", comment: ""), forState: .Normal)
+            getButton.setTitle(NSLocalizedString("BUTTON_STOP_SEARCH", comment: ""), for: UIControlState())
             
             if view.viewWithTag(spinnerTag) == nil {
-                let spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
+                let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
                 
                 spinner.center = messageLabel.center
                 
@@ -218,7 +218,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             }
             
         } else {
-            getButton.setTitle(NSLocalizedString("BUTTON_GET_LOCATION", comment: ""), forState: .Normal)
+            getButton.setTitle(NSLocalizedString("BUTTON_GET_LOCATION", comment: ""), for: UIControlState())
             
             if let spinner = view.viewWithTag(spinnerTag) {
                 spinner.removeFromSuperview()
@@ -227,7 +227,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         
     }
     
-    func stringFromPlacemark(placemark: CLPlacemark) -> String {
+    func stringFromPlacemark(_ placemark: CLPlacemark) -> String {
         
         var line1 = ""
         
@@ -268,7 +268,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         if !logoVisible {
             logoVisible = true
             
-            containerView.hidden = true
+            containerView.isHidden = true
             
             view.addSubview(logoButton)
         }
@@ -281,46 +281,46 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         }
         
         logoVisible = false
-        containerView.hidden = false
+        containerView.isHidden = false
         
         containerView.center.x = view.bounds.size.width * 2
         containerView.center.y = 8 + containerView.bounds.size.height / 2
 
-        let centerX = CGRectGetMidX(view.bounds)
+        let centerX = view.bounds.midX
         
         let panelMover = CABasicAnimation(keyPath: "position")
-        panelMover.removedOnCompletion = false
+        panelMover.isRemovedOnCompletion = false
         panelMover.fillMode = kCAFillModeForwards
         panelMover.duration = 0.6
-        panelMover.fromValue = NSValue(CGPoint: containerView.center)
-        panelMover.toValue = NSValue(CGPoint: CGPoint(x: centerX, y: containerView.center.y))
+        panelMover.fromValue = NSValue(cgPoint: containerView.center)
+        panelMover.toValue = NSValue(cgPoint: CGPoint(x: centerX, y: containerView.center.y))
         panelMover.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
-        panelMover.delegate = self
-        containerView.layer.addAnimation(panelMover, forKey: "panelMover")
+        panelMover.delegate = self as! CAAnimationDelegate
+        containerView.layer.add(panelMover, forKey: "panelMover")
         
         let logoMover = CABasicAnimation(keyPath: "position")
-        logoMover.removedOnCompletion = false
+        logoMover.isRemovedOnCompletion = false
         logoMover.fillMode = kCAFillModeForwards
         logoMover.duration = 0.5
-        logoMover.fromValue = NSValue(CGPoint: logoButton.center)
-        logoMover.toValue = NSValue(CGPoint: CGPoint(x: -centerX, y: logoButton.center.y))
+        logoMover.fromValue = NSValue(cgPoint: logoButton.center)
+        logoMover.toValue = NSValue(cgPoint: CGPoint(x: -centerX, y: logoButton.center.y))
         logoMover.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-        logoButton.layer.addAnimation(logoMover, forKey: "logoMover")
+        logoButton.layer.add(logoMover, forKey: "logoMover")
         
         let logoRotator = CABasicAnimation(keyPath: "transform.rotation.z")
-        logoRotator.removedOnCompletion = false
+        logoRotator.isRemovedOnCompletion = false
         logoRotator.fillMode = kCAFillModeForwards
         logoRotator.duration = 0.5
         logoRotator.fromValue = 0.0
         logoRotator.toValue = -2 * M_PI
         logoRotator.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-        logoButton.layer.addAnimation(logoRotator, forKey: "logoRotator")
+        logoButton.layer.add(logoRotator, forKey: "logoRotator")
         
         
         
     }
     
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+    override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         containerView.layer.removeAllAnimations()
         containerView.center.x = view.bounds.size.width / 2
         containerView.center.y = 40 + containerView.bounds.size.height / 2
@@ -337,12 +337,12 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         // Get user permission to share location
         let authStatus = CLLocationManager.authorizationStatus()
         
-        if authStatus == .NotDetermined {
+        if authStatus == .notDetermined {
             locationManager.requestWhenInUseAuthorization()
             return
         }
         
-        if authStatus == .Denied || authStatus == .Restricted {
+        if authStatus == .denied || authStatus == .restricted {
             showLocationServicesDeniedAlert()
             return
         }
@@ -373,10 +373,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     // MARK: - NAVIGATION
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "TagLocation" {
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             
             let controller = navigationController.topViewController as! LocationDetailsViewController
             
@@ -394,13 +394,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     // MARK: - CLLocationManagerDelegate
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
-        if error.code == CLError.LocationUnknown.rawValue {
+        if error.code == CLError.Code.locationUnknown.rawValue {
             return
         }
         
-        lastLocationError = error
+        lastLocationError = error as NSError
         
         stopLocationManager()
         updateLabels()
@@ -411,7 +411,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let newLocation = locations.last!
         
@@ -427,7 +427,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         
         var distance = CLLocationDistance(DBL_MAX)
         if let location = location {
-            distance = newLocation.distanceFromLocation(location)
+            distance = newLocation.distance(from: location)
         }
         
         
@@ -455,9 +455,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                 geocoder.reverseGeocodeLocation(newLocation, completionHandler: { (placemarks, error) in
                     
                     
-                    self.lastLocationError = error
+                    self.lastLocationError = error as! NSError
                     
-                    if error == nil, let p = placemarks where !p.isEmpty {
+                    if error == nil, let p = placemarks, !p.isEmpty {
                         
                         if self.placemark == nil {
                             
@@ -481,7 +481,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
         } else if distance < 1.0 {
             
-            let timeInterval = newLocation.timestamp.timeIntervalSinceDate(location!.timestamp)
+            let timeInterval = newLocation.timestamp.timeIntervalSince(location!.timestamp)
             
             if timeInterval > 10 {
                 
@@ -502,13 +502,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     
   
-    func loadSoundEffect(name: String) {
+    func loadSoundEffect(_ name: String) {
         
-        if let path = NSBundle.mainBundle().pathForResource(name, ofType: nil) {
+        if let path = Bundle.main.path(forResource: name, ofType: nil) {
             
-            let fileURL = NSURL.fileURLWithPath(path, isDirectory: false)
+            let fileURL = URL(fileURLWithPath: path, isDirectory: false)
             
-            let error = AudioServicesCreateSystemSoundID(fileURL, &soundID)
+            let error = AudioServicesCreateSystemSoundID(fileURL as CFURL, &soundID)
             
             if error != kAudioServicesNoError {
             }

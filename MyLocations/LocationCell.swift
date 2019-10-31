@@ -22,7 +22,7 @@ class LocationCell: UITableViewCell {
     
     // MARK: - HELPER METHODS
 
-    func configureForLocation(location: Location) {
+    func configureForLocation(_ location: Location) {
         
         if location.locationDescription.isEmpty {
             
@@ -58,7 +58,7 @@ class LocationCell: UITableViewCell {
     
     
     
-    func imageForLocation(location: Location) -> UIImage {
+    func imageForLocation(_ location: Location) -> UIImage {
         
         if location.hasPhoto, let image = location.photoImage {
             
@@ -79,8 +79,8 @@ class LocationCell: UITableViewCell {
         super.awakeFromNib()
         
      
-        backgroundColor = UIColor.blackColor()
-        descriptionLabel.textColor = UIColor.whiteColor()
+        backgroundColor = UIColor.black
+        descriptionLabel.textColor = UIColor.white
         descriptionLabel.highlightedTextColor = descriptionLabel.textColor
         addressLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
         addressLabel.highlightedTextColor = addressLabel.textColor
@@ -99,7 +99,7 @@ class LocationCell: UITableViewCell {
         
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         

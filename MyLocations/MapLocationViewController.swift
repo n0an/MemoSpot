@@ -58,13 +58,13 @@ class MapLocationViewController: UIViewController {
     
     var deltaAngel: CGFloat!
     
-    var weatherDate = NSDate()
+    var weatherDate = Date()
 
     let calend = ANConfigurator.sharedConfigurator.calendar
     
-    var components: NSDateComponents!
+    var components: DateComponents!
     
-    var diffComponents: NSDateComponents!
+    var diffComponents: DateComponents!
     
     var currentAlpha: CGFloat!
     
@@ -73,7 +73,7 @@ class MapLocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         initShadowView()
 
@@ -83,19 +83,19 @@ class MapLocationViewController: UIViewController {
             showLocations()
         }
         
-        components = calend.components([.Month, .Day], fromDate: weatherDate)
+        components = (calend as NSCalendar).components([.month, .day], from: weatherDate)
         
         refreshDateButton()
         
         ANConfigurator.sharedConfigurator.customizeSlider(timeSlider)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
      
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         
@@ -132,7 +132,7 @@ class MapLocationViewController: UIViewController {
         
     }
     
-    func showLocationDetails(sender: UIButton) {
+    func showLocationDetails(_ sender: UIButton) {
         
     }
 
@@ -140,19 +140,19 @@ class MapLocationViewController: UIViewController {
     
     func calculateTimeStamps() {
         
-        let sunriseTimeInSeconds = NSTimeInterval(weather.sunriseTime)
-        let sunsetTimeInSeconds = NSTimeInterval(weather.sunsetTime)
+        let sunriseTimeInSeconds = TimeInterval(weather.sunriseTime)
+        let sunsetTimeInSeconds = TimeInterval(weather.sunsetTime)
         
-        let sunriseDate = NSDate(timeIntervalSince1970: sunriseTimeInSeconds)
-        let sunsetDate = NSDate(timeIntervalSince1970: sunsetTimeInSeconds)
+        let sunriseDate = Date(timeIntervalSince1970: sunriseTimeInSeconds)
+        let sunsetDate = Date(timeIntervalSince1970: sunsetTimeInSeconds)
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH"
         
-        sunriseTime = Int(dateFormatter.stringFromDate(sunriseDate))
-        sunsetTime = Int(dateFormatter.stringFromDate(sunsetDate))
+        sunriseTime = Int(dateFormatter.string(from: sunriseDate))
+        sunsetTime = Int(dateFormatter.string(from: sunsetDate))
         
-        if let sunsetT = sunsetTime, sunriseT = sunriseTime {
+        if let sunsetT = sunsetTime, let sunriseT = sunriseTime {
             
             dayLightSpan = sunsetT - sunriseT
             
@@ -171,11 +171,11 @@ class MapLocationViewController: UIViewController {
     
     func altCalculateTimeStamps() {
         
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm:ss"
         
-        let sunriseComponents = altSunriseTime.componentsSeparatedByString(":")
-        let sunsetComponents = altSunsetTime.componentsSeparatedByString(":")
+        let sunriseComponents = altSunriseTime.components(separatedBy: ":")
+        let sunsetComponents = altSunsetTime.components(separatedBy: ":")
         
         
         if let comp1 = Int(sunriseComponents[0]), let comp2 = Int(sunsetComponents[0]) {
@@ -184,7 +184,7 @@ class MapLocationViewController: UIViewController {
             sunsetTime = comp2 + weather.offset
             
             
-            if let sunsetT = sunsetTime, sunriseT = sunriseTime {
+            if let sunsetT = sunsetTime, let sunriseT = sunriseTime {
                 
                 dayLightSpan = sunsetT - sunriseT
                 
@@ -206,13 +206,13 @@ class MapLocationViewController: UIViewController {
     func initShadowView() {
         
         let shadowImageView = UIImageView(image: UIImage(named: "shadowArrow"))
-        shadowImageView.frame.origin = CGPoint(x: CGRectGetMidX(view.bounds), y: CGRectGetMidY(view.bounds))
+        shadowImageView.frame.origin = CGPoint(x: view.bounds.midX, y: view.bounds.midY)
         
         view.addSubview(shadowImageView)
         
         shadowView = shadowImageView
         
-        shadowView.hidden = true
+        shadowView.isHidden = true
         
     }
 
@@ -229,7 +229,7 @@ class MapLocationViewController: UIViewController {
         
         if selectedTime >= sunriseTime && selectedTime <= sunsetTime {
             
-            shadowView?.hidden = false
+            shadowView?.isHidden = false
             
             
             let slowSunTime = dayLightSpan / 10
@@ -256,7 +256,7 @@ class MapLocationViewController: UIViewController {
                 
                 let currentWidth = pow((Double(selectedTime - sunriseT) - doubleDayLightSpan/2), 2)*Double(877/pow(doubleDayLightSpan, 2)) + 30
                 
-                shadowView?.transform = CGAffineTransformMakeRotation(currentAngle)
+                shadowView?.transform = CGAffineTransform(rotationAngle: currentAngle)
                 
                 shadowView?.bounds.size.width = CGFloat(currentWidth)
             }
@@ -264,7 +264,7 @@ class MapLocationViewController: UIViewController {
             
         } else {
             
-            shadowView?.hidden = true
+            shadowView?.isHidden = true
             
         }
         
@@ -275,9 +275,9 @@ class MapLocationViewController: UIViewController {
     
     func refreshDateButton() {
         
-        let dateString = ANConfigurator.sharedConfigurator.dateFormatter.stringFromDate(weatherDate)
+        let dateString = ANConfigurator.sharedConfigurator.dateFormatter.string(from: weatherDate)
         
-        dateButton.setTitle(dateString, forState: .Normal)
+        dateButton.setTitle(dateString, for: UIControlState())
     }
     
     
@@ -287,28 +287,28 @@ class MapLocationViewController: UIViewController {
     
     func getSuriseSunsetAlternative() {
         
-        let alternativeDateFormatter = NSDateFormatter()
+        let alternativeDateFormatter = DateFormatter()
         
         alternativeDateFormatter.dateFormat = "YYYY-MM-dd"
         
         let locationString = "lat=\(locationToEdit.coordinate.latitude)&lng=\(locationToEdit.coordinate.longitude)"
         
-        let suffixStr = "&date=\(alternativeDateFormatter.stringFromDate(weatherDate))&formatted=0"
+        let suffixStr = "&date=\(alternativeDateFormatter.string(from: weatherDate))&formatted=0"
         
-        let url = NSURL(string: "http://api.sunrise-sunset.org/json?\(locationString)\(suffixStr)")
+        let url = URL(string: "http://api.sunrise-sunset.org/json?\(locationString)\(suffixStr)")
         
-        let sharedSession = NSURLSession.sharedSession()
+        let sharedSession = URLSession.shared
         
         guard let pUrl = url else { return }
         
         
-        let dataTask = sharedSession.dataTaskWithURL(pUrl) { (data, response, error) in
+        let dataTask = sharedSession.dataTask(with: pUrl, completionHandler: { (data, response, error) in
             
             if (error == nil) {
                 
                 let dataObject = data
                 
-                let responseDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+                let responseDictionary: NSDictionary = (try! JSONSerialization.jsonObject(with: dataObject!, options: [])) as! NSDictionary
                 
                 self.sunriseSunset = SunriseSunset(responseDictionary: responseDictionary)
                 
@@ -318,7 +318,7 @@ class MapLocationViewController: UIViewController {
                 self.altCalculateTimeStamps()
                 
                 
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     
                     if self.isShadowShowing {
                         self.refreshShadow()
@@ -334,7 +334,7 @@ class MapLocationViewController: UIViewController {
             }
             
             
-        }
+        }) 
         
         dataTask.resume()
         
@@ -355,18 +355,18 @@ class MapLocationViewController: UIViewController {
         let userLocation = "\(locationToEdit.coordinate.latitude),\(locationToEdit.coordinate.longitude)"
         
         
-        let baseURL = NSURL(string: "https://api.forecast.io/forecast/\(apiKey)/")
-        let forecastURL = NSURL(string: "\(userLocation)", relativeToURL:baseURL)
+        let baseURL = URL(string: "https://api.forecast.io/forecast/\(apiKey)/")
+        let forecastURL = URL(string: "\(userLocation)", relativeTo:baseURL)
         
         
-        let sharedSession = NSURLSession.sharedSession()
+        let sharedSession = URLSession.shared
         
-        let downloadTask: NSURLSessionDownloadTask = sharedSession.downloadTaskWithURL(forecastURL!, completionHandler: { (location: NSURL?, response: NSURLResponse?, error: NSError?) -> Void in
+        let downloadTask: URLSessionDownloadTask = sharedSession.downloadTask(with: forecastURL!, completionHandler: { (location: URL?, response: URLResponse?, error: NSError?) -> Void in
             
             if (error == nil) {
                 
-                let dataObject = NSData(contentsOfURL: location!)
-                let weatherDictionary: NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(dataObject!, options: [])) as! NSDictionary
+                let dataObject = try? Data(contentsOf: location!)
+                let weatherDictionary: NSDictionary = (try! JSONSerialization.jsonObject(with: dataObject!, options: [])) as! NSDictionary
                 
                 let currentWeather = CurrentWeather(weatherDictionary: weatherDictionary)
 
@@ -386,7 +386,7 @@ class MapLocationViewController: UIViewController {
                 
                 self.isClearDay = currentWeather.isClearDay
                 
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     
                     self.getSuriseSunsetAlternative()
                     
@@ -394,7 +394,7 @@ class MapLocationViewController: UIViewController {
                     
                     if self.isShadowShowing {
                         self.refreshShadow()
-                        self.weatherImageViewContainer.hidden = false
+                        self.weatherImageViewContainer.isHidden = false
                     }
 
                 })
@@ -406,7 +406,7 @@ class MapLocationViewController: UIViewController {
                 
             }
             
-        })
+        } as! (URL?, URLResponse?, Error?) -> Void)
         
         downloadTask.resume()
         
@@ -421,17 +421,17 @@ class MapLocationViewController: UIViewController {
         
         let times = iconsDict.keys
         
-        var min = NSTimeInterval(INT_MAX)
+        var min = TimeInterval(INT_MAX)
         
         var minTime = 0
         
         for time in times {
             
-            let sunriseTimeInSeconds = NSTimeInterval(time)
+            let sunriseTimeInSeconds = TimeInterval(time)
             
-            let sunriseDate = NSDate(timeIntervalSince1970: sunriseTimeInSeconds)
+            let sunriseDate = Date(timeIntervalSince1970: sunriseTimeInSeconds)
             
-            let unixTime = abs(weatherDate.timeIntervalSinceDate(sunriseDate))
+            let unixTime = abs(weatherDate.timeIntervalSince(sunriseDate))
             
             if unixTime < min {
                 min = unixTime
@@ -461,7 +461,7 @@ class MapLocationViewController: UIViewController {
         
         if self.isShadowShowing {
             self.refreshShadow()
-            self.weatherImageViewContainer.hidden = false
+            self.weatherImageViewContainer.isHidden = false
         }
         
     }
@@ -471,7 +471,7 @@ class MapLocationViewController: UIViewController {
     
     // MARK: - ACTIONS
     
-    @IBAction func actionTimeSliderValueChanged(sender: UISlider) {
+    @IBAction func actionTimeSliderValueChanged(_ sender: UISlider) {
         
         timeLabel.text = "\(Int(sender.value * 24)):00"
         
@@ -483,20 +483,20 @@ class MapLocationViewController: UIViewController {
     
     
     
-    @IBAction func showShadows(sender: UIBarButtonItem) {
+    @IBAction func showShadows(_ sender: UIBarButtonItem) {
         
         if isShadowShowing {
-            shadowView.hidden = true
-            weatherImageViewContainer.hidden = true
+            shadowView.isHidden = true
+            weatherImageViewContainer.isHidden = true
             
         } else {
-            shadowView.hidden = false
+            shadowView.isHidden = false
             
             
             if isWeatherAvailable {
-                weatherImageViewContainer.hidden = false
+                weatherImageViewContainer.isHidden = false
             } else {
-                weatherImageViewContainer.hidden = true
+                weatherImageViewContainer.isHidden = true
             }
             
             refreshShadow()
@@ -508,11 +508,11 @@ class MapLocationViewController: UIViewController {
     
     // MARK: - NAVIGATION
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowCalendar" {
             
-            let destinationVC = segue.destinationViewController as! CalendarViewController
+            let destinationVC = segue.destination as! CalendarViewController
             
             destinationVC.delegate = self
             
@@ -532,7 +532,7 @@ class MapLocationViewController: UIViewController {
 extension MapLocationViewController: MKMapViewDelegate {
     
     
-    func regionForAnnotations(annotations: [MKAnnotation]) -> MKCoordinateRegion {
+    func regionForAnnotations(_ annotations: [MKAnnotation]) -> MKCoordinateRegion {
         
         var region: MKCoordinateRegion
         
@@ -581,43 +581,43 @@ extension MapLocationViewController: MKMapViewDelegate {
     }
     
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         guard annotation is Location else { return nil }
         
         let identifier = "Location"
         
-        var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as! MKPinAnnotationView!
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as! MKPinAnnotationView!
         
         if annotationView == nil {
             annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             
-            annotationView.enabled = true
-            annotationView.canShowCallout = true
-            annotationView.animatesDrop = false
+            annotationView?.isEnabled = true
+            annotationView?.canShowCallout = true
+            annotationView?.animatesDrop = false
             if #available(iOS 9.0, *) {
-                annotationView.pinTintColor = UIColor(red: 0.32, green: 0.82, blue: 0.4, alpha: 1)
+                annotationView?.pinTintColor = UIColor(red: 0.32, green: 0.82, blue: 0.4, alpha: 1)
             } else {
                 
             }
             
-            annotationView.tintColor = UIColor(white: 0.0, alpha: 0.5)
+            annotationView?.tintColor = UIColor(white: 0.0, alpha: 0.5)
             
             
-            let rightButton = UIButton(type: .DetailDisclosure)
-            rightButton.addTarget(self, action: #selector(MapLocationViewController.showLocationDetails(_:)), forControlEvents: .TouchUpInside)
+            let rightButton = UIButton(type: .detailDisclosure)
+            rightButton.addTarget(self, action: #selector(MapLocationViewController.showLocationDetails(_:)), for: .touchUpInside)
             
-            annotationView.rightCalloutAccessoryView = rightButton
+            annotationView?.rightCalloutAccessoryView = rightButton
             
         } else { 
             
-            annotationView.annotation = annotation
+            annotationView?.annotation = annotation
             
         }
         
-        let button = annotationView.rightCalloutAccessoryView as! UIButton
+        let button = annotationView?.rightCalloutAccessoryView as! UIButton
         
-        if let index = locations.indexOf(annotation as! Location) {
+        if let index = locations.index(of: annotation as! Location) {
             button.tag = index
         }
         
@@ -633,16 +633,16 @@ extension MapLocationViewController: MKMapViewDelegate {
 
 extension MapLocationViewController: CalendarViewControllerDelegate {
     
-    func dateSelected(date: NSDate) {
+    func dateSelected(_ date: Date) {
         
-        diffComponents = calend.components([.Day], fromDate: NSDate(), toDate: date, options: [])
+        diffComponents = (calend as NSCalendar).components([.day], from: Date(), to: date, options: [])
         
         
-        if 0 > diffComponents.day || diffComponents.day > 5 {
+        if 0 > diffComponents.day! || diffComponents.day! > 5 {
             
             isWeatherAvailable = false
             isClearDay = true
-            weatherImageViewContainer.hidden = true
+            weatherImageViewContainer.isHidden = true
             
             
         } else {

@@ -52,15 +52,15 @@ struct CurrentWeather {
 
 //Date formatter
 
-func dateStringFromUnixtime(unixTime: Int) -> String {
+func dateStringFromUnixtime(_ unixTime: Int) -> String {
     
-    let timeInSeconds = NSTimeInterval(unixTime)
-    let weatherDate = NSDate(timeIntervalSince1970: timeInSeconds)
+    let timeInSeconds = TimeInterval(unixTime)
+    let weatherDate = Date(timeIntervalSince1970: timeInSeconds)
     
-    let dateFormatter = NSDateFormatter()
-    dateFormatter.timeStyle = .MediumStyle
+    let dateFormatter = DateFormatter()
+    dateFormatter.timeStyle = .medium
     
-    return dateFormatter.stringFromDate(weatherDate)
+    return dateFormatter.string(from: weatherDate)
     
     
 }
@@ -69,7 +69,7 @@ func dateStringFromUnixtime(unixTime: Int) -> String {
 //Images
 
 
-func weatherIconFromString(stringIcon: String) -> UIImage {
+func weatherIconFromString(_ stringIcon: String) -> UIImage {
     
     let imageName = processString(stringIcon)
     
@@ -78,7 +78,7 @@ func weatherIconFromString(stringIcon: String) -> UIImage {
     
 }
 
-func altWeatherIconFromString(stringIcon: String) -> UIImage {
+func altWeatherIconFromString(_ stringIcon: String) -> UIImage {
     
     let imageName = processString(stringIcon) + "-alt"
     
@@ -89,7 +89,7 @@ func altWeatherIconFromString(stringIcon: String) -> UIImage {
     
 }
 
-func processString(inputStr: String) -> String {
+func processString(_ inputStr: String) -> String {
     
     var imageName: String
     
@@ -133,7 +133,7 @@ func processString(inputStr: String) -> String {
 }
 
 
-func isItClearDay(stringIcon: String) -> Bool {
+func isItClearDay(_ stringIcon: String) -> Bool {
     
     switch stringIcon {
     case "clear-day", "clear-night", "partly-cloudy-day", "partly-cloudy-night":
@@ -150,7 +150,7 @@ func isItClearDay(stringIcon: String) -> Bool {
 
 
 
-func Fahrenheit2Celsius(f: Int) -> Int {
+func Fahrenheit2Celsius(_ f: Int) -> Int {
     return Int((Double(f) - 32.0) / 1.8)
 }
 
