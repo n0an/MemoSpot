@@ -95,7 +95,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
         userTemperatureCelsius = false
 
         swipeRec.addTarget(self, action: #selector(WeatherViewController.swipedView))
-        swipeRec.direction = UISwipeGestureRecognizerDirection.down
+        swipeRec.direction = UISwipeGestureRecognizer.Direction.down
         swipeView.addGestureRecognizer(swipeRec)
 
         refresh()
@@ -126,7 +126,7 @@ class WeatherViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - HELPER METHODS
     
-    func swipedView(){
+    @objc func swipedView(){
         
         refresh()
         

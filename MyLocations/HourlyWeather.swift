@@ -11,41 +11,41 @@ import UIKit
 
 struct HourlyWeather {
     
-    var hourZeroTemperature: Int
+    var hourZeroTemperature: Int = 0
     var hourZeroTime: String?
     
-    var hourZeroIcon: UIImage
+    var hourZeroIcon: UIImage = UIImage(contentsOfFile: "tmp")!
 
     
-    var hourOneTemperature: Int
+    var hourOneTemperature: Int = 0
     var hourOneTime: String?
     
-    var hourOneIcon: UIImage
+    var hourOneIcon: UIImage = UIImage(contentsOfFile: "tmp")!
     
-    var hourTwoTemperature: Int
+    var hourTwoTemperature: Int = 0
     var hourTwoTime: String?
     
-    var hourTwoIcon: UIImage
+    var hourTwoIcon: UIImage = UIImage(contentsOfFile: "tmp")!
     
-    var hourThreeTemperature: Int
+    var hourThreeTemperature: Int = 0
     var hourThreeTime: String?
     
-    var hourThreeIcon: UIImage
+    var hourThreeIcon: UIImage = UIImage(contentsOfFile: "tmp")!
     
-    var hourFourTemperature: Int
+    var hourFourTemperature: Int = 0
     var hourFourTime: String?
     
-    var hourFourIcon: UIImage
+    var hourFourIcon: UIImage = UIImage(contentsOfFile: "tmp")!
     
-    var hourFiveTemperature: Int
+    var hourFiveTemperature: Int = 0
     var hourFiveTime: String?
     
-    var hourFiveIcon: UIImage
+    var hourFiveIcon: UIImage = UIImage(contentsOfFile: "tmp")!
     
-    var hourSixTemperature: Int
+    var hourSixTemperature: Int = 0
     var hourSixTime: String?
     
-    var hourSixIcon: UIImage
+    var hourSixIcon: UIImage = UIImage(contentsOfFile: "tmp")!
     
     
     init (weatherDictionary: NSDictionary) {
@@ -54,82 +54,85 @@ struct HourlyWeather {
         
         let hourlyForecast = hourlyWeather["data"] as! NSArray
         
+        
+        
+        
         //hour ZERO
-        let hourZeroTimeIntValue = hourlyForecast[0]["time"] as! Int
-        
-        hourZeroTime = timeStringFromUnixtime(hourZeroTimeIntValue)
-        
-        hourZeroTemperature = hourlyForecast[0]["temperature"] as! Int
-        
-        let hourZeroIconString = hourlyForecast[0]["icon"] as! String
-        hourZeroIcon = weatherIconFromString(hourZeroIconString)
-        
-        
-        //hour ONE
-        let hourOneTimeIntValue = hourlyForecast[1]["time"] as! Int
-        
-        hourOneTime = timeStringFromUnixtime(hourOneTimeIntValue)
-        
-        hourOneTemperature = hourlyForecast[1]["temperature"] as! Int
-        
-        let hourOneIconString = hourlyForecast[1]["icon"] as! String
-        hourOneIcon = weatherIconFromString(hourOneIconString)
-
-        
-        
-        //hour TWO
-        let hourTwoTimeIntValue = hourlyForecast[2]["time"] as! Int
-        
-        hourTwoTime = timeStringFromUnixtime(hourTwoTimeIntValue)
-        
-        hourTwoTemperature = hourlyForecast[2]["temperature"] as! Int
-        
-        let hourTwoIconString = hourlyForecast[2]["icon"] as! String
-        hourTwoIcon = weatherIconFromString(hourTwoIconString)
-        
-        
-        //hour THREE
-        let hourThreeTimeIntValue = hourlyForecast[3]["time"] as! Int
-        
-        hourThreeTime = timeStringFromUnixtime(hourThreeTimeIntValue)
-        
-        hourThreeTemperature = hourlyForecast[3]["temperature"] as! Int
-        
-        let hourThreeIconString = hourlyForecast[3]["icon"] as! String
-        hourThreeIcon = weatherIconFromString(hourThreeIconString)
-        
-        
-        //hour FOUR
-        let hourFourTimeIntValue = hourlyForecast[4]["time"] as! Int
-        
-        hourFourTime = timeStringFromUnixtime(hourFourTimeIntValue)
-        
-        hourFourTemperature = hourlyForecast[4]["temperature"] as! Int
-        
-        let hourFourIconString = hourlyForecast[4]["icon"] as! String
-        hourFourIcon = weatherIconFromString(hourFourIconString)
-        
-        
-        //hour FIVE
-        let hourFiveTimeIntValue = hourlyForecast[5]["time"] as! Int
-        
-        hourFiveTime = timeStringFromUnixtime(hourFiveTimeIntValue)
-        
-        hourFiveTemperature = hourlyForecast[5]["temperature"] as! Int
-        
-        let hourFiveIconString = hourlyForecast[5]["icon"] as! String
-        hourFiveIcon = weatherIconFromString(hourFiveIconString)
-
-        
-        //hour SIX
-        let hourSixTimeIntValue = hourlyForecast[6]["time"] as! Int
-        
-        hourSixTime = timeStringFromUnixtime(hourSixTimeIntValue)
-        
-        hourSixTemperature = hourlyForecast[6]["temperature"] as! Int
-        
-        let hourSixIconString = hourlyForecast[6]["icon"] as! String
-        hourSixIcon = weatherIconFromString(hourSixIconString)
+//        let hourZeroTimeIntValue = hourlyForecast[0]["time"] as! Int
+//
+//        hourZeroTime = timeStringFromUnixtime(hourZeroTimeIntValue)
+//
+//        hourZeroTemperature = hourlyForecast[0]["temperature"] as! Int
+//
+//        let hourZeroIconString = hourlyForecast[0]["icon"] as! String
+//        hourZeroIcon = weatherIconFromString(hourZeroIconString)
+//
+//
+//        //hour ONE
+//        let hourOneTimeIntValue = hourlyForecast[1]["time"] as! Int
+//
+//        hourOneTime = timeStringFromUnixtime(hourOneTimeIntValue)
+//
+//        hourOneTemperature = hourlyForecast[1]["temperature"] as! Int
+//
+//        let hourOneIconString = hourlyForecast[1]["icon"] as! String
+//        hourOneIcon = weatherIconFromString(hourOneIconString)
+//
+//
+//
+//        //hour TWO
+//        let hourTwoTimeIntValue = hourlyForecast[2]["time"] as! Int
+//
+//        hourTwoTime = timeStringFromUnixtime(hourTwoTimeIntValue)
+//
+//        hourTwoTemperature = hourlyForecast[2]["temperature"] as! Int
+//
+//        let hourTwoIconString = hourlyForecast[2]["icon"] as! String
+//        hourTwoIcon = weatherIconFromString(hourTwoIconString)
+//
+//
+//        //hour THREE
+//        let hourThreeTimeIntValue = hourlyForecast[3]["time"] as! Int
+//
+//        hourThreeTime = timeStringFromUnixtime(hourThreeTimeIntValue)
+//
+//        hourThreeTemperature = hourlyForecast[3]["temperature"] as! Int
+//
+//        let hourThreeIconString = hourlyForecast[3]["icon"] as! String
+//        hourThreeIcon = weatherIconFromString(hourThreeIconString)
+//
+//
+//        //hour FOUR
+//        let hourFourTimeIntValue = hourlyForecast[4]["time"] as! Int
+//
+//        hourFourTime = timeStringFromUnixtime(hourFourTimeIntValue)
+//
+//        hourFourTemperature = hourlyForecast[4]["temperature"] as! Int
+//
+//        let hourFourIconString = hourlyForecast[4]["icon"] as! String
+//        hourFourIcon = weatherIconFromString(hourFourIconString)
+//
+//
+//        //hour FIVE
+//        let hourFiveTimeIntValue = hourlyForecast[5]["time"] as! Int
+//
+//        hourFiveTime = timeStringFromUnixtime(hourFiveTimeIntValue)
+//
+//        hourFiveTemperature = hourlyForecast[5]["temperature"] as! Int
+//
+//        let hourFiveIconString = hourlyForecast[5]["icon"] as! String
+//        hourFiveIcon = weatherIconFromString(hourFiveIconString)
+//
+//
+//        //hour SIX
+//        let hourSixTimeIntValue = hourlyForecast[6]["time"] as! Int
+//
+//        hourSixTime = timeStringFromUnixtime(hourSixTimeIntValue)
+//
+//        hourSixTemperature = hourlyForecast[6]["temperature"] as! Int
+//
+//        let hourSixIconString = hourlyForecast[6]["icon"] as! String
+//        hourSixIcon = weatherIconFromString(hourSixIconString)
         
     }
     

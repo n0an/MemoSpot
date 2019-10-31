@@ -120,7 +120,7 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
         }
     }
     
-    class func handleHideMenuPan(_ pan: UIPanGestureRecognizer) {
+    @objc class func handleHideMenuPan(_ pan: UIPanGestureRecognizer) {
         let translation = pan.translation(in: pan.view!)
         let direction:CGFloat = SideMenuTransition.presentDirection == .left ? -1 : 1
         let distance = translation.x / SideMenuManager.menuWidth * direction
@@ -147,7 +147,7 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
         }
     }
     
-    class func handleHideMenuTap(_ tap: UITapGestureRecognizer) {
+    @objc class func handleHideMenuTap(_ tap: UITapGestureRecognizer) {
         viewControllerForPresentedMenu?.dismiss(animated: true, completion: nil)
     }
     
@@ -176,12 +176,12 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
             
         case .viewSlideInOut:
             menuView?.alpha = 1
-            menuView?.frame.origin.x = SideMenuTransition.presentDirection == .left ? (-menuView?.frame.width)! : mainViewController.view.frame.width
+            menuView?.frame.origin.x = SideMenuTransition.presentDirection == .left ? (-menuView!.frame.width) : mainViewController.view.frame.width
             mainViewController.view.frame.origin.x = 0
             
         case .menuSlideIn:
             menuView?.alpha = 1
-            menuView?.frame.origin.x = SideMenuTransition.presentDirection == .left ? (-menuView?.frame.width)! : mainViewController.view.frame.width
+            menuView?.frame.origin.x = SideMenuTransition.presentDirection == .left ? (-menuView!.frame.width) : mainViewController.view.frame.width
             
         case .menuDissolveIn:
             menuView?.alpha = 0
@@ -253,7 +253,7 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
     }
     
     internal class func presentMenuComplete() {
-        NotificationCenter.default.addObserver(SideMenuTransition.singleton, selector:#selector(SideMenuTransition.applicationDidEnterBackgroundNotification), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
+        NotificationCenter.default.addObserver(SideMenuTransition.singleton, selector:#selector(SideMenuTransition.applicationDidEnterBackgroundNotification), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         let mainViewController = SideMenuTransition.viewControllerForPresentedMenu!
         switch SideMenuManager.menuPresentMode {
@@ -343,7 +343,7 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
         
         // perform the animation!
         let duration = transitionDuration(using: transitionContext)
-        let options: UIViewAnimationOptions = interactive ? .curveLinear : UIViewAnimationOptions()
+        let options: UIView.AnimationOptions = interactive ? .curveLinear : UIView.AnimationOptions()
         UIView.animate(withDuration: duration, delay: 0, options: options, animations: { () -> Void in
             if self.presenting {
                 SideMenuTransition.presentMenuStart() // onstage items: slide in
@@ -381,7 +381,7 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
                         container.insertSubview(topView!, at: 0)
                     }
                     if let statusBarView = SideMenuTransition.statusBarView {
-                        container.bringSubview(toFront: statusBarView)
+                        container.bringSubviewToFront(statusBarView)
                     }
                     
                     return
@@ -424,7 +424,7 @@ internal class SideMenuTransition: UIPercentDrivenInteractiveTransition, UIViewC
         return interactive ? SideMenuTransition.singleton : nil
     }
     
-    internal func applicationDidEnterBackgroundNotification() {
+    @objc internal func applicationDidEnterBackgroundNotification() {
         if let menuViewController: UINavigationController = SideMenuTransition.presentDirection == .left ? SideMenuManager.menuLeftNavigationController : SideMenuManager.menuRightNavigationController {
             SideMenuTransition.hideMenuStart()
             SideMenuTransition.hideMenuComplete()

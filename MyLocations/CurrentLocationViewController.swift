@@ -56,7 +56,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     lazy var logoButton: UIButton = {
         
         let button = UIButton(type: .custom)
-        button.setBackgroundImage(UIImage(named: "Logo5"), for: UIControlState())
+        button.setBackgroundImage(UIImage(named: "Logo5"), for: UIControl.State())
         button.sizeToFit()
         
         button.addTarget(self, action: #selector(CurrentLocationViewController.getLocation), for: .touchUpInside)
@@ -203,10 +203,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         let spinnerTag = 1000
         
         if updatingLocation {
-            getButton.setTitle(NSLocalizedString("BUTTON_STOP_SEARCH", comment: ""), for: UIControlState())
+            getButton.setTitle(NSLocalizedString("BUTTON_STOP_SEARCH", comment: ""), for: UIControl.State())
             
             if view.viewWithTag(spinnerTag) == nil {
-                let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
+                let spinner = UIActivityIndicatorView(style: .white)
                 
                 spinner.center = messageLabel.center
                 
@@ -218,7 +218,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             }
             
         } else {
-            getButton.setTitle(NSLocalizedString("BUTTON_GET_LOCATION", comment: ""), for: UIControlState())
+            getButton.setTitle(NSLocalizedString("BUTTON_GET_LOCATION", comment: ""), for: UIControl.State())
             
             if let spinner = view.viewWithTag(spinnerTag) {
                 spinner.removeFromSuperview()
@@ -248,7 +248,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
 
     
-    func didTimeOut() {
+    @objc func didTimeOut() {
         
         if location == nil {
             stopLocationManager()
@@ -290,37 +290,39 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         
         let panelMover = CABasicAnimation(keyPath: "position")
         panelMover.isRemovedOnCompletion = false
-        panelMover.fillMode = kCAFillModeForwards
+        panelMover.fillMode = CAMediaTimingFillMode.forwards
         panelMover.duration = 0.6
         panelMover.fromValue = NSValue(cgPoint: containerView.center)
         panelMover.toValue = NSValue(cgPoint: CGPoint(x: centerX, y: containerView.center.y))
-        panelMover.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        panelMover.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
         panelMover.delegate = self as! CAAnimationDelegate
         containerView.layer.add(panelMover, forKey: "panelMover")
         
         let logoMover = CABasicAnimation(keyPath: "position")
         logoMover.isRemovedOnCompletion = false
-        logoMover.fillMode = kCAFillModeForwards
+        logoMover.fillMode = CAMediaTimingFillMode.forwards
         logoMover.duration = 0.5
         logoMover.fromValue = NSValue(cgPoint: logoButton.center)
         logoMover.toValue = NSValue(cgPoint: CGPoint(x: -centerX, y: logoButton.center.y))
-        logoMover.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        logoMover.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         logoButton.layer.add(logoMover, forKey: "logoMover")
         
         let logoRotator = CABasicAnimation(keyPath: "transform.rotation.z")
         logoRotator.isRemovedOnCompletion = false
-        logoRotator.fillMode = kCAFillModeForwards
+        logoRotator.fillMode = CAMediaTimingFillMode.forwards
         logoRotator.duration = 0.5
         logoRotator.fromValue = 0.0
         logoRotator.toValue = -2 * M_PI
-        logoRotator.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        logoRotator.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         logoButton.layer.add(logoRotator, forKey: "logoRotator")
         
         
         
     }
     
-    override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+    
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         containerView.layer.removeAllAnimations()
         containerView.center.x = view.bounds.size.width / 2
         containerView.center.y = 40 + containerView.bounds.size.height / 2
@@ -396,7 +398,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
-        if error.code == CLError.Code.locationUnknown.rawValue {
+        if error._code == CLError.Code.locationUnknown.rawValue {
             return
         }
         

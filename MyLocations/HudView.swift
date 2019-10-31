@@ -58,16 +58,16 @@ class HudView: UIView {
         
         // *** Text drawing
         
-        let attribs = [ NSFontAttributeName: UIFont.systemFont(ofSize: 16),
-                        NSForegroundColorAttributeName: UIColor.white ]
+        let attribs = [ convertFromNSAttributedStringKey(NSAttributedString.Key.font): UIFont.systemFont(ofSize: 16),
+                        convertFromNSAttributedStringKey(NSAttributedString.Key.foregroundColor): UIColor.white ]
         
-        let textSize = text.size(attributes: attribs)
+        let textSize = text.size(withAttributes: convertToOptionalNSAttributedStringKeyDictionary(attribs))
         
         let textPoint = CGPoint( x: center.x - round(textSize.width / 2),
                                  y: center.y - round(textSize.height / 2) + boxHeight / 4)
         
         
-        text.draw(at: textPoint, withAttributes: attribs)
+        text.draw(at: textPoint, withAttributes: convertToOptionalNSAttributedStringKeyDictionary(attribs))
         
     }
     
@@ -108,3 +108,14 @@ class HudView: UIView {
 
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}

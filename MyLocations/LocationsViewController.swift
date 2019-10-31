@@ -18,7 +18,7 @@ class LocationsViewController: UITableViewController {
     
     var managedObjectContext: NSManagedObjectContext!
     
-    lazy var fetchedResultsController: NSFetchedResultsController = {
+    lazy var fetchedResultsController: NSFetchedResultsController = { () -> NSFetchedResultsController<NSFetchRequestResult> in 
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         
@@ -199,7 +199,7 @@ class LocationsViewController: UITableViewController {
         
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
             

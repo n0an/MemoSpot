@@ -194,9 +194,9 @@ class LocationDetailsViewController: UITableViewController {
         
         
         
-        let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+        let span = MKCoordinateSpan.init(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
         
-        let region = MKCoordinateRegionMake(coordinate, span)
+        let region = MKCoordinateRegion.init(center: coordinate, span: span)
         
         favoriteMapView.setRegion(region, animated: false)
         
@@ -215,7 +215,7 @@ class LocationDetailsViewController: UITableViewController {
    
     // MARK: - GESTURE RECOGNIZERS
     
-    func hideKeyboard(_ gestureRecognizer: UIGestureRecognizer) {
+    @objc func hideKeyboard(_ gestureRecognizer: UIGestureRecognizer) {
         let point = gestureRecognizer.location(in: tableView)
         
  
@@ -229,7 +229,7 @@ class LocationDetailsViewController: UITableViewController {
         descriptionTextView.resignFirstResponder()
     }
     
-    func mapViewTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+    @objc func mapViewTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         
         performSegue(withIdentifier: "ShowLocation", sender: nil)
         
@@ -276,7 +276,7 @@ class LocationDetailsViewController: UITableViewController {
     
     func listenForBackgroundNotification() {
         
-        observer = NotificationCenter.default.addObserver(forName: NSNotification.Name.UIApplicationDidEnterBackground, object: nil, queue: OperationQueue.main) { [weak self] _ in
+        observer = NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
             
             if let strongSelf = self {
                 
@@ -329,7 +329,7 @@ class LocationDetailsViewController: UITableViewController {
                 location.photoID = Location.nextPhotoID() as NSNumber
             }
             
-            if let data = UIImageJPEGRepresentation(image, 0.5) { // 3
+            if let data = image.jpegData(compressionQuality: 0.5) { // 3
                 do {
                     try data.write(to: URL(fileURLWithPath: location.photoPath),
                                          options: .atomic)
@@ -642,9 +642,12 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     
     
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
-        image = info[UIImagePickerControllerEditedImage] as? UIImage
+        image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage
 
         
         tableView.reloadData()
@@ -679,3 +682,13 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
 
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
+}

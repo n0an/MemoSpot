@@ -87,11 +87,11 @@ class MapViewController: UIViewController {
         switch annotations.count {
         
         case 0:
-            region = MKCoordinateRegionMakeWithDistance( mapView.userLocation.coordinate, 1000, 1000)
+            region = MKCoordinateRegion.init( center: mapView.userLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
             
         case 1:
             let annotation = annotations[annotations.count - 1]
-            region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 1000, 1000)
+            region = MKCoordinateRegion.init(center: annotation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
             
         default:
             
@@ -136,7 +136,7 @@ class MapViewController: UIViewController {
     // MARK: - ACTIONS
 
     @IBAction func showUser() {
-        let region = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 1000, 1000)
+        let region = MKCoordinateRegion.init(center: mapView.userLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView.setRegion(mapView.regionThatFits(region), animated: true)
     }
     
@@ -148,7 +148,7 @@ class MapViewController: UIViewController {
         
     }
     
-    func showLocationDetails(_ sender: UIButton) {
+    @objc func showLocationDetails(_ sender: UIButton) {
         
         performSegue(withIdentifier: "EditLocation", sender: sender)
         

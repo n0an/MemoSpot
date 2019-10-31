@@ -106,7 +106,7 @@ open class SideMenuManager {
      
      - Note: If you want cells in a UITableViewController menu to show vibrancy, make them a subclass of UITableViewVibrantCell.
      */
-    open static var menuBlurEffectStyle: UIBlurEffectStyle? {
+    open static var menuBlurEffectStyle: UIBlurEffect.Style? {
         didSet {
             if oldValue != menuBlurEffectStyle {
                 updateMenuBlurIfNecessary()
@@ -183,7 +183,7 @@ open class SideMenuManager {
         
         guard let forMenu = forMenu,
             let menuBlurEffectStyle = menuBlurEffectStyle,
-            let view = forMenu.visibleViewController?.view, !UIAccessibilityIsReduceTransparencyEnabled() else {
+            let view = forMenu.visibleViewController?.view, !UIAccessibility.isReduceTransparencyEnabled else {
             return
         }
         
